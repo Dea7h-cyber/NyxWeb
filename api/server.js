@@ -18,12 +18,11 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/user', require('./routes/user.js'));
-// app.use('/api/rankings', require('./routes/rankings'));
+app.use('/api/characters', require('./routes/characters'));
 
 // if no route was handled we display not found
 app.use((req, res) => {
-  res.status(404);
-  res.send({ error: 'Not found' });
+  res.status(404).send({ error: 'Not found' });
 });
 
 app.listen(port, () => console.log(`API running on port ${port}!`));
