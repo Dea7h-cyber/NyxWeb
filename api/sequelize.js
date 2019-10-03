@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-
 const sequelize = new Sequelize('MuOnline', 'sa', 'thepasswordis1', {
   host: "localhost",
   port: 60143,
@@ -12,4 +11,4 @@ const sequelize = new Sequelize('MuOnline', 'sa', 'thepasswordis1', {
   }
 });
 
-module.exports.sequelize = sequelize;
+module.exports = sequelize;

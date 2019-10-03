@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const config = require('../config').rankings;
-const CharacterModel = require('../models/character');
+const Character = require('../models/character');
 
 /**
  * @route   GET /api/characters
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
   // End Pagination
 
   try {
-    const characters = await CharacterModel.findAll({
+    const characters = await Character.findAll({
       offset,
       limit: config.perPage,
       where: req.query,
@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
     const next = `http://localhost:4000/api/characters?page=${page + 1}`;
     const prev = page - 1 > 0 ? `http://localhost:4000/api/characters?page=${page - 1}` : null;
 
-    res.status(200).json({ next, prev, list: characters });
+    res.status(200).json({ next, prev, data: characters });
   } catch (error) {
     res.status(404).json({ error: 'Invalid request' });
   }
@@ -51,12 +51,13 @@ router.get('/', async (req, res) => {
  */
 
 router.get('/:name', async (req, res) => {
-  const character = await CharacterModel.findOne({
-    where: { Name: req.params.name }
+  const character = await Character.findOne({
+    where: { Name: req.params.name },
+    attributes: ['id', 'Name', 'Resets', 'cLevel', 'Class', 'Money', 'MapNumber']
   });
 
   if (character) {
-    res.status(200).json({ character });
+    res.status(200).json({ data: character });
   } else {
     res.status(404).json({ error: 'Character not found' });
   }

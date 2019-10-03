@@ -1,23 +1,18 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const app = express();
 const port = 4000;
 
-// support parsing of application/json type post data
-app.use(bodyParser.json());
-
-// support parsing of application/x-www-form-urlencoded post data
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ extended: true }));
 
 // Log with url and method
-app.use((req, res, next) => {
+app.use((req, _, next) => {
   console.log('Request made', req.method, req.url);
   next();
 });
 
 // Routes
-app.use('/api/user', require('./routes/user.js'));
+// app.use('/api/user', require('./routes/user.js'));
 app.use('/api/characters', require('./routes/characters'));
 
 // if no route was handled we display not found

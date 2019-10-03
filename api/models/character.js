@@ -1,17 +1,16 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../sequelize').sequelize;
+const sequelize = require('../sequelize');
 
-module.exports = sequelize.define('Character', {
+const Character = sequelize.define('Character', {
   // Name: {
   //   type: Sequelize.STRING
   // },
   // Resets: {
   //   type: Sequelize.INTEGER
-  // },
-  // Class: {
-  //   type: Sequelize.INTEGER
   // }
 }, {
   freezeTableName: true,
   timestamps: false
-})
+});
+
+module.exports = Character;

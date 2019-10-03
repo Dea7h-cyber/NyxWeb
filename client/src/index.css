@@ -1,7 +1,7 @@
 body {
   margin: 0;
   height: 100%;
-  background: #131313;
+  background: rgb(17, 17, 17);
   color: #ffffff;
   font-family: Calibri;
   font-size: 14px;
@@ -11,7 +11,9 @@ main.main-container {
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
-  background: rgb(12, 12, 12);
+  /* background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px); */
+  background: repeating-linear-gradient(45deg, rgb(17, 17, 17), rgb(17, 17, 17) 10px, rgb(12, 12, 12) 10px, rgb(12, 12, 12) 20px);
+  border: 1px solid rgb(7, 7, 7);
   display: grid;
   grid-template-areas:
     "main-header"
@@ -27,7 +29,7 @@ main.main-container {
 header.main-header {
   grid-area: main-header;
   height: 200px;
-  background: rgba(0, 0, 0, 0.5) url("../images/header.png");
+  background: rgba(0, 0, 0, 0.4) url("./images/header.png");
 }
 
 /*
@@ -124,7 +126,7 @@ h1.content-title {
   display: block;
   font-size: 16px;
   padding: 10px 10px 10px 28px;
-  background: #0e0e0e url("../images/arrow.png") no-repeat 8px center/15px 15px;
+  background: #0e0e0e url("./images/arrow.png") no-repeat 8px center/15px 15px;
   border-bottom: 2px solid rgb(20, 82, 20);
   color: #726d20;
   text-transform: uppercase;
