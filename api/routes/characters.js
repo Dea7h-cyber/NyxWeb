@@ -35,8 +35,8 @@ router.get('/', async (req, res) => {
     });
 
     // Passing in next and previous page links
-    const next = `http://localhost:4000/api/characters?page=${page + 1}`;
-    const prev = page - 1 > 0 ? `http://localhost:4000/api/characters?page=${page - 1}` : null;
+    const next = page + 1;
+    const prev = page - 1 > 0 ? page - 1 : null;
 
     res.status(200).json({ next, prev, data: characters });
   } catch (error) {

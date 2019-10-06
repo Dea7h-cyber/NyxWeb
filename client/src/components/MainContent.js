@@ -1,7 +1,7 @@
 import React from 'react'
-import ContentLeft from './Content-Left'
-import ContentMiddle from './Content-Middle'
-import ContentRight from './Content-Right'
+import ContentLeft from './content-left/'
+import ContentMiddle from './content-middle/'
+import ContentRight from './content-right/'
 
 function ContentBody() {
   return (

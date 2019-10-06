@@ -6,7 +6,8 @@ const port = 4000;
 app.use(express.json({ extended: true }));
 
 // Log with url and method
-app.use((req, _, next) => {
+app.use((req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*');
   console.log('Request made', req.method, req.url);
   next();
 });

@@ -1,10 +1,13 @@
 import React from 'react'
 
+import Events from "./Events";
+import MarketItems from "./MarketItems";
+
 function ContentLeft() {
   return (
     <aside className="main-left">
-      <h1 className="content-title">event timers</h1>
-      <section className="content-body padding event-timers"></section>
+      <Events />
+      <MarketItems />
     </aside>
   )
 }
