@@ -22,11 +22,17 @@ function UserArea() {
     <Fragment>
       <h1 className="content-title">{user ? `welcome ${user}` : 'login'}</h1>
       <section className="content-body padding">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form id="login-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="user-login">
             <input type="text" placeholder="Username" className="username" name="username" ref={register({ required: true, pattern: /^[a-z0-9]+$/i })} />
             <input type="password" placeholder="Password" className="password" name="password" ref={register({ required: true, pattern: /^[a-z0-9]+$/i })} />
-            <button type="submit" className="login">Login</button>
+            <button type="submit" className="login-btn">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Login
+            </button>
           </div>
           <div className="user-register"><Link to="/register">Don't have an account yet?</Link></div>
         </form>

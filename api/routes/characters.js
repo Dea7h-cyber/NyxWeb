@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
     const next = page + 1;
     const prev = page - 1 > 0 ? page - 1 : null;
 
-    res.status(200).json({ next, prev, data: characters });
+    res.status(200).json({ next, prev, characters });
   } catch (error) {
     res.status(404).json({ error: 'Invalid request' });
   }

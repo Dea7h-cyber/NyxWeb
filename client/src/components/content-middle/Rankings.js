@@ -12,9 +12,11 @@ function Rankings() {
 
   useEffect(() => {
     async function getCharacters() {
-      const { data } = await axios('/api/characters')
+      const result = await axios('/api/characters')
 
-      setCharacters(data.data)
+      if (result.data) {
+        setCharacters(result.data.characters)
+      }
       setLoader(false)
     }
 
@@ -27,7 +29,7 @@ function Rankings() {
       <section className="content-body padding">
         <div className="rankings-table">
           {
-            characters.map((char, key) => <Character key={key} char={{ ...char, key }} />)
+            characters.length > 0 ? characters.map((char, key) => <Character key={key} char={{ ...char, key }} />) : 'No characters'
           }
         </div>
         <Loader type="Triangle" color="Green" height={50} width={50} visible={loading} style={{ textAlign: 'center', padding: '15px' }} />

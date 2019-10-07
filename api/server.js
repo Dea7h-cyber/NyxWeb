@@ -1,9 +1,15 @@
-const express = require('express');
-
-const app = express();
+const app = require('express')();
 const port = 4000;
 
-app.use(express.json({ extended: true }));
+const bodyParser = require('body-parser');
+
+// app.use(express.json({ extended: true }));
+
+// support parsing of application/json type post data
+app.use(bodyParser.json());
+
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Log with url and method
 app.use((req, res, next) => {
@@ -15,6 +21,7 @@ app.use((req, res, next) => {
 // Routes
 // app.use('/api/user', require('./routes/user.js'));
 app.use('/api/characters', require('./routes/characters'));
+app.use('/api/users', require('./routes/users'));
 
 // if no route was handled we display not found
 app.use((req, res) => {
