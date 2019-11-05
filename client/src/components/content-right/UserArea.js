@@ -1,11 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Cookies from 'universal-cookie'
-import useForm from 'react-hook-form'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import useForm from 'react-hook-form';
+import axios from 'axios';
 
 export default () => {
-  const cookie = new Cookies()
-  const user = cookie.get('username')
+  const cookie = new Cookies();
+  const user = cookie.get('username');
 
   const { register, handleSubmit } = useForm();
 
@@ -14,28 +15,17 @@ export default () => {
 
   function onSubmit(data) {
     // event.preventDefault()
-    console.log(data)
+    console.log(data);
   }
 
-  return (
-    <>
-      <h1 className="content-title">{user ? `welcome ${user}` : 'login'}</h1>
-      <section className="content-body padding">
-        <form id="login-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="user-login">
-            <input type="text" placeholder="Username" className="username" name="username" ref={register({ required: true, pattern: /^[a-z0-9]+$/i })} />
-            <input type="password" placeholder="Password" className="password" name="password" ref={register({ required: true, pattern: /^[a-z0-9]+$/i })} />
-            <button type="submit" className="login-btn">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              Login
-            </button>
-          </div>
-          <div className="user-register"><Link to="/register">Don't have an account yet?</Link></div>
-        </form>
-      </section>
-    </>
-  )
-}
+  function UserArea() {
+    return (
+      <>
+        <h1 className='content-title'>{user ? `welcome ${user}` : 'login'}</h1>
+        <section className='content-body padding'>
+          {user ? <LoggedIn /> : <LoggedOut />}
+        </section>
+      </>
+    );
+  }
+};
