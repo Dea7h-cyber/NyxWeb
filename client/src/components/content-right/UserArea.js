@@ -18,14 +18,12 @@ export default () => {
     console.log(data);
   }
 
-  function UserArea() {
-    return (
-      <>
-        <h1 className='content-title'>{user ? `welcome ${user}` : 'login'}</h1>
-        <section className='content-body padding'>
-          {user ? <LoggedIn /> : <LoggedOut />}
-        </section>
-      </>
-    );
-  }
+  return (
+    <>
+      <h1 className='content-title'>{user ? `welcome ${user}` : 'login'}</h1>
+      <section className='content-body padding'>
+        {user ? <div>logged in</div> : <div>logged out</div>}
+      </section>
+    </>
+  );
 };
