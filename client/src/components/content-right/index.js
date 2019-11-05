@@ -1,15 +1,9 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import UserArea from "./UserArea";
 
-function ContentRight() {
-  return (
-    <aside className="main-right">
-      <Fragment>
-        <UserArea />
-      </Fragment>
-    </aside>
-  )
-}
-
-export default ContentRight;
+export default () => (
+  <aside className="main-right">
+    <UserArea />
+  </aside>
+)

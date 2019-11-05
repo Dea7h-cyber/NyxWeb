@@ -1,14 +1,13 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import useForm from 'react-hook-form'
 
-function UserArea() {
+export default () => {
   const cookie = new Cookies()
   const user = cookie.get('username')
 
   const { register, handleSubmit } = useForm();
-
 
   // cookies.set('myCat', 'Pacman', { path: '/' });
   // console.log(user);
@@ -19,7 +18,7 @@ function UserArea() {
   }
 
   return (
-    <Fragment>
+    <>
       <h1 className="content-title">{user ? `welcome ${user}` : 'login'}</h1>
       <section className="content-body padding">
         <form id="login-form" onSubmit={handleSubmit(onSubmit)}>
@@ -37,8 +36,6 @@ function UserArea() {
           <div className="user-register"><Link to="/register">Don't have an account yet?</Link></div>
         </form>
       </section>
-    </Fragment>
+    </>
   )
 }
-
-export default UserArea;

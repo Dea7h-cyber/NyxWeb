@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react' //, useState, useEffect
+import React from 'react'
 // import axios from 'axios'
 // import moment from 'moment'
 
-function Events() {
+export default () => {
   // const [events, setEvents] = useState([])
   // const [render, setRender] = useState([])
 
@@ -71,14 +71,12 @@ function Events() {
   // }
 
   return (
-    <Fragment>
+    <>
       <h1 className="content-title">event timers</h1>
       <section className="content-body padding">
         events
         {/* {render.map((event, key) => <div key={key}>{event.name} | {event.remainig} at {event.format}</div>)} */}
       </section>
-    </Fragment>
+    </>
   )
 }
-
-export default Events;

@@ -10,8 +10,7 @@ const Character = require('../models/character');
  */
 
 router.get('/', async (req, res) => {
-  let page = 1;
-  let offset;
+  let page = 1, offset;
 
   // Pagination
   if (req.query.page && isFinite(req.query.page)) {

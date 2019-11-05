@@ -12,7 +12,7 @@ import Footer from "./components/Footer"
 // Config
 axios.defaults.baseURL = config.proxy
 
-function App() {
+export default () => {
   return (
     <Router>
       <div className="App">
@@ -26,5 +26,3 @@ function App() {
     </Router>
   )
 }
-
-export default App

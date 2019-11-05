@@ -1,5 +1,5 @@
-function getClassName($class) {
-  switch ($class) {
+const getClassName = cClass => {
+  switch (cClass) {
     case 0: return 'Dark Wizard'
     case 1: return 'Soul Master'
     case 16: return 'Dark Knight'
@@ -12,8 +12,8 @@ function getClassName($class) {
   }
 }
 
-function classToImage($class) {
-  switch ($class) {
+const classToImage = cClass => {
+  switch (cClass) {
     case 0:
     case 1: return 'dw'
     case 16:
@@ -26,9 +26,7 @@ function classToImage($class) {
   }
 }
 
-function getClassImage($class) {
-  return `./images/classes/${classToImage($class)}.gif`
-}
+const getClassImage = cClass => `./images/classes/${classToImage(cClass)}.gif`;
 
 export {
   getClassName,

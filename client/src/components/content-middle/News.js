@@ -1,12 +1,18 @@
-import React, { Fragment } from 'react'
+import React from 'react';
 
-function News() {
+export default () => {
   return (
-    <Fragment>
-      <h1 className="content-title">some random news</h1>
-      <section className="content-body padding">Some content<br />Some content<br />Some content<br />Some content</section>
-    </Fragment>
-  )
-}
-
-export default News;
+    <>
+      <h1 className='content-title'>some random news</h1>
+      <section className='content-body padding'>
+        Some content
+        <br />
+        Some content
+        <br />
+        Some content
+        <br />
+        Some content
+      </section>
+    </>
+  );
+};
