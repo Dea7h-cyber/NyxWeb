@@ -15,13 +15,15 @@
   "author": "Dea7h",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.4"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
-    "sequelize": "^5.19.2",
-    "tedious": "^6.4.0"
+    "sequelize": "^5.21.2",
+    "tedious": "^6.6.0",
+    "winston": "^3.2.1"
   },
   "proxy": "http://localhost:4000"
 }

@@ -12,17 +12,15 @@ import Footer from "./components/Footer"
 // Config
 axios.defaults.baseURL = config.proxy
 
-export default () => {
-  return (
-    <Router>
-      <div className="App">
-        <main className="main-container">
-          <Header />
-          <Navigation />
-          <MainContent />
-          <Footer />
-        </main>
-      </div>
-    </Router>
-  )
-}
+export default () => (
+  <Router>
+    <div className="App">
+      <main className="main-container">
+        <Header />
+        <Navigation />
+        <MainContent />
+        <Footer />
+      </main>
+    </div>
+  </Router>
+)

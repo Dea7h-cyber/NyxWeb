@@ -10,7 +10,7 @@ const Member = sequelize.define('MEMB_INFO', {
   },
   memb_guid: {
     primaryKey: true,
-    type: Sequelize.STRING
+    type: Sequelize.INTEGER
   }
 }, {
   freezeTableName: true,
