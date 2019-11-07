@@ -1,5 +1,6 @@
 module.exports = {
-  getCharacters: require('./getCharacters'),
-  getCharacter: require('./getCharacter'),
-  Reset: require('./Reset')
-}
+  getMany: require('./getMany'),
+  getOne: require('./getOne'),
+  Reset: require('./Reset'),
+  addStats: require('./addStats')
+};

@@ -28,11 +28,16 @@ module.exports = async (req, res) => {
       offset,
       limit: rankingsConfig.perPage,
       where: req.query,
-      order: [
-        ['Resets', 'DESC'],
-        ['Name', 'ASC'],
-      ],
-      attributes
+      order: [['Resets', 'DESC'], ['Name', 'ASC']],
+      attributes: [
+        'Inventory',
+        'Class',
+        'cLevel',
+        'Resets',
+        'Money',
+        'LevelUpPoint',
+        'Experience'
+      ]
     });
 
     // Passing in next and previous page numbers
@@ -43,4 +48,4 @@ module.exports = async (req, res) => {
   } catch (error) {
     res.status(404).json({ error: 'Invalid request' });
   }
-}
+};

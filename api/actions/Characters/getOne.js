@@ -8,7 +8,15 @@ const Character = require('../../models/character');
 module.exports = async (req, res) => {
   const character = await Character.findOne({
     where: { Name: req.params.name },
-    attributes
+    attributes: [
+      'Inventory',
+      'Class',
+      'cLevel',
+      'Resets',
+      'Money',
+      'LevelUpPoint',
+      'Experience'
+    ]
   });
 
   if (character) {
@@ -16,4 +24,4 @@ module.exports = async (req, res) => {
   } else {
     res.status(404).json({ error: 'Character not found' });
   }
-}
+};
