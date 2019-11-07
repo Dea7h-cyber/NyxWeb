@@ -1,28 +1,58 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const { check, validationResult } = require('express-validator')
 
-const User = require('../models/user');
+const actions = require('../actions/Users/')
+// const authorization = require('../actions/Authorization')
+
+/**
+ * @route   POST /api/users/register
+ * @desc    User Registration
+ */
+
+router.post(
+  '/register',
+  [
+    check('username').isString({
+      min: 4,
+      max: 10
+    }),
+    check('password').isString({
+      min: 4,
+      max: 10
+    }),
+    check('email').isEmail()
+  ],
+  (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(422).json({
+        error: 'Your request has been denied. Please try again later.'
+      })
+    }
+
+    actions.Register(req, res)
+  }
+)
 
 /**
  * @route   POST /api/users/authentication
- * @desc    User authentication
+ * @desc    User authentication/login
  */
 
-router.post('/authentication', async (req, res) => {
-  if (req.body.username && req.body.password) {
-    const user = await User.findOne({
-      where: { memb___id: req.body.username, memb__pwd: req.body.password },
-      attributes: ['memb___id', 'memb__pwd']
+router.post(
+  '/authentication',
+  [
+    check('username').isString({
+      min: 4,
+      max: 10
+    }),
+    check('password').isString({
+      min: 4,
+      max: 10
     })
+  ],
+  actions.Authentication
+)
 
-    if (user && user.memb___id === req.body.username && user.memb__pwd === req.body.password) {
-      res.cookie('username', req.body.username);
-      res.status(200).json({ message: 'success' });
-      return;
-    }
-  }
-
-  res.status(404).json({ error: 'User not found' });
-});
-
-module.exports = router;
+module.exports = router

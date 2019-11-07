@@ -1,6 +1,6 @@
 module.exports = {
   // PK Clear cost, 0 = disabled
-  cost: 0,
+  cost: 15000000,
 
   /**
    * PK Clear mode
@@ -9,4 +9,4 @@ module.exports = {
    */
 
   mode: 2
-};
+}

@@ -11,7 +11,7 @@ module.exports = {
 
   /**
    * Active if levelResetType: 2
-   * 
+   *
    * Example:
    * 10: 300
    * requires level 300 for reset up until reset number 10

@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../sequelize');
+const Sequelize = require('sequelize')
+const sequelize = require('../sequelize')
 
 const Character = sequelize.define(
   'Character',
@@ -45,14 +45,20 @@ const Character = sequelize.define(
     },
     PkCount: {
       type: Sequelize.INTEGER
+    },
+    PkLevel: {
+      type: Sequelize.INTEGER
+    },
+    PkTime: {
+      type: Sequelize.INTEGER
     }
   },
   {
     freezeTableName: true,
     timestamps: false
   }
-);
+)
 
-Character.removeAttribute('id');
+Character.removeAttribute('id')
 
-module.exports = Character;
+module.exports = Character
