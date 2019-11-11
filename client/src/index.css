@@ -1,33 +1,10 @@
+html {
+  min-height: 100vh;
+}
+
 body {
   margin: 0;
   height: 100%;
-  background: rgb(24, 24, 24);
-  color: #b9bdab;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 14px;
-}
-
-button,
-input {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  outline: none;
-  user-select: none;
-  vertical-align: middle;
-  border-radius: 3px;
-}
-
-input {
-  border: 1px solid transparent;
-  color: #000000;
-  font-weight: 500;
-}
-
-main.main-container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
   background: repeating-linear-gradient(
     45deg,
     rgb(17, 17, 17),
@@ -35,6 +12,43 @@ main.main-container {
     rgb(12, 12, 12) 10px,
     rgb(12, 12, 12) 20px
   );
+  color: #b9bdab;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+}
+
+input,
+button {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  outline: none;
+  user-select: none;
+  vertical-align: middle;
+  border-radius: 3px;
+  padding: 6px;
+  border: 1px solid transparent;
+  color: #000000;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+button {
+  background: rgb(36, 128, 71);
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: rgb(49, 179, 99);
+}
+
+main.main-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgb(20, 20, 20);
   border: 1px solid rgb(7, 7, 7);
   display: grid;
   grid-template-areas:
@@ -51,7 +65,7 @@ main.main-container {
 header.main-header {
   grid-area: main-header;
   height: 200px;
-  background: rgba(0, 0, 0, 0.4) url('./images/header.png');
+  background: rgba(10, 10, 10, 1) url('./images/header.png');
 }
 
 /*
@@ -61,14 +75,13 @@ header.main-header {
 nav.main-nav {
   grid-area: main-nav;
   background: linear-gradient(rgb(29, 29, 29), rgb(12, 12, 12));
-  padding: 10px;
   border: 1px solid rgb(7, 7, 7);
 }
 
 nav.main-nav a {
   all: unset;
   float: left;
-  padding: 8px 12px;
+  padding: 16px 16px;
   cursor: pointer;
   text-transform: uppercase;
   color: #cfcfcf;
@@ -76,7 +89,7 @@ nav.main-nav a {
 }
 
 nav.main-nav a:hover {
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
   color: #ffffff;
 }
 
@@ -95,19 +108,19 @@ main.main-content {
 
 aside.main-left {
   grid-area: main-left;
-  background: rgba(15, 15, 15, 0.6);
+  background: rgba(15, 15, 15, 1);
   border: 1px solid rgb(7, 7, 7);
 }
 
 aside.main-right {
   grid-area: main-right;
-  background: rgba(15, 15, 15, 0.6);
+  background: rgba(15, 15, 15, 1);
   border: 1px solid rgb(7, 7, 7);
 }
 
 main.main-middle {
   grid-area: main-middle;
-  background: rgba(15, 15, 15, 0.6) url('./images/pngguru.com-id-frvkn.png')
+  background: rgba(15, 15, 15, 1) url('./images/pngguru.com-id-frvkn.png')
     no-repeat right 20px bottom / auto 250px;
   border: 1px solid rgb(7, 7, 7);
   min-height: 350px;
@@ -119,7 +132,7 @@ main.main-middle {
 
 footer {
   grid-area: footer;
-  background: linear-gradient(rgb(15, 15, 15), rgb(29, 29, 29));
+  background: rgba(15, 15, 15, 1);
   border: 1px solid rgb(7, 7, 7);
   padding: 5px;
   color: #807d61;
@@ -365,7 +378,31 @@ section.content-body {
 }
 
 /*
- * RESPONSIVE
+ *  REGISTER PAGE
+ */
+
+.classic-form {
+  padding: 20px;
+  display: grid;
+  gap: 30px;
+}
+
+.classic-form .field-area {
+  display: grid;
+}
+
+.classic-form .field-area .field-title {
+  font-size: 18px;
+  padding: 0 0 5px 15px;
+}
+
+.classic-form .field-area .field-description {
+  font-size: 13px;
+  padding: 5px 0 0 15px;
+}
+
+/*
+ * RESPONSIVITY
  */
 
 @media (max-width: 1260px) {

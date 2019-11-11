@@ -2,6 +2,8 @@
  * Get a single character
  */
 
+const logger = require('../Logger')
+
 // Models
 const Character = require('../../models/Character')
 
@@ -22,6 +24,9 @@ module.exports = async (req, res) => {
   if (character) {
     res.status(200).json({ data: character })
   } else {
-    res.status(404).json({ error: 'Character not found' })
+    logger.error(error)
+    res.json({
+      error: 'Something went wrong. Please try again later.'
+    })
   }
 }

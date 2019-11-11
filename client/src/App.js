@@ -4,16 +4,18 @@ import axios from 'axios'
 import config from './config.json'
 
 // Components
-import Header from "./components/Header"
-import Navigation from "./components/Navigation"
-import MainContent from "./components/MainContent"
-import Footer from "./components/Footer"
+import ReactNotifications from 'react-notifications-component'
+import Header from './components/Header'
+import Navigation from './components/Navigation'
+import MainContent from './components/MainContent'
+import Footer from './components/Footer'
 
 // Config
 axios.defaults.baseURL = config.proxy
 
 export default () => (
   <Router>
+    <ReactNotifications />
     <div className="App">
       <main className="main-container">
         <Header />

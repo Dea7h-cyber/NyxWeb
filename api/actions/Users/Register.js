@@ -45,11 +45,14 @@ module.exports = async (req, res) => {
     })
 
     await newRecord.save()
+
+    res.json({
+      message: `Greetings ${username}! Your Account was successfully created!`
+    })
   } catch (error) {
     logger.error(error)
+    res.json({
+      error: 'Something went wrong. Please try again later.'
+    })
   }
-
-  res.json({
-    message: `Greetings ${username}! Your Account was successfully created!`
-  })
 }

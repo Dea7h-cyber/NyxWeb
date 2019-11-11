@@ -1,24 +1,31 @@
-const User = require('../models/user')
+const bcrypt = require('bcrypt')
+const MEMB_INFO = require('../models/MEMB_INFO')
 const logger = require('./Logger')
 
 module.exports = async (req, res, next) => {
-  const { nyx_user, nyx_token } = req.cookies
-  let user
+  const { nyx_username, nyx_token } = req.cookies
 
   try {
-    user = await User.findOne({
+    const user = await MEMB_INFO.findOne({
       where: {
-        memb___id: nyx_user ? nyx_user : '',
-        memb__pwd: nyx_token ? nyx_token : ''
-      }
+        memb___id: nyx_username ? nyx_username : ''
+      },
+      attributes: ['memb__pwd']
     })
+
+    console.log('?? ', user.memb__pwd)
+    const passCheck = bcrypt.compareSync(user.memb__pwd, nyx_token)
+    console.log(passCheck)
+
+    if (!user || !passCheck) {
+      return res.json({ error: 'Not authorized' })
+    }
+
+    next()
   } catch (error) {
     logger.error(error)
-  }
-
-  if (user) {
-    next()
-  } else {
-    return res.status(400).json({ error: 'Not authorized' })
+    res.json({
+      error: 'Something went wrong. Please try again later.'
+    })
   }
 }

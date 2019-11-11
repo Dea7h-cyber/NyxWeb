@@ -1,4 +1,4 @@
 module.exports = {
-  Authentication: require('./Authentication'),
+  Authorization: require('./Authorization'),
   Register: require('./Register')
 }

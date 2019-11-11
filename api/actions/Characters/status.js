@@ -33,9 +33,14 @@ module.exports = async (account, character) => {
         status = true
       }
     }
+
+    return status
   } catch (error) {
     logger.error(error)
+    res.json({
+      error: 'Something went wrong. Please try again later.'
+    })
   }
 
-  return status
+  return true
 }

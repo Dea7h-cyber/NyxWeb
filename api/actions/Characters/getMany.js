@@ -2,6 +2,8 @@
  * Get a list of characters
  */
 
+const logger = require('../Logger')
+
 // Models
 const Character = require('../../models/Character')
 
@@ -28,16 +30,8 @@ module.exports = async (req, res) => {
       offset,
       limit: rankingsConfig.perPage,
       where: req.query,
-      order: [['Resets', 'DESC'], ['Name', 'ASC']],
-      attributes: [
-        'Inventory',
-        'Class',
-        'cLevel',
-        'Resets',
-        'Money',
-        'LevelUpPoint',
-        'Experience'
-      ]
+      order: [['Resets', 'DESC'], ['cLevel', 'DESC'], ['Name', 'ASC']],
+      attributes: ['Name', 'Class', 'cLevel', 'Resets', 'Money', 'Experience']
     })
 
     // Passing in next and previous page numbers
@@ -46,6 +40,9 @@ module.exports = async (req, res) => {
 
     res.status(200).json({ next, prev, data: characters })
   } catch (error) {
-    res.status(404).json({ error: 'Invalid request' })
+    logger.error(error)
+    res.json({
+      error: 'Something went wrong. Please try again later.'
+    })
   }
 }

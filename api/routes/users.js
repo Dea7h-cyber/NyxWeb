@@ -13,46 +13,52 @@ const actions = require('../actions/Users/')
 router.post(
   '/register',
   [
-    check('username').isString({
-      min: 4,
-      max: 10
-    }),
-    check('password').isString({
-      min: 4,
-      max: 10
-    }),
-    check('email').isEmail()
+    check('username')
+      .matches(/^[a-z0-9]{4,10}$/i)
+      .withMessage(
+        'Your Username cannot be less than 4 and more than 10 characters'
+      ),
+    check('password')
+      .matches(/^[a-z0-9]{4,10}$/i)
+      .withMessage(
+        'Your Password cannot be less than 4 and more than 10 characters'
+      )
+      .custom((value, { req }) => {
+        if (value !== req.body.repassword) {
+          throw new Error('Passwords do not match!')
+        }
+      }),
+    check('email')
+      .isEmail()
+      .normalizeEmail()
+      .isLength({ max: 35 })
+      .withMessage('Invalid E-Mail Adress')
   ],
-  (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      return res.status(422).json({
-        error: 'Your request has been denied. Please try again later.'
-      })
-    }
-
-    actions.Register(req, res)
-  }
+  (req, res) =>
+    validationResult(req).isEmpty()
+      ? actions.Register(req, res)
+      : res.json({ error: validationResult(req).errors[0].msg })
 )
 
 /**
- * @route   POST /api/users/authentication
- * @desc    User authentication/login
+ * @route   POST /api/users/authorization
+ * @desc    User authorization/login
  */
 
 router.post(
-  '/authentication',
+  '/authorization',
   [
-    check('username').isString({
-      min: 4,
-      max: 10
-    }),
-    check('password').isString({
-      min: 4,
-      max: 10
-    })
+    check('username')
+      .isString()
+      .matches(/^[a-z0-9]{4,10}$/i),
+    check('password')
+      .isString()
+      .matches(/^[a-z0-9]{4,10}$/i)
   ],
-  actions.Authentication
+  (req, res) =>
+    validationResult(req).isEmpty()
+      ? actions.Authorization(req, res)
+      : res.json({ error: 'Wrong Username/Password.' })
 )
 
 module.exports = router

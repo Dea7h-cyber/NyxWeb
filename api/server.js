@@ -13,6 +13,7 @@ app.use(express.json())
 // Log with url and method
 app.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*')
+  res.set('Access-Control-Allow-Headers', '*')
   console.log(`Method: ${req.method} | URL: ${req.url} | IP: ${req.ip}`)
   next()
 })
