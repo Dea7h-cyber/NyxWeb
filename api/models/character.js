@@ -59,6 +59,6 @@ const Character = sequelize.define(
   }
 )
 
-Character.removeAttribute('id')
+// Character.removeAttribute('id')
 
 module.exports = Character

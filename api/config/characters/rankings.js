@@ -1,3 +1,3 @@
 module.exports = {
-  perPage: 30
+  perPage: 2
 }

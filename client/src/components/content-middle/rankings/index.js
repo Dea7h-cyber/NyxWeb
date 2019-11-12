@@ -6,7 +6,7 @@ import Loader from 'react-loader-spinner'
 import Character from './Character'
 
 export default () => {
-  const [characters, setCharacters] = useState([])
+  const [characters, setCharacters] = useState({ data: [] })
   const [error, setError] = useState(false)
   const [loader, setLoader] = useState(true)
 
@@ -27,16 +27,16 @@ export default () => {
 
   return loader ? (
     <Loader
-      type="Triangle"
+      type='Triangle'
       width={50}
       height={50}
       style={{ margin: '15px', textAlign: 'center' }}
     />
   ) : (
     <>
-      <h1 className="content-title">rankings</h1>
-      <section className="content-body padding">
-        <div className="rankings-table">
+      <h1 className='content-title'>rankings</h1>
+      <section className='content-body padding'>
+        <div className='rankings-table'>
           {error
             ? error
             : characters.data.length > 0

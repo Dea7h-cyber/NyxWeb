@@ -6,7 +6,7 @@ export default ({ error, message }) => {
   store.addNotification({
     message: error ? error : message,
     type: error ? 'danger' : 'success', // 'default', 'success', 'info', 'warning'
-    container: 'top-center', // where to position the notifications
+    container: 'top-right', // where to position the notifications
     animationIn: ['animated', 'flipInX'], // animate.css classes that's applied
     animationOut: ['animated', 'flipOutX'], // animate.css classes that's applied
     dismiss: {
@@ -14,6 +14,6 @@ export default ({ error, message }) => {
       onScreen: true,
       pauseOnHover: true
     },
-    width: 500
+    width: 300
   })
 }

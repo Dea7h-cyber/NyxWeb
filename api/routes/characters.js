@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { check, validationResult } = require('express-validator')
+const { check, validationResult, query } = require('express-validator')
 
 const actions = require('../actions/Characters/')
 const authorization = require('../actions/Authorization')
@@ -10,7 +10,7 @@ const authorization = require('../actions/Authorization')
  * @desc    Get a list of characters
  */
 
-router.get('/', actions.getMany)
+router.get('/', [query('page').isInt({ min: 1 })], actions.getMany)
 
 /**
  * @route   GET /api/characters/:name
@@ -58,11 +58,9 @@ router.patch(
   (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      return res
-        .status(422)
-        .json({
-          error: 'Your request has been denied. Please try again later.'
-        })
+      return res.status(422).json({
+        error: 'Your request has been denied. Please try again later.'
+      })
     }
 
     actions.addStats(req, res)
