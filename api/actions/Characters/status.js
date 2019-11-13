@@ -9,12 +9,10 @@ const AccountCharacter = require('../../models/AccountCharacter')
 const MEMB_STAT = require('../../models/MEMB_STAT')
 
 module.exports = async (account, character) => {
-  let status = false,
-    accountChar,
-    membStat
-
   try {
-    accountChar = await AccountCharacter.count({
+    let status = 1
+
+    const accountChar = await AccountCharacter.count({
       where: {
         Id: account,
         GameIDC: character
@@ -22,7 +20,7 @@ module.exports = async (account, character) => {
     })
 
     if (accountChar > 0) {
-      membStat = await MEMB_STAT.count({
+      const membStat = await MEMB_STAT.count({
         where: {
           memb___id: account,
           ConnectStat: 1
@@ -30,17 +28,14 @@ module.exports = async (account, character) => {
       })
 
       if (membStat > 0) {
-        status = true
+        status = 2
       }
     }
 
     return status
   } catch (error) {
     logger.error(error)
-    res.json({
-      error: 'Something went wrong. Please try again later.'
-    })
   }
 
-  return true
+  return 666
 }

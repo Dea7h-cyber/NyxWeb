@@ -51,6 +51,12 @@ const Character = sequelize.define(
     },
     PkTime: {
       type: Sequelize.INTEGER
+    },
+    QuestNumber: {
+      type: Sequelize.INTEGER
+    },
+    SkyEventWins: {
+      type: Sequelize.INTEGER
     }
   },
   {

@@ -31,7 +31,7 @@ const MEMB_INFO = sequelize.define(
     VipExpirationTime: {
       type: Sequelize.INTEGER
     },
-    reg_ip: {
+    addr_info: {
       type: Sequelize.STRING
     }
   },

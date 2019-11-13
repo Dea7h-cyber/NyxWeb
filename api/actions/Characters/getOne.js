@@ -12,15 +12,15 @@ module.exports = async (req, res) => {
     const character = await Character.findOne({
       where: { Name: req.params.name },
       attributes: [
-        'Inventory',
+        'Name',
+        // 'Inventory',
         'Class',
         'cLevel',
         'Resets',
         'Money',
         'LevelUpPoint',
         'Experience'
-      ],
-      order: [['Name', 'ASC']]
+      ]
     })
 
     if (character) {

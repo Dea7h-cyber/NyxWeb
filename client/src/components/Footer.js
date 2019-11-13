@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default () => (
   <footer>
@@ -7,4 +7,4 @@ export default () => (
       NyxWeb v0.2 created by Dea7h & Server Files by www.DarksTeam.NET
     </div>
   </footer>
-);
+)

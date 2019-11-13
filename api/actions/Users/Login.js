@@ -9,6 +9,13 @@ const logger = require('../Logger')
 const MEMB_INFO = require('../../models/MEMB_INFO')
 
 module.exports = async (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.json({
+      error: errors.array()[0].msg
+    })
+  }
+
   const { username, password } = req.body
 
   // Check if username and password match

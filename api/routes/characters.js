@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const { check, validationResult, query } = require('express-validator')
 
+const validator = require('../validators/Characters')
 const actions = require('../actions/Characters/')
 const authorization = require('../actions/Authorization')
 
@@ -10,7 +10,7 @@ const authorization = require('../actions/Authorization')
  * @desc    Get a list of characters
  */
 
-router.get('/', [query('page').isInt({ min: 1 })], actions.getMany)
+router.get('/', validator.getMany, actions.getMany)
 
 /**
  * @route   GET /api/characters/:name
@@ -33,38 +33,8 @@ router.patch('/:name/reset', authorization, actions.Reset)
 
 router.patch(
   '/:name/addstats',
-  [
-    authorization,
-    [
-      check('Strength').isInt({
-        min: 0,
-        max: 64000
-      }),
-      check('Dexterity').isInt({
-        min: 0,
-        max: 64000
-      }),
-      check('Vitality').isInt({
-        min: 0,
-        max: 64000
-      }),
-      check('Energy').isInt({ min: 0, max: 64000 }),
-      check('Leadership').isInt({
-        min: 0,
-        max: 64000
-      })
-    ]
-  ],
-  (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      return res.status(422).json({
-        error: 'Your request has been denied. Please try again later.'
-      })
-    }
-
-    actions.addStats(req, res)
-  }
+  [authorization, validator.addStats],
+  actions.addStats
 )
 
 /**

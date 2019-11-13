@@ -14,6 +14,13 @@ const statsConfig = require('../../config/characters/addStats')
 const status = require('./status')
 
 module.exports = async (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.json({
+      error: errors.array()[0].msg
+    })
+  }
+
   const AccountID = req.cookies.nyx_user
   const Name = req.params.name
 

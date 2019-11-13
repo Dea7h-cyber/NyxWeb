@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
     })
 
     if (!character) {
-      return res.status(404).json({ error: "This Character could'nt be found" })
+      return res.json({ error: "This Character could'nt be found" })
     }
 
     // Check if character is PK

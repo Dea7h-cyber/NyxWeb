@@ -2,12 +2,21 @@
  * User Registration function
  */
 
+const { validationResult } = require('express-validator')
+
 const logger = require('../Logger')
 
 // Models
 const MEMB_INFO = require('../../models/MEMB_INFO')
 
 module.exports = async (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.json({
+      error: errors.array()[0].msg
+    })
+  }
+
   const { username, password, email } = req.body
 
   try {
@@ -41,7 +50,7 @@ module.exports = async (req, res) => {
       ctl1_code: 0,
       IsVip: 0,
       VipExpirationTime: 0,
-      reg_ip: req.ip
+      addr_info: req.ip
     })
 
     await newRecord.save()
