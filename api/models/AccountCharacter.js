@@ -5,7 +5,8 @@ const AccountCharacter = sequelize.define(
   'AccountCharacter',
   {
     Id: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      primaryKey: true
     },
     GameIDC: {
       type: Sequelize.STRING
@@ -17,6 +18,6 @@ const AccountCharacter = sequelize.define(
   }
 )
 
-AccountCharacter.removeAttribute('id')
+// AccountCharacter.removeAttribute('id')
 
 module.exports = AccountCharacter

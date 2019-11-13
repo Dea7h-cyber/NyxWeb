@@ -16,6 +16,9 @@ const MEMB_INFO = sequelize.define(
     sno__numb: {
       type: Sequelize.STRING
     },
+    phon_numb: {
+      type: Sequelize.STRING
+    },
     mail_addr: {
       type: Sequelize.STRING
     },
@@ -25,12 +28,12 @@ const MEMB_INFO = sequelize.define(
     ctl1_code: {
       type: Sequelize.INTEGER
     },
-    IsVip: {
-      type: Sequelize.INTEGER
-    },
-    VipExpirationTime: {
-      type: Sequelize.INTEGER
-    },
+    // IsVip: {
+    //   type: Sequelize.INTEGER
+    // },
+    // VipExpirationTime: {
+    //   type: Sequelize.INTEGER
+    // },
     addr_info: {
       type: Sequelize.STRING
     }
@@ -41,6 +44,6 @@ const MEMB_INFO = sequelize.define(
   }
 )
 
-MEMB_INFO.removeAttribute('id')
+// MEMB_INFO.removeAttribute('id')
 
 module.exports = MEMB_INFO

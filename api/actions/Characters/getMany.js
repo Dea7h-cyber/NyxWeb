@@ -9,7 +9,7 @@ const logger = require('../Logger')
 const Character = require('../../models/Character')
 
 // Status
-const getCharacterStatus = require('./status')
+// const getCharacterStatus = require('./status')
 
 // Configs
 const rankingsConfig = require('../../config/characters/rankings')
@@ -22,11 +22,9 @@ module.exports = async (req, res) => {
     })
   }
 
-  let page = 1,
-    offset,
+  let offset,
     next,
     prev,
-    totalPages,
     where = {},
     order = [
       ['Resets', 'DESC'],
@@ -34,12 +32,6 @@ module.exports = async (req, res) => {
       ['Name', 'ASC']
     ],
     orderDir = 'DESC'
-
-  // Pagination
-  if (req.query.page && isFinite(req.query.page)) {
-    page = Number(req.query.page)
-    delete req.query.page
-  }
 
   // Fetch data WHERE
   const whereAllowed = ['Class', 'Name']
@@ -61,14 +53,27 @@ module.exports = async (req, res) => {
     'QuestNumber',
     'SkyEventWins'
   ]
+
   if (req.query.order && orderAllowed.includes(req.query.order)) {
     order = [[req.query.order, req.query.dir ? req.query.dir : orderDir]]
   }
 
-  offset = (page - 1) * rankingsConfig.perPage
-  // End Pagination
-
   try {
+    // Pagination
+    const totalCharacters = await Character.count({ where })
+    let totalPages = Math.round(totalCharacters / rankingsConfig.perPage)
+    if (totalPages === 0) {
+      totalPages = 1
+    }
+
+    let page = Number(req.query.page ? req.query.page : 1)
+    if (page > totalPages) {
+      page = totalPages
+    }
+
+    offset = (page - 1) * rankingsConfig.perPage
+    // End Pagination
+
     const characters = await Character.findAll({
       offset,
       limit: rankingsConfig.perPage,
@@ -81,24 +86,25 @@ module.exports = async (req, res) => {
         'cLevel',
         'Resets',
         'Money',
-        'Experience'
+        'Experience',
+        'Inventory'
       ],
       raw: true
     })
 
-    const totalCharacters = await Character.count({ where })
-
     // Passing in next and previous page numbers
-    totalPages = Math.round(totalCharacters / rankingsConfig.perPage)
     next = page + 1 > totalPages ? null : page + 1
     prev = page > 1 && page <= totalPages ? page - 1 : null
 
-    res.status(200).json({
+    res.json({
       prev,
       next,
       totalPages,
       totalCharacters,
-      data: characters
+      data: [...characters].map(char => {
+        char.Inventory = char.Inventory && char.Inventory.slice(0, 1)
+        return char
+      })
     })
   } catch (error) {
     logger.error(error)

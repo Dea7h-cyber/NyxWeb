@@ -5,7 +5,8 @@ const MEMB_STAT = sequelize.define(
   'MEMB_STAT',
   {
     memb___id: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      primaryKey: true
     },
     ConnectStat: {
       type: Sequelize.INTEGER
@@ -26,6 +27,6 @@ const MEMB_STAT = sequelize.define(
   }
 )
 
-MEMB_STAT.removeAttribute('id')
+// MEMB_STAT.removeAttribute('id')
 
 module.exports = MEMB_STAT

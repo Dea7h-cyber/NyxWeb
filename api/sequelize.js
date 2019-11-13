@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 
 module.exports = new Sequelize('MuOnline', 'sa', 'thepasswordis1', {
   host: 'localhost',
-  port: 60143, // 1414
+  port: 1414, // 60143
   dialect: 'mssql',
   pool: {
     max: 10,

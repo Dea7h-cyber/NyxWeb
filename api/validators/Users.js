@@ -10,13 +10,14 @@ const Register = [
     .matches(/^[a-z0-9]{4,10}$/i)
     .withMessage(
       'Your Password cannot be less than 4 and more than 10 characters'
-    )
-    .custom((value, { req }) => {
+    ),
+  /* .custom((value, { req }) => {
       if (value !== req.body.repassword) {
         throw new Error('Passwords do not match!')
       }
-    }),
-  check('email')
+    }) */ check(
+    'email'
+  )
     .isEmail()
     .normalizeEmail()
     .isLength({ max: 35 })

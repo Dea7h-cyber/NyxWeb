@@ -11,6 +11,7 @@ const MEMB_INFO = require('../../models/MEMB_INFO')
 
 module.exports = async (req, res) => {
   const errors = validationResult(req)
+  console.log(errors)
   if (!errors.isEmpty()) {
     return res.json({
       error: errors.array()[0].msg
@@ -42,14 +43,15 @@ module.exports = async (req, res) => {
 
     const newRecord = await MEMB_INFO.build({
       memb___id: username,
+      memb_name: username,
       memb__pwd: password,
-      memb_name: Date.now(),
+      phon_numb: Date.now().toString(),
       sno__numb: 'Unknown',
       mail_addr: email,
       bloc_code: 0,
       ctl1_code: 0,
-      IsVip: 0,
-      VipExpirationTime: 0,
+      // IsVip: 0,
+      // VipExpirationTime: 0,
       addr_info: req.ip
     })
 

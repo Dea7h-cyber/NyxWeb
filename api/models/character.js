@@ -5,7 +5,8 @@ const Character = sequelize.define(
   'Character',
   {
     Name: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      primaryKey: true
     },
     Resets: {
       type: Sequelize.INTEGER

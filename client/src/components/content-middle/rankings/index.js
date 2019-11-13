@@ -6,15 +6,15 @@ import Loader from 'react-loader-spinner'
 import Character from './Character'
 
 export default () => {
-  const [characters, setCharacters] = useState({ data: [] })
+  const [characters, setCharacters] = useState([])
   const [error, setError] = useState(false)
   const [loader, setLoader] = useState(true)
 
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
-        const result = await axios('/api/characters')
-        setCharacters(result.data)
+        const res = await axios('/api/characters')
+        setCharacters(res.data.data)
       } catch (_) {
         setError("Couldn't load data")
       } finally {
@@ -39,8 +39,8 @@ export default () => {
         <div className='rankings-table'>
           {error
             ? error
-            : characters.data.length > 0
-            ? characters.data.map((char, index) => (
+            : characters.length > 0
+            ? characters.map((char, index) => (
                 <Character key={index} char={{ ...char, index }} />
               ))
             : 'No characters'}

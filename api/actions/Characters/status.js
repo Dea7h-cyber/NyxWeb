@@ -1,41 +1,33 @@
 /**
- * Stats adder function
+ * Character status check
  */
 
 const logger = require('../Logger')
 
+const membStatus = require('../Users/status')
+
 // Models
 const AccountCharacter = require('../../models/AccountCharacter')
-const MEMB_STAT = require('../../models/MEMB_STAT')
 
 module.exports = async (account, character) => {
   try {
-    let status = 1
+    const accountStatus = membStatus(account)
 
-    const accountChar = await AccountCharacter.count({
+    if (!accountStatus) {
+      return false
+    }
+
+    const accountCharacter = await AccountCharacter.count({
       where: {
         Id: account,
         GameIDC: character
       }
     })
 
-    if (accountChar > 0) {
-      const membStat = await MEMB_STAT.count({
-        where: {
-          memb___id: account,
-          ConnectStat: 1
-        }
-      })
-
-      if (membStat > 0) {
-        status = 2
-      }
-    }
-
-    return status
+    return accountCharacter > 0 ? true : false
   } catch (error) {
     logger.error(error)
   }
 
-  return 666
+  return true
 }
