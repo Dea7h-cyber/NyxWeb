@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
       message: `Greetings ${Name}! Your kills were successfully cleared!`
     })
   } catch (error) {
-    logger.error(error)
+    logger.error(`${error.name}: ${error.message}`)
     res.json({
       error: 'Something went wrong. Please try again later.'
     })

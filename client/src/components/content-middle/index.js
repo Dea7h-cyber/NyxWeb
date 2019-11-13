@@ -5,13 +5,15 @@ import { Switch, Route } from 'react-router-dom'
 import News from './News'
 import Rankings from './rankings/'
 import Register from './Register'
+import Profile from './Profile'
 
 export default () => (
-  <main className="main-middle">
+  <main className='main-middle'>
     <Switch>
-      <Route exact path="/" component={News} />
-      <Route exact path="/rankings" component={Rankings} />
-      <Route exact path="/register" component={Register} />
+      <Route exact path='/' component={News} />
+      <Route path='/rankings/:page?/:order?/:dir?' component={Rankings} />
+      <Route path='/register' component={Register} />
+      <Route path='/profile/:name' component={Profile} />
     </Switch>
   </main>
 )

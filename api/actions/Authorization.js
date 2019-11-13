@@ -23,7 +23,7 @@ module.exports = async (req, res, next) => {
 
     next()
   } catch (error) {
-    logger.error(error)
+    logger.error(`${error.name}: ${error.message}`)
     res.json({
       error: 'Something went wrong. Please try again later.'
     })

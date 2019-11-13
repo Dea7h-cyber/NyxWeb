@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
       message: `Greetings ${username}! Your Account was successfully created!`
     })
   } catch (error) {
-    logger.error(error)
+    logger.error(`${error.name}: ${error.message}`)
     res.json({
       error: 'Something went wrong. Please try again later.'
     })

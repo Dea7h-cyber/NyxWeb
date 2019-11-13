@@ -17,7 +17,7 @@ module.exports = async account => {
 
     return membStatus && membStatus.ConnectStat === 0 ? false : true
   } catch (error) {
-    logger.error(error)
+    logger.error(`${error.name}: ${error.message}`)
   }
 
   return true

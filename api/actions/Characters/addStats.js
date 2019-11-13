@@ -11,7 +11,7 @@ const Character = require('../../models/Character')
 const statsConfig = require('../../config/characters/addStats')
 
 // Helper functions
-const status = require('./status')
+const characterStatus = require('./status')
 
 module.exports = async (req, res) => {
   const errors = validationResult(req)
@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
   const addStatsSum = Strength + Dexterity + Vitality + Energy + Leadership
 
   // Check for character status
-  if (await status(AccountID, Name)) {
+  if (await characterStatus(AccountID, Name)) {
     return res.json({
       error: `${Name} make sure you are offline and try again.`
     })
@@ -129,7 +129,7 @@ module.exports = async (req, res) => {
       message: `Greetings ${Name}! Your stats was successfully updated and you have ${character.LevelUpPoint} points left to add.`
     })
   } catch (error) {
-    logger.error(error)
+    logger.error(`${error.name}: ${error.message}`)
     res.json({
       error: 'Something went wrong. Please try again later.'
     })

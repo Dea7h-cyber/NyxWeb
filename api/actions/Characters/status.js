@@ -26,7 +26,7 @@ module.exports = async (account, character) => {
 
     return accountCharacter > 0 ? true : false
   } catch (error) {
-    logger.error(error)
+    logger.error(`${error.name}: ${error.message}`)
   }
 
   return true

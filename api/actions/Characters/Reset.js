@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
     // Check for equippment
     if (resetConfig.checkForEquipment) {
       const inventory = character.Inventory.toString('hex')
-      if ('f'.repeat(240) !== inventory.substr(0, 240).toLowerCase()) {
+      if ('f'.repeat(240) !== inventory.slice(0, 240).toLowerCase()) {
         return res.json({
           error: `Make sure you don't wear any items and try again.`
         })
@@ -140,7 +140,7 @@ module.exports = async (req, res) => {
       message: `Greetings ${Name}! You successfully performed restart number ${character.Resets}.`
     })
   } catch (error) {
-    logger.error(error)
+    logger.error(`${error.name}: ${error.message}`)
     res.json({
       error: 'Something went wrong. Please try again later.'
     })

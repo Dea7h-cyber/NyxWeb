@@ -9,7 +9,7 @@ const logger = require('../Logger')
 const Character = require('../../models/Character')
 
 // Status
-// const getCharacterStatus = require('./status')
+const characterStatus = require('./status')
 
 // Configs
 const rankingsConfig = require('../../config/characters/rankings')
@@ -87,6 +87,7 @@ module.exports = async (req, res) => {
         'Resets',
         'Money',
         'Experience',
+        'PkCount',
         'Inventory'
       ],
       raw: true
@@ -101,13 +102,21 @@ module.exports = async (req, res) => {
       next,
       totalPages,
       totalCharacters,
-      data: [...characters].map(char => {
-        char.Inventory = char.Inventory && char.Inventory.slice(0, 1)
-        return char
-      })
+      perPage: rankingsConfig.perPage,
+      data: await Promise.all(
+        [...characters].map(async char => {
+          char.status = await characterStatus(char.AccountID, char.Name)
+          delete char.AccountID
+          char.Inventory =
+            char.Inventory && char.Inventory.length > 0
+              ? char.Inventory.toString('hex').slice(0, 240)
+              : null
+          return char
+        })
+      )
     })
   } catch (error) {
-    logger.error(error)
+    logger.error(`${error.name}: ${error.message}`)
     res.json({
       error: 'Something went wrong. Please try again later.'
     })
