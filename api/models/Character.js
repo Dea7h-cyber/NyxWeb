@@ -1,13 +1,16 @@
-module.exports = (sequelize, DataTypes) =>
+const DataTypes = require('sequelize')
+const sequelize = require('../sequelize')
+
+module.exports = () =>
   sequelize.define(
     'Character',
     {
       AccountID: {
-        type: DataTypes.STRING
-      },
-      Name: {
         type: DataTypes.STRING,
         primaryKey: true
+      },
+      Name: {
+        type: DataTypes.STRING
       },
       Resets: {
         type: DataTypes.INTEGER

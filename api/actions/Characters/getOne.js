@@ -7,16 +7,26 @@ const logger = require('../Logger')
 // Models
 const models = require('../../models/')
 
-// Status
-const characterStatus = require('./status')
-
 module.exports = async (req, res) => {
   try {
-    const character = await models.Character.findOne({
+    const Character = models.Character()
+
+    Character.hasOne(models.MEMB_STAT, {
+      as: 'a',
+      sourceKey: 'AccountID',
+      foreignKey: 'memb___id'
+    })
+
+    Character.hasOne(models.AccountCharacter, {
+      as: 'b',
+      sourceKey: 'AccountID',
+      foreignKey: 'Id'
+    })
+
+    const character = await Character.findOne({
       where: { Name: req.params.name },
       attributes: [
         'Name',
-        'AccountID',
         'Class',
         'cLevel',
         'Resets',
@@ -26,17 +36,32 @@ module.exports = async (req, res) => {
         'PkCount',
         'Inventory'
       ],
-      raw: true
+      raw: true,
+      include: [
+        {
+          model: models.MEMB_STAT,
+          as: 'a',
+          attributes: ['ConnectStat', 'ConnectTM', 'DisConnectTM']
+        },
+        {
+          model: models.AccountCharacter,
+          as: 'b',
+          attributes: ['GameIDC']
+        }
+      ]
     })
 
     if (character) {
-      character.status = await characterStatus(
-        character.AccountID,
-        character.Name
-      )
-      delete character.AccountID
+      character.status =
+        character['a.ConnectStat'] === 1 &&
+        character['b.GameIDC'] === character.Name
+          ? true
+          : false
 
       character.Inventory = character.Inventory.toString('hex').slice(0, 240)
+
+      delete character['a.ConnectStat']
+      delete character['b.GameIDC']
 
       res.json(character)
     } else {

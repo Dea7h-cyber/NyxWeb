@@ -3,5 +3,6 @@ module.exports = {
   getOne: require('./getOne'),
   Reset: require('./Reset'),
   addStats: require('./addStats'),
-  pkClear: require('./pkClear')
+  pkClear: require('./pkClear'),
+  test: require('./test')
 }

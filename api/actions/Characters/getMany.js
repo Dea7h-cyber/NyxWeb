@@ -8,13 +8,12 @@ const logger = require('../Logger')
 // Models
 const models = require('../../models/')
 
-// Status
-// const characterStatus = require('./status')
-
 // Configs
 const rankingsConfig = require('../../config/characters/rankings')
 
 module.exports = async (req, res) => {
+  const Character = models.Character()
+
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.json({
@@ -60,7 +59,7 @@ module.exports = async (req, res) => {
 
   try {
     // Pagination
-    const totalCharacters = await models.Character.count({ where })
+    const totalCharacters = await Character.count({ where })
     let totalPages = Math.round(totalCharacters / rankingsConfig.perPage)
     if (totalPages === 0) {
       totalPages = 1
@@ -74,14 +73,25 @@ module.exports = async (req, res) => {
     offset = (page - 1) * rankingsConfig.perPage
     // End Pagination
 
-    const characters = await models.Character.findAll({
+    Character.hasOne(models.MEMB_STAT, {
+      as: 'a',
+      sourceKey: 'AccountID',
+      foreignKey: 'memb___id'
+    })
+
+    Character.hasOne(models.AccountCharacter, {
+      as: 'b',
+      sourceKey: 'AccountID',
+      foreignKey: 'Id'
+    })
+
+    const characters = await Character.findAll({
       offset,
       limit: rankingsConfig.perPage,
       where,
       order,
       attributes: [
         'Name',
-        'AccountID',
         'Class',
         'cLevel',
         'Resets',
@@ -90,13 +100,19 @@ module.exports = async (req, res) => {
         'PkCount',
         'Inventory'
       ],
-      raw: true
-      // include: [
-      //   {
-      //     model: models.MEMB_STAT,
-      //     attributes: ['ConnectStat']
-      //   }
-      // ]
+      raw: true,
+      include: [
+        {
+          model: models.MEMB_STAT,
+          as: 'a',
+          attributes: ['ConnectStat', 'ConnectTM', 'DisConnectTM']
+        },
+        {
+          model: models.AccountCharacter,
+          as: 'b',
+          attributes: ['GameIDC']
+        }
+      ]
     })
 
     // Passing in next and previous page numbers
@@ -104,12 +120,18 @@ module.exports = async (req, res) => {
     prev = page > 1 && page <= totalPages ? page - 1 : null
 
     characters.map(char => {
-      delete char.AccountID
-      char.status = false //TODO to get the actual status with inner join query?
+      char.status =
+        char['a.ConnectStat'] === 1 && char['b.GameIDC'] === char.Name
+          ? true
+          : false
+
       char.Inventory =
         char.Inventory && char.Inventory.length > 0
           ? char.Inventory.toString('hex').slice(0, 240)
           : null
+
+      delete char['a.ConnectStat']
+      delete char['b.GameIDC']
       return char
     })
 

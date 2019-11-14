@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 const app = express()
-const port = 4000
+const port = process.env.PORT || 4000
 
 // support parsing of application/json && application/x-www-form-urlencoded type post data
 app.use(cookieParser())
