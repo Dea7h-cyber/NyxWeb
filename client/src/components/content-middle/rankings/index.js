@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
-import { Link } from 'react-router-dom'
 
 // Components
 import Character from './Character'
+import Pagination from './Pagination'
 
 export default ({ match: { params } }) => {
   const [characters, setCharacters] = useState({ data: [] })
   const [page, setPage] = useState(1)
   const [error, setError] = useState(false)
-  const [loader, setLoader] = useState(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const urlParams = {}
@@ -20,24 +20,27 @@ export default ({ match: { params } }) => {
       }
     })
 
-    setPage(Number(urlParams.page ? urlParams.page : 1))
+    urlParams.page && urlParams.page !== page && setPage(Number(urlParams.page))
 
     const url = '/api/characters?' + new URLSearchParams(urlParams)
     const fetchCharacters = async () => {
       try {
         const response = await axios(url)
-        setCharacters(response.data)
+        response.data.data
+          ? setCharacters(response.data)
+          : setError("Couldn't load data")
       } catch (_) {
         setError("Couldn't load data")
       } finally {
-        setLoader(false)
+        setLoading(false)
       }
     }
 
     fetchCharacters()
+    // eslint-disable-next-line
   }, [params])
 
-  return loader ? (
+  return loading ? (
     <Loader
       type='Triangle'
       width={50}
@@ -48,38 +51,29 @@ export default ({ match: { params } }) => {
     <>
       <h1 className='content-title'>rankings</h1>
       <section className='content-body padding'>
-        <div style={{ textAlign: 'center', padding: '5px' }}>
-          {characters.prev && (
-            <Link to={`/rankings/${characters.prev}`}>prev</Link>
-          )}
-          page {page} of {characters.totalPages} of {characters.totalCharacters}{' '}
-          characters
-          {characters.next && (
-            <Link to={`/rankings/${characters.next}`}>next</Link>
-          )}
-        </div>
-        <div className='rankings-table'>
-          {error
-            ? error
-            : characters.data.length > 0
-            ? characters.data.map((char, index) => (
-                <Character
-                  key={index}
-                  passed={{ char, index, page, perPage: characters.perPage }}
-                />
-              ))
-            : 'No characters'}
-        </div>
-        <div style={{ textAlign: 'center', padding: '5px' }}>
-          {characters.prev && (
-            <Link to={`/rankings/${characters.prev}`}>prev</Link>
-          )}
-          page {page} of {characters.totalPages} of {characters.totalCharacters}{' '}
-          characters
-          {characters.next && (
-            <Link to={`/rankings/${characters.next}`}>next</Link>
-          )}
-        </div>
+        {error ? (
+          error
+        ) : (
+          <>
+            <Pagination passed={{ page, characters, loading }} />
+            <div className='rankings-table'>
+              {characters.data.length > 0
+                ? characters.data.map((char, index) => (
+                    <Character
+                      key={index}
+                      passed={{
+                        char,
+                        index,
+                        page,
+                        perPage: characters.perPage
+                      }}
+                    />
+                  ))
+                : 'No characters'}
+            </div>
+            <Pagination passed={{ page, characters, loading }} />
+          </>
+        )}
       </section>
     </>
   )

@@ -1,71 +1,68 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../sequelize')
-
-const Character = sequelize.define(
-  'Character',
-  {
-    Name: {
-      type: Sequelize.STRING,
-      primaryKey: true
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define(
+    'Character',
+    {
+      AccountID: {
+        type: DataTypes.STRING
+      },
+      Name: {
+        type: DataTypes.STRING,
+        primaryKey: true
+      },
+      Resets: {
+        type: DataTypes.INTEGER
+      },
+      Class: {
+        type: DataTypes.INTEGER
+      },
+      cLevel: {
+        type: DataTypes.INTEGER
+      },
+      LevelUpPoint: {
+        type: DataTypes.INTEGER
+      },
+      Strength: {
+        type: DataTypes.INTEGER
+      },
+      Dexterity: {
+        type: DataTypes.INTEGER
+      },
+      Vitality: {
+        type: DataTypes.INTEGER
+      },
+      Energy: {
+        type: DataTypes.INTEGER
+      },
+      Leadership: {
+        type: DataTypes.INTEGER
+      },
+      Money: {
+        type: DataTypes.INTEGER
+      },
+      Experience: {
+        type: DataTypes.INTEGER
+      },
+      Inventory: {
+        type: DataTypes.STRING.BINARY
+      },
+      PkCount: {
+        type: DataTypes.INTEGER
+      },
+      PkLevel: {
+        type: DataTypes.INTEGER
+      },
+      PkTime: {
+        type: DataTypes.INTEGER
+      },
+      QuestNumber: {
+        type: DataTypes.INTEGER
+      },
+      SkyEventWins: {
+        type: DataTypes.INTEGER
+      }
     },
-    Resets: {
-      type: Sequelize.INTEGER
-    },
-    Class: {
-      type: Sequelize.INTEGER
-    },
-    cLevel: {
-      type: Sequelize.INTEGER
-    },
-    LevelUpPoint: {
-      type: Sequelize.INTEGER
-    },
-    Strength: {
-      type: Sequelize.INTEGER
-    },
-    Dexterity: {
-      type: Sequelize.INTEGER
-    },
-    Vitality: {
-      type: Sequelize.INTEGER
-    },
-    Energy: {
-      type: Sequelize.INTEGER
-    },
-    Leadership: {
-      type: Sequelize.INTEGER
-    },
-    Money: {
-      type: Sequelize.INTEGER
-    },
-    Experience: {
-      type: Sequelize.INTEGER
-    },
-    Inventory: {
-      type: Sequelize.STRING.BINARY
-    },
-    PkCount: {
-      type: Sequelize.INTEGER
-    },
-    PkLevel: {
-      type: Sequelize.INTEGER
-    },
-    PkTime: {
-      type: Sequelize.INTEGER
-    },
-    QuestNumber: {
-      type: Sequelize.INTEGER
-    },
-    SkyEventWins: {
-      type: Sequelize.INTEGER
+    {
+      freezeTableName: true,
+      timestamps: false
     }
-  },
-  {
-    freezeTableName: true,
-    timestamps: false
-  }
-)
-
-// Character.removeAttribute('id')
-
-module.exports = Character
+  )

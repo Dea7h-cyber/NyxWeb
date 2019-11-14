@@ -7,7 +7,7 @@ const logger = require('../Logger')
 const membStatus = require('../Users/status')
 
 // Models
-const AccountCharacter = require('../../models/AccountCharacter')
+const models = require('../../models/')
 
 module.exports = async (account, character) => {
   try {
@@ -17,7 +17,7 @@ module.exports = async (account, character) => {
       return false
     }
 
-    const accountCharacter = await AccountCharacter.count({
+    const accountCharacter = await models.AccountCharacter.count({
       where: {
         Id: account,
         GameIDC: character

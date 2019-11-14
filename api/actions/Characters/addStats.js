@@ -5,7 +5,7 @@
 const logger = require('../Logger')
 
 // Models
-const Character = require('../../models/Character')
+const models = require('../../models/')
 
 // Configs
 const statsConfig = require('../../config/characters/addStats')
@@ -47,7 +47,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const character = await Character.findOne({
+    const character = await models.Character.findOne({
       where: { AccountID, Name },
       attributes: [
         'Class',

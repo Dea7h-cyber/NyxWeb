@@ -5,14 +5,14 @@
 const logger = require('../Logger')
 
 // Models
-const Character = require('../../models/Character')
+const models = require('../../models/')
 
 // Status
 const characterStatus = require('./status')
 
 module.exports = async (req, res) => {
   try {
-    const character = await Character.findOne({
+    const character = await models.Character.findOne({
       where: { Name: req.params.name },
       attributes: [
         'Name',

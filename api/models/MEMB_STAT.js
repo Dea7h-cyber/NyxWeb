@@ -1,32 +1,26 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../sequelize')
-
-const MEMB_STAT = sequelize.define(
-  'MEMB_STAT',
-  {
-    memb___id: {
-      type: Sequelize.STRING,
-      primaryKey: true
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define(
+    'MEMB_STAT',
+    {
+      memb___id: {
+        type: DataTypes.STRING,
+        primaryKey: true
+      },
+      ConnectStat: {
+        type: DataTypes.INTEGER
+      },
+      ConnectTM: {
+        type: DataTypes.STRING
+      },
+      DisConnectTM: {
+        type: DataTypes.STRING
+      },
+      TotalTime: {
+        type: DataTypes.INTEGER
+      }
     },
-    ConnectStat: {
-      type: Sequelize.INTEGER
-    },
-    ConnectTM: {
-      type: Sequelize.STRING
-    },
-    DisConnectTM: {
-      type: Sequelize.STRING
-    },
-    TotalTime: {
-      type: Sequelize.INTEGER
+    {
+      freezeTableName: true,
+      timestamps: false
     }
-  },
-  {
-    freezeTableName: true,
-    timestamps: false
-  }
-)
-
-// MEMB_STAT.removeAttribute('id')
-
-module.exports = MEMB_STAT
+  )

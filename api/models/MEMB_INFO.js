@@ -1,49 +1,43 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../sequelize')
-
-const MEMB_INFO = sequelize.define(
-  'MEMB_INFO',
-  {
-    memb___id: {
-      type: Sequelize.STRING
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define(
+    'MEMB_INFO',
+    {
+      memb___id: {
+        type: DataTypes.STRING
+      },
+      memb__pwd: {
+        type: DataTypes.STRING
+      },
+      memb_name: {
+        type: DataTypes.STRING
+      },
+      sno__numb: {
+        type: DataTypes.STRING
+      },
+      phon_numb: {
+        type: DataTypes.STRING
+      },
+      mail_addr: {
+        type: DataTypes.STRING
+      },
+      bloc_code: {
+        type: DataTypes.INTEGER
+      },
+      ctl1_code: {
+        type: DataTypes.INTEGER
+      },
+      // IsVip: {
+      //   type: DataTypes.INTEGER
+      // },
+      // VipExpirationTime: {
+      //   type: DataTypes.INTEGER
+      // },
+      addr_info: {
+        type: DataTypes.STRING
+      }
     },
-    memb__pwd: {
-      type: Sequelize.STRING
-    },
-    memb_name: {
-      type: Sequelize.STRING
-    },
-    sno__numb: {
-      type: Sequelize.STRING
-    },
-    phon_numb: {
-      type: Sequelize.STRING
-    },
-    mail_addr: {
-      type: Sequelize.STRING
-    },
-    bloc_code: {
-      type: Sequelize.INTEGER
-    },
-    ctl1_code: {
-      type: Sequelize.INTEGER
-    },
-    // IsVip: {
-    //   type: Sequelize.INTEGER
-    // },
-    // VipExpirationTime: {
-    //   type: Sequelize.INTEGER
-    // },
-    addr_info: {
-      type: Sequelize.STRING
+    {
+      freezeTableName: true,
+      timestamps: false
     }
-  },
-  {
-    freezeTableName: true,
-    timestamps: false
-  }
-)
-
-// MEMB_INFO.removeAttribute('id')
-
-module.exports = MEMB_INFO
+  )

@@ -1,0 +1,107 @@
+.rankings-table {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 5px;
+
+  & .character {
+    background: #0f0e0e;
+    position: relative;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 5px;
+
+    & .name {
+      position: relative;
+      z-index: 5;
+      font-size: 15px;
+
+      & a {
+        all: unset;
+        color: #6faa48;
+        background: rgba(15, 14, 14, 0.692);
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    & .info {
+      font-size: 14px;
+      margin-top: 3px;
+      padding: 5px;
+      background: #292c0c80;
+    }
+
+    & .image {
+      position: absolute;
+      padding: 5px;
+      background: #0f0e0e;
+      top: 0;
+      right: 0;
+
+      & img {
+        display: block;
+        width: 50px;
+        height: 50px;
+        border-top-left-radius: 5px;
+      }
+    }
+
+    & .value {
+      color: #b9bb49;
+    }
+
+    & .status-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      position: absolute;
+      right: 10px;
+      bottom: 20px;
+      box-shadow: 0 0 5px 1px #000000;
+
+      &.offline {
+        background: #ff3e3e;
+      }
+
+      &.online {
+        background: #4cb667;
+      }
+    }
+  }
+}
+
+.classic-form {
+  padding: 20px;
+  display: grid;
+  gap: 30px;
+}
+
+.classic-form .field-area {
+  display: grid;
+}
+
+.classic-form .field-area .field-title {
+  font-size: 18px;
+  padding: 0 0 5px 15px;
+}
+
+.classic-form .field-area .field-description {
+  font-size: 13px;
+  padding: 5px 0 0 15px;
+}
+
+@media (max-width: 1150px) {
+  .rankings-table {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .rankings-table {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

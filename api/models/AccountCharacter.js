@@ -1,23 +1,17 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../sequelize')
-
-const AccountCharacter = sequelize.define(
-  'AccountCharacter',
-  {
-    Id: {
-      type: Sequelize.STRING,
-      primaryKey: true
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define(
+    'AccountCharacter',
+    {
+      Id: {
+        type: DataTypes.STRING,
+        primaryKey: true
+      },
+      GameIDC: {
+        type: DataTypes.STRING
+      }
     },
-    GameIDC: {
-      type: Sequelize.STRING
+    {
+      freezeTableName: true,
+      timestamps: false
     }
-  },
-  {
-    freezeTableName: true,
-    timestamps: false
-  }
-)
-
-// AccountCharacter.removeAttribute('id')
-
-module.exports = AccountCharacter
+  )

@@ -1,0 +1,49 @@
+.user-login {
+  display: grid;
+  grid-template-areas:
+    'username   loginBtn'
+    'password   loginBtn';
+  grid-template-columns: minmax(0, 1fr) 60px;
+  gap: 5px;
+  padding: 5px;
+
+  & .username {
+    grid-area: username;
+    padding: 5px;
+  }
+
+  & .password {
+    grid-area: password;
+    padding: 5px;
+  }
+
+  & .login-btn {
+    position: relative;
+    grid-area: loginBtn;
+    padding: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #614c09;
+    border: 1px solid #7e630b;
+    transition: 0.3s;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #866c16;
+      border: 1px solid #b19333;
+    }
+  }
+}
+
+.user-register a {
+  all: unset;
+  display: block;
+  padding: 5px;
+  text-align: center;
+  color: #6a7220;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

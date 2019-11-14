@@ -6,10 +6,10 @@ const { validationResult } = require('express-validator')
 const logger = require('../Logger')
 
 // Models
-const Character = require('../../models/Character')
+const models = require('../../models/')
 
 // Status
-const characterStatus = require('./status')
+// const characterStatus = require('./status')
 
 // Configs
 const rankingsConfig = require('../../config/characters/rankings')
@@ -60,7 +60,7 @@ module.exports = async (req, res) => {
 
   try {
     // Pagination
-    const totalCharacters = await Character.count({ where })
+    const totalCharacters = await models.Character.count({ where })
     let totalPages = Math.round(totalCharacters / rankingsConfig.perPage)
     if (totalPages === 0) {
       totalPages = 1
@@ -74,7 +74,7 @@ module.exports = async (req, res) => {
     offset = (page - 1) * rankingsConfig.perPage
     // End Pagination
 
-    const characters = await Character.findAll({
+    const characters = await models.Character.findAll({
       offset,
       limit: rankingsConfig.perPage,
       where,
@@ -91,11 +91,27 @@ module.exports = async (req, res) => {
         'Inventory'
       ],
       raw: true
+      // include: [
+      //   {
+      //     model: models.MEMB_STAT,
+      //     attributes: ['ConnectStat']
+      //   }
+      // ]
     })
 
     // Passing in next and previous page numbers
     next = page + 1 > totalPages ? null : page + 1
     prev = page > 1 && page <= totalPages ? page - 1 : null
+
+    characters.map(char => {
+      delete char.AccountID
+      char.status = false //TODO to get the actual status with inner join query?
+      char.Inventory =
+        char.Inventory && char.Inventory.length > 0
+          ? char.Inventory.toString('hex').slice(0, 240)
+          : null
+      return char
+    })
 
     res.json({
       prev,
@@ -103,17 +119,19 @@ module.exports = async (req, res) => {
       totalPages,
       totalCharacters,
       perPage: rankingsConfig.perPage,
-      data: await Promise.all(
-        [...characters].map(async char => {
-          char.status = await characterStatus(char.AccountID, char.Name)
-          delete char.AccountID
-          char.Inventory =
-            char.Inventory && char.Inventory.length > 0
-              ? char.Inventory.toString('hex').slice(0, 240)
-              : null
-          return char
-        })
-      )
+      data: characters
+
+      // data: await Promise.all(
+      //   [...characters].map(async char => {
+      //     char.status = await characterStatus(char.AccountID, char.Name)
+      //     delete char.AccountID
+      //     char.Inventory =
+      //       char.Inventory && char.Inventory.length > 0
+      //         ? char.Inventory.toString('hex').slice(0, 240)
+      //         : null
+      //     return char
+      //   })
+      // )
     })
   } catch (error) {
     logger.error(`${error.name}: ${error.message}`)

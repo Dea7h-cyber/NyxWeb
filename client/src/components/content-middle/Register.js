@@ -3,9 +3,9 @@ import axios from 'axios'
 import { Notice } from '../../helpers/'
 
 // Icons
-import userIcon from '../../images/user.png'
-import passIcon from '../../images/locked.png'
-import mailIcon from '../../images/at-sign.png'
+import userIcon from '../../assets/images/user.png'
+import passIcon from '../../assets/images/locked.png'
+import mailIcon from '../../assets/images/at-sign.png'
 
 export default () => {
   const [form, setForm] = useState({
@@ -26,82 +26,82 @@ export default () => {
 
   return (
     <>
-      <h1 className="content-title">create your free account</h1>
-      <section className="content-body padding">
-        <form onSubmit={onSubmit} className="classic-form">
-          <div className="field-area">
-            <label className="field-title" htmlFor="username">
+      <h1 className='content-title'>create your free account</h1>
+      <section className='content-body padding'>
+        <form onSubmit={onSubmit} className='classic-form'>
+          <div className='field-area'>
+            <label className='field-title' htmlFor='username'>
               Username
             </label>
             <input
-              type="text"
-              name="username"
+              type='text'
+              name='username'
               onChange={onChange}
               value={form.username}
-              pattern="[a-zA-Z0-9]{4,}"
-              maxLength="10"
+              pattern='[a-zA-Z0-9]{4,}'
+              maxLength='10'
               required
               style={{
                 paddingLeft: 37,
                 background: `#ffffff url(${userIcon}) no-repeat left 5px center/25px 25px`
               }}
-              id="username"
+              id='username'
             />
-            <div className="field-description">
+            <div className='field-description'>
               minimum 4 and maximum 10 characters (only letters and digits
               allowed)
             </div>
           </div>
-          <div className="field-area">
-            <label className="field-title" htmlFor="password">
+          <div className='field-area'>
+            <label className='field-title' htmlFor='password'>
               Password
             </label>
             <input
-              type="password"
-              name="password"
+              type='password'
+              name='password'
               onChange={onChange}
               value={form.password}
-              pattern="[a-zA-Z0-9]{4,}"
-              maxLength="10"
+              pattern='[a-zA-Z0-9]{4,}'
+              maxLength='10'
               required
               style={{
                 paddingLeft: 37,
                 background: `#ffffff url(${passIcon}) no-repeat left 5px center/25px 25px`
               }}
-              id="password"
+              id='password'
             />
-            <div className="field-description">
+            <div className='field-description'>
               minimum 4 and maximum 10 characters (only letters and digits
               allowed)
             </div>
           </div>
-          <div className="field-area">
-            <label className="field-title" htmlFor="repassword">
+          <div className='field-area'>
+            <label className='field-title' htmlFor='repassword'>
               Repeat Password
             </label>
             <input
-              type="password"
-              name="repassword"
+              type='password'
+              name='repassword'
               onChange={onChange}
               value={form.repassword}
-              pattern="[a-zA-Z0-9]{4,10}"
-              maxLength="10"
+              pattern='[a-zA-Z0-9]{4,10}'
+              maxLength='10'
               required
               style={{
                 paddingLeft: 37,
                 background: `#ffffff url(${passIcon}) no-repeat left 5px center/25px 25px`
               }}
-              id="repassword"
+              id='repassword'
             />
-            <div className="field-description">repeat the password</div>
+            <div className='field-description'>repeat the password</div>
           </div>
-          <div className="field-area">
-            <label className="field-title" htmlFor="email">
+          <div className='field-area'>
+            <label className='field-title' htmlFor='email'>
               E-Mail Adress
             </label>
             <input
-              type="email"
-              name="email"
+              type='email'
+              name='email'
               onChange={onChange}
               value={form.email}
               required
@@ -109,9 +109,9 @@ export default () => {
                 paddingLeft: 37,
                 background: `#ffffff url(${mailIcon}) no-repeat left 7px center/22px 22px`
               }}
-              id="email"
+              id='email'
             />
-            <div className="field-description">
+            <div className='field-description'>
               please use a valid E-Mail adress, you will need it
             </div>
           </div>
