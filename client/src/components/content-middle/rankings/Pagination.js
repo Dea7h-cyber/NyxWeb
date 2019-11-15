@@ -4,26 +4,30 @@ import { Link } from 'react-router-dom'
 export default ({
   passed: {
     page,
-    loading,
-    characters: { prev, next, totalPages }
+    characters: { prev, next, totalPages, totalCharacters }
   }
 }) => (
   <div className='pagination'>
-    {prev && (
-      <Link to={loading ? '#' : `/rankings/${prev}`} className='view btn'>
-        prev
-      </Link>
-    )}
+    <Link
+      to={`/rankings/${prev}`}
+      onClick={e => prev === page && e.preventDefault()}
+      className={`view btn ${prev === page && 'disabled'}`}>
+      prev
+    </Link>
     <span className='view'>
       {'page '}
       <strong>{page}</strong>
       {' of '}
       <strong>{totalPages}</strong>
     </span>
-    {next && (
-      <Link to={loading ? '#' : `/rankings/${next}`} className='view btn'>
-        next
-      </Link>
-    )}
+    <Link
+      to={`/rankings/${next}`}
+      onClick={e => next === page && e.preventDefault()}
+      className={`view btn ${next === page && 'disabled'}`}>
+      next
+    </Link>
+    <span className='view total' style={{ float: 'right', margin: 0 }}>
+      Total Characters <strong>{totalCharacters}</strong>
+    </span>
   </div>
 )

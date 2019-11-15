@@ -43,22 +43,29 @@ const classToImage = cClass => {
   }
 }
 
-const pkNameColor = (Name, pkCount = 0) => {
+const pkNameColor = ({ name, pkCount, position }) => {
   let color = '#e6f7ff'
+  let textDecoration = false
 
-  if (pkCount < 0) {
-    color = '#92c2d4'
-  } else if (pkCount === 1) {
-    color = '#ffad73'
-  } else if (pkCount === 2) {
-    color = '#ff5833'
-  } else if (pkCount > 2 && pkCount < 99) {
-    color = '#ff0000'
-  } else if (pkCount > 99) {
-    color = '#ff7bf5'
+  if (pkCount) {
+    if (pkCount < 0) {
+      color = '#92c2d4'
+    } else if (pkCount === 1) {
+      color = '#ffad73'
+    } else if (pkCount === 2) {
+      color = '#ff5833'
+    } else if (pkCount > 2 && pkCount < 99) {
+      color = '#ff0000'
+    } else if (pkCount > 99) {
+      color = '#ff7bf5'
+    }
   }
 
-  return <span style={{ color: color }}>{Name}</span>
+  if (position !== undefined && position <= 3) {
+    textDecoration = 'underline'
+  }
+
+  return <span style={{ color, textDecoration }}>{name}</span>
 }
 
 const getClassImage = cClass => `/images/classes/${classToImage(cClass)}.gif`

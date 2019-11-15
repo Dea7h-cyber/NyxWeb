@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner'
 // Components
 import Character from './Character'
 import Pagination from './Pagination'
+import SearchBoard from './SearchBoard'
 
 export default ({ match: { params } }) => {
   const [characters, setCharacters] = useState({ data: [] })
@@ -37,8 +38,7 @@ export default ({ match: { params } }) => {
     }
 
     fetchCharacters()
-    // eslint-disable-next-line
-  }, [params])
+  }, [params, page])
 
   return loading ? (
     <Loader
@@ -55,7 +55,8 @@ export default ({ match: { params } }) => {
           error
         ) : (
           <>
-            <Pagination passed={{ page, characters, loading }} />
+            <SearchBoard />
+            <Pagination passed={{ page, characters }} />
             <div className='rankings-table'>
               {characters.data.length > 0
                 ? characters.data.map((char, index) => (
@@ -71,7 +72,7 @@ export default ({ match: { params } }) => {
                   ))
                 : 'No characters'}
             </div>
-            <Pagination passed={{ page, characters, loading }} />
+            <Pagination passed={{ page, characters }} />
           </>
         )}
       </section>
