@@ -1,9 +1,10 @@
+const db = require('./config/db.json')
 const Sequelize = require('sequelize')
 
-module.exports = new Sequelize('MuOnline', 'sa', 'thepasswordis1', {
-  host: 'localhost',
-  port: 60143, // 1414
-  dialect: 'mssql',
+module.exports = new Sequelize(db.database, db.user, db.password, {
+  host: db.host,
+  port: db.port, // 60143
+  dialect: db.dialect,
   pool: {
     max: 5,
     min: 0,

@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 const logger = require('../Logger')
 
 // Models
-const MEMB_INFO = require('../../models/MEMB_INFO')
+const models = require('../../models/')
 
 module.exports = async (req, res) => {
   const errors = validationResult(req)
@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
 
   // Check if username and password match
   try {
-    const check = await MEMB_INFO.count({
+    const check = await models.MEMB_INFO.count({
       where: {
         memb___id: username,
         memb__pwd: password

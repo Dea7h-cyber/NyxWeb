@@ -5,11 +5,11 @@
 const logger = require('../Logger')
 
 // Models
-const MEMB_STAT = require('../../models/MEMB_STAT')
+const models = require('../../models/')
 
 module.exports = async account => {
   try {
-    const membStatus = await MEMB_STAT.findOne({
+    const membStatus = await models.MEMB_STAT.findOne({
       where: {
         memb___id: account
       }

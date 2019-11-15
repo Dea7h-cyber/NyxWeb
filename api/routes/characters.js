@@ -19,8 +19,6 @@ router.get('/', validator.getMany, actions.getMany)
 
 router.get('/:name', actions.getOne)
 
-router.get('/test/:name', actions.test)
-
 /**
  * @route   PATCH /api/characters/:name/reset
  * @desc    Reset a Character

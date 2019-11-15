@@ -7,7 +7,7 @@ const { validationResult } = require('express-validator')
 const logger = require('../Logger')
 
 // Models
-const MEMB_INFO = require('../../models/MEMB_INFO')
+const models = require('../../models/')
 
 module.exports = async (req, res) => {
   const errors = validationResult(req)
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
   const { username, password, email } = req.body
 
   try {
-    const usernameCheck = await MEMB_INFO.count({
+    const usernameCheck = await models.MEMB_INFO.count({
       where: {
         memb___id: username
       }
@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
       return res.json({ error: 'This username is already taken.' })
     }
 
-    const emailCheck = await MEMB_INFO.count({
+    const emailCheck = await models.MEMB_INFO.count({
       where: {
         mail_addr: email
       }
@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
       return res.json({ error: 'This E-Mail adress is already taken.' })
     }
 
-    const newRecord = await MEMB_INFO.build({
+    const newRecord = await models.MEMB_INFO.build({
       memb___id: username,
       memb_name: username,
       memb__pwd: password,

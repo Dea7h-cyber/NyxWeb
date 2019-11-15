@@ -11,9 +11,7 @@ const models = require('../../models/')
 
 module.exports = async (account, character) => {
   try {
-    const accountStatus = membStatus(account)
-
-    if (!accountStatus) {
+    if (await membStatus(account)) {
       return false
     }
 

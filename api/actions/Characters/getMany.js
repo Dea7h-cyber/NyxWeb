@@ -21,16 +21,15 @@ module.exports = async (req, res) => {
     })
   }
 
-  let offset,
-    next,
-    prev,
-    where = {},
-    order = [
-      ['Resets', 'DESC'],
-      ['cLevel', 'DESC'],
-      ['Name', 'ASC']
-    ],
-    orderDir = 'DESC'
+  let next
+  let prev
+  let where = {}
+  let orderDir = 'DESC'
+  let order = [
+    ['Resets', 'DESC'],
+    ['cLevel', 'DESC'],
+    ['Name', 'ASC']
+  ]
 
   // Fetch data WHERE
   const whereAllowed = ['Class', 'Name']
@@ -52,27 +51,16 @@ module.exports = async (req, res) => {
     'QuestNumber',
     'SkyEventWins'
   ]
-
   if (req.query.order && orderAllowed.includes(req.query.order)) {
     order = [[req.query.order, req.query.dir ? req.query.dir : orderDir]]
   }
 
   try {
     // Pagination
-    const totalCharacters = await Character.count({ where })
-    let totalPages = Math.round(totalCharacters / rankingsConfig.perPage)
-    if (totalPages === 0) {
-      totalPages = 1
-    }
+    const page = Number(req.query.page ? req.query.page : 1)
+    const offset = (page - 1) * rankingsConfig.perPage
 
-    let page = Number(req.query.page ? req.query.page : 1)
-    if (page > totalPages) {
-      page = totalPages
-    }
-
-    offset = (page - 1) * rankingsConfig.perPage
-    // End Pagination
-
+    // Joining tables
     Character.hasOne(models.MEMB_STAT, {
       as: 'a',
       sourceKey: 'AccountID',
@@ -85,7 +73,7 @@ module.exports = async (req, res) => {
       foreignKey: 'Id'
     })
 
-    const characters = await Character.findAll({
+    const characters = await Character.findAndCountAll({
       offset,
       limit: rankingsConfig.perPage,
       where,
@@ -116,10 +104,16 @@ module.exports = async (req, res) => {
     })
 
     // Passing in next and previous page numbers
-    next = page + 1 > totalPages ? null : page + 1
-    prev = page > 1 && page <= totalPages ? page - 1 : null
+    const totalPages = Math.ceil(characters.count / rankingsConfig.perPage)
+    prev =
+      page > 1 && page <= totalPages
+        ? page - 1
+        : page === 1
+        ? 1
+        : totalPages - 1
+    next = page + 1 > totalPages ? totalPages : page + 1
 
-    characters.map(char => {
+    characters.rows.map(char => {
       char.status =
         char['a.ConnectStat'] === 1 && char['b.GameIDC'] === char.Name
           ? true
@@ -139,21 +133,9 @@ module.exports = async (req, res) => {
       prev,
       next,
       totalPages,
-      totalCharacters,
+      totalCharacters: characters.count,
       perPage: rankingsConfig.perPage,
-      data: characters
-
-      // data: await Promise.all(
-      //   [...characters].map(async char => {
-      //     char.status = await characterStatus(char.AccountID, char.Name)
-      //     delete char.AccountID
-      //     char.Inventory =
-      //       char.Inventory && char.Inventory.length > 0
-      //         ? char.Inventory.toString('hex').slice(0, 240)
-      //         : null
-      //     return char
-      //   })
-      // )
+      data: characters.rows
     })
   } catch (error) {
     logger.error(`${error.name}: ${error.message}`)
