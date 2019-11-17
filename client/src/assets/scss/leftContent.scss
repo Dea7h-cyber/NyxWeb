@@ -1,0 +1,32 @@
+.event-container {
+  display: grid;
+  grid-template-areas:
+    'event-name event-start'
+    'event-left event-start';
+  align-items: center;
+  border-bottom: 1px solid #0f0f0f;
+
+  &:last-child {
+    border: none;
+  }
+
+  & .name {
+    grid-area: event-name;
+    font-size: 18px;
+    padding: 5px 0 5px 5px;
+    color: #9e8227;
+  }
+
+  & .start {
+    grid-area: event-start;
+    justify-self: center;
+    font-size: 24px;
+    color: #535e22;
+  }
+
+  & .left {
+    grid-area: event-left;
+    padding: 0 0 5px 5px;
+    color: #535e22;
+  }
+}

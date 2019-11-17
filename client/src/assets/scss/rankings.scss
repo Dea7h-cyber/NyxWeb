@@ -81,6 +81,7 @@
       bottom: 18px;
       right: 10px;
       background: rgb(0, 0, 0);
+      box-shadow: 0 0 5px #000000;
 
       & .cell {
         float: left;
@@ -260,6 +261,13 @@
 @media (max-width: 550px) {
   .rankings-table {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-bar {
+    &.classes,
+    &.sort {
+      display: none;
+    }
   }
 }
 

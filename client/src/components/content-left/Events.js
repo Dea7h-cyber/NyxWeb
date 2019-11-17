@@ -1,82 +1,88 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // import axios from 'axios'
-// import moment from 'moment'
+import moment from 'moment'
+
+// const minsToHours = time => {
+//   const addZero = time => (time < 10 ? '0' + time : time)
+//   const hours = addZero((time / 60) | 0)
+//   const mins = addZero(time % 60 | 0)
+
+//   return `${hours}:${mins}:${addZero(60 - moment().format('ss'))}`
+// }
 
 export default () => {
-  // const [events, setEvents] = useState([])
-  // const [render, setRender] = useState([])
+  const [events, setEvents] = useState([])
 
-  // useEffect(() => {
-  //   const data = [
-  //     { name: 'Blood Castle', hours: ['00:30', '02:30', '04:30', '06:30', '08:30', '10:30', '12:30', '14:30', '16:30', '18:30', '20:30', '22:30'] },
-  //     { name: 'Devil Square', hours: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'] },
-  //     { name: 'Chaos Castle', hours: ['17:00', '19:00', '21:00'] },
-  //   ]
+  const data = [
+    { name: 'Blood Castle', hours: ['00:30', '06:30', '18:30'] },
+    { name: 'Devil Square', hours: ['16:00', '22:00'] },
+    { name: 'Chaos Castle', hours: ['18:00'] }
+  ]
 
-  //   setEvents(data)
+  const secondsAfterMidnight = time => {
+    const [hours, minutes] = time.split(':')
+    return Number(hours) * 60 * 60 + Number(minutes) * 60 - moment().seconds()
+  }
 
-  //   // const interval = setInterval(() => {
-  //   //   console.log(events);
+  const getClosestTime = hours => {
+    const currentSecondsAfterMidnight =
+      Number(moment().hours()) * 60 * 60 +
+      Number(moment().minutes() * 60) +
+      Number(moment().seconds())
+    const time = hours.find(
+      hour => secondsAfterMidnight(hour) > currentSecondsAfterMidnight
+    )
 
-  //   //   setEvents(data)
-  //   //   setRender([])
-  //   // }, 1000);
-  //   // return () => clearInterval(interval);
+    return {
+      seconds: time
+        ? secondsAfterMidnight(time)
+        : secondsAfterMidnight(hours[0]) + 24 * 60 * 60,
+      display: time || hours[0]
+    }
+  }
 
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const eventsList = []
+      data.forEach(event => {
+        const time = getClosestTime(event.hours)
+        eventsList.push([event.name, time.seconds, time.display])
+      })
+      setEvents(eventsList)
+    }, 1000)
 
-  // }, [])
-
-  // useEffect(() => {
-  //   function findRemainingTime(hours = []) {
-  //     const date = moment()
-  //     const timeSinceMidnight = Number(date.format('HH')) * 60 + Number(date.format('mm'))
-
-  //     const hoursToMinutes = hours.map(hour => {
-  //       const [hours, min] = hour.split(':')
-  //       return Number(hours) * 60 + Number(min) - timeSinceMidnight
-  //     }).sort((a, b) => a - b).filter(mins => mins > 0)[0]
-
-  //     return {
-  //       minutes: minsToHours(hoursToMinutes),
-  //       format: moment(date.add(hoursToMinutes, 'minutes')).format('HH:mm')
-  //     }
-  //   }
-
-  //   // function calcNewRender() {
-  //   //   return events.map(event => {
-  //   //     const remainig = findRemainingTime(event.hours);
-  //   //     return {
-  //   //       name: event.name,
-  //   //       remainig: remainig.minutes,
-  //   //       format: remainig.format
-  //   //     }
-  //   //   })
-  //   // }
-
-  //   // setRender(calcNewRender())
-
-  //   // setInterval(() => {
-  //   //   setRender(calcNewRender())
-  //   // }, 1000)
-
-  // }, [events])
-
-  // function minsToHours(time) {
-  //   const addZero = time => time < 10 ? `0${time}` : time
-  //   const hours = addZero(time / 60 | 0)
-  //   const mins = addZero(time % 60 | 0)
-
-  //   return `${hours}:${mins}:${addZero(60 - moment().format('ss'))}`
-  // }
+    return () => clearInterval(interval)
+  })
 
   return (
     <>
-      <h1 className="content-title">event timers</h1>
-      <section className="content-body padding">
-        events
-        {/* {render.map((event, key) => <div key={key}>{event.name} | {event.remainig} at {event.format}</div>)} */}
+      <h1 className='content-title'>event timers</h1>
+      <section className='content-body'>
+        {events.map((event, key) => (
+          <Event key={key} event={event} />
+        ))}
       </section>
     </>
+  )
+}
+
+const Event = ({ event }) => {
+  const timeLeft = time => {
+    const currentSecondsAfterMidnight =
+      Number(moment().hour()) * 60 * 60 + Number(moment().minutes() * 60)
+
+    return time - currentSecondsAfterMidnight > 0
+      ? time - currentSecondsAfterMidnight
+      : time + 24 * 60 * 60 - currentSecondsAfterMidnight
+  }
+
+  return (
+    <div className='event-container'>
+      <div className='name'>{event[0]}</div>
+      <div className='start'>{event[2]}</div>
+      <div className='left'>
+        {moment.utc(timeLeft(event[1]) * 1000).format('HH:mm:ss')}
+      </div>
+    </div>
   )
 }
