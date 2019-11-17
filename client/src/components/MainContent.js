@@ -4,7 +4,7 @@ import ContentMiddle from './content-middle/'
 import ContentRight from './content-right/'
 
 export default () => (
-  <main className="main-content">
+  <main className='main-content'>
     <ContentLeft />
     <ContentMiddle />
     <ContentRight />

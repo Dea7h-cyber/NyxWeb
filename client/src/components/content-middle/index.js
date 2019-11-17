@@ -11,7 +11,10 @@ export default () => (
   <main className='main-middle'>
     <Switch>
       <Route exact path='/' component={News} />
-      <Route path='/rankings/:page?/:order?/:dir?' component={Rankings} />
+      <Route
+        path='/rankings/:page?/:sort?/:order?/:where?'
+        component={Rankings}
+      />
       <Route path='/register' component={Register} />
       <Route path='/profile/:name' component={Profile} />
     </Switch>

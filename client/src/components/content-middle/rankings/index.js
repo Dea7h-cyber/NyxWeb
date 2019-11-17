@@ -8,37 +8,46 @@ import Pagination from './Pagination'
 import SearchBoard from './SearchBoard'
 
 export default ({ match: { params } }) => {
-  const [characters, setCharacters] = useState({ data: [] })
-  const [page, setPage] = useState(1)
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const urlParams = {}
-    new URLSearchParams(params).forEach((param, key) => {
-      if (param !== 'undefined') {
-        urlParams[key] = param
-      }
-    })
+  const [characters, setCharacters] = useState({ data: [] })
+  const [search, setSearch] = useState({
+    page: 1,
+    class: [1, 17, 33, 48, 64],
+    order: ['Resets', 'desc'],
+    name: false
+  })
 
-    urlParams.page && urlParams.page !== page && setPage(Number(urlParams.page))
+  const generateUrl = () => {
+    const classes = search.class.join(',')
+    const order = search.order.join(',')
+    const name = search.name ? `&search=${search.name}` : ''
 
-    const url = '/api/characters?' + new URLSearchParams(urlParams)
-    const fetchCharacters = async () => {
-      try {
-        const response = await axios(url)
-        response.data.data
-          ? setCharacters(response.data)
-          : setError("Couldn't load data")
-      } catch (_) {
-        setError("Couldn't load data")
-      } finally {
-        setLoading(false)
-      }
+    return (
+      `/api/characters?page=${search.page}&class=${classes}&order=${order}` +
+      name
+    )
+  }
+
+  const fetchCharacters = async () => {
+    // setLoading(true)
+    try {
+      const response = await axios(generateUrl())
+      response.data.data
+        ? setCharacters(response.data)
+        : setError("Couldn't load data")
+    } catch (_) {
+      setError("Couldn't load data")
+    } finally {
+      setLoading(false)
     }
+  }
 
+  useEffect(() => {
     fetchCharacters()
-  }, [params, page])
+    // eslint-disable-next-line
+  }, [search])
 
   return loading ? (
     <Loader
@@ -55,8 +64,8 @@ export default ({ match: { params } }) => {
           error
         ) : (
           <>
-            <SearchBoard />
-            <Pagination passed={{ page, characters }} />
+            <SearchBoard passed={{ search, setSearch }} />
+            <Pagination passed={{ search, setSearch, characters }} />
             <div className='rankings-table'>
               {characters.data.length > 0
                 ? characters.data.map((char, index) => (
@@ -65,14 +74,14 @@ export default ({ match: { params } }) => {
                       passed={{
                         char,
                         index,
-                        page,
+                        page: search.page,
                         perPage: characters.perPage
                       }}
                     />
                   ))
                 : 'No characters'}
             </div>
-            <Pagination passed={{ page, characters }} />
+            <Pagination passed={{ search, setSearch, characters }} />
           </>
         )}
       </section>

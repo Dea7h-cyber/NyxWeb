@@ -1,8 +1,8 @@
 {
-  "database": "MuOnline_Full",
+  "database": "MuOnline",
   "user": "sa",
   "password": "thepasswordis1",
   "host": "localhost",
-  "port": "1414",
+  "port": "60143",
   "dialect": "mssql"
 }

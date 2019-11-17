@@ -33,6 +33,10 @@
       margin-top: 3px;
       padding: 5px;
       background: #292c0c80;
+
+      & .row {
+        margin-bottom: 3px;
+      }
     }
 
     & .image {
@@ -59,8 +63,8 @@
       height: 10px;
       border-radius: 50%;
       position: absolute;
-      right: 10px;
-      bottom: 20px;
+      right: 5px;
+      top: 5px;
       box-shadow: 0 0 5px 1px #000000;
 
       &.offline {
@@ -69,6 +73,17 @@
 
       &.online {
         background: #4cb667;
+      }
+    }
+
+    & .guild-logo {
+      position: absolute;
+      bottom: 18px;
+      right: 10px;
+      background: rgb(0, 0, 0);
+
+      & .cell {
+        float: left;
       }
     }
   }
@@ -102,7 +117,7 @@
   border: 1px solid #070707;
   overflow: hidden;
 
-  &:nth-child(2) {
+  &:nth-child(4) {
     margin: 5px 0 5px 0;
   }
 
@@ -148,14 +163,90 @@
   background: #0f0f0f;
   border: 1px solid #070707;
   overflow: hidden;
+  display: grid;
+  flex-direction: row;
+  gap: 5px;
+  margin-bottom: 5px;
 
-  & ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  &.classes {
+    width: calc(50% - 2.5px);
+    float: left;
+  }
 
-    & li {
-      display: inline-block;
+  &.sort {
+    width: calc(50% - 2.5px);
+    float: right;
+  }
+
+  &.byName {
+    & form {
+      display: flex;
+      & input {
+        flex: 3;
+        margin-right: 10px;
+      }
+
+      & button {
+        flex: 1;
+      }
+    }
+  }
+
+  & label.row {
+    height: 28px;
+    text-transform: uppercase;
+    border: 1px solid #16250c;
+    border: 1px solid #251b0c;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    & input {
+      width: 15px;
+      height: 15px;
+      margin: 5px;
+    }
+  }
+
+  & div.row {
+    height: 28px;
+    border: 1px solid #251b0c;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding-right: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    & .buttons-group {
+      height: 20px;
+      display: flex;
+      font-size: 12px;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-left: 5px;
+
+      & .button {
+        background-color: #4b545c;
+        border-color: #40484e;
+        color: rgb(196, 196, 196);
+        display: flex;
+        align-items: center;
+        flex: 1;
+        padding: 5px;
+
+        &:active {
+          background-color: #363d44;
+          border-color: #33383d;
+          color: #ffffff;
+        }
+      }
+
+      & .active {
+        color: #ffffff;
+        background-color: #363d44;
+        border-color: #33383d;
+      }
     }
   }
 }
@@ -187,6 +278,3 @@
     }
   }
 }
-
-// SEARCH
-// ...
