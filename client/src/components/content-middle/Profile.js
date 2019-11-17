@@ -36,9 +36,11 @@ export default ({
   ) : (
     <>
       <h1 className='content-title'>{character.Name}'s profile</h1>
-      <section className='content-body padding'>
-        <div className='rankings-table'>
-          {error ? error : character ? character.Name : 'No characters'}
+      <section className='content-body'>
+        <div className='content padding'>
+          <div className='rankings-table'>
+            {error ? error : character ? character.Name : 'No characters'}
+          </div>
         </div>
       </section>
     </>

@@ -30,7 +30,7 @@ main.main-container {
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
-  background: rgb(20, 20, 20);
+  background: rgb(12, 12, 12);
   border: 1px solid rgb(7, 7, 7);
   display: grid;
   grid-template-areas:
@@ -43,13 +43,13 @@ main.main-container {
 header.main-header {
   grid-area: main-header;
   height: 200px;
-  background: rgba(10, 10, 10, 1) url('../images/header.png');
+  background: rgba(10, 10, 10, 0) url('../images/header.png');
 }
 
 nav.main-nav {
   grid-area: main-nav;
   background: linear-gradient(rgb(29, 29, 29), rgb(12, 12, 12));
-  border: 1px solid rgb(7, 7, 7);
+  border: 1px solid rgb(4, 4, 4);
 
   & a {
     all: unset;
@@ -61,7 +61,7 @@ nav.main-nav {
     transition: 0.2s;
 
     &:hover {
-      box-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
       color: #ffffff;
     }
   }
@@ -78,21 +78,17 @@ main.main-content {
 
 aside.main-left {
   grid-area: main-left;
-  background: rgba(15, 15, 15, 1);
-  border: 1px solid rgb(7, 7, 7);
 }
 
 aside.main-right {
   grid-area: main-right;
-  background: rgba(15, 15, 15, 1);
-  border: 1px solid rgb(7, 7, 7);
+  // border: 1px solid rgb(7, 7, 7);
 }
 
 main.main-middle {
   grid-area: main-middle;
-  background: rgba(15, 15, 15, 1) url('../images/bull.png') no-repeat right 20px
-    bottom / auto 250px;
-  border: 1px solid rgb(7, 7, 7);
+  background: url('../images/bull.png') no-repeat right 20px bottom / auto 250px;
+  // border: 1px solid rgb(7, 7, 7);
   min-height: 350px;
 }
 
@@ -116,25 +112,36 @@ footer {
   }
 }
 
+div.content-spacer {
+  height: 10px;
+  // background: rgb(12, 12, 12);
+  // border-top: 1px solid rgb(7, 7, 7);
+  // width: calc(100% + 2px);
+  // margin-left: -1px;
+}
+
 h1.content-title {
   all: unset;
   display: block;
   font-size: 16px;
   padding: 10px 10px 10px 28px;
-  background: #0e0e0e url('../images/arrow.png') no-repeat 8px center/15px 15px;
+  background: rgb(17, 17, 17) url('../images/arrow.png') no-repeat 8px
+    center/15px 15px;
+  border: 1px solid rgb(7, 7, 7);
   border-bottom: 3px solid rgb(20, 82, 20);
   color: #6a7220;
   text-transform: uppercase;
-
-  &:not(:first-child) {
-    border-top: 1px solid rgb(7, 7, 7);
-  }
 }
 
 section.content-body {
-  background: rgba(27, 27, 27, 0.781);
-  margin: 10px;
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
+  background: rgb(25, 26, 23);
+  border: 1px solid rgb(7, 7, 7);
+
+  & .content {
+    margin: 5px;
+    background: rgb(18, 18, 18);
+    border: 1px solid rgb(15, 15, 15);
+  }
 }
 
 .padding {

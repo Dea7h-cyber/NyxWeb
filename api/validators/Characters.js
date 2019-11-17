@@ -1,11 +1,15 @@
 const { check, query } = require('express-validator')
 
 const getMany = [
-  query('page').isInt({ min: 1, max: 100 }),
+  query('page')
+    .optional()
+    .isInt({ min: 1, max: 100 }),
   query('class')
+    .optional()
     .isString()
     .isLength({ min: 0, max: 20 }),
   query('order')
+    .optional()
     .isString()
     .isLength({ min: 1, max: 20 }),
   query('search')

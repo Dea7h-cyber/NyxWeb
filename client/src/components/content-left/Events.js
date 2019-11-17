@@ -1,23 +1,10 @@
 import React, { useEffect, useState } from 'react'
-// import axios from 'axios'
 import moment from 'moment'
 
-// const minsToHours = time => {
-//   const addZero = time => (time < 10 ? '0' + time : time)
-//   const hours = addZero((time / 60) | 0)
-//   const mins = addZero(time % 60 | 0)
-
-//   return `${hours}:${mins}:${addZero(60 - moment().format('ss'))}`
-// }
+import config from '../../config.json'
 
 export default () => {
   const [events, setEvents] = useState([])
-
-  const data = [
-    { name: 'Blood Castle', hours: ['00:30', '06:30', '18:30'] },
-    { name: 'Devil Square', hours: ['16:00', '22:00'] },
-    { name: 'Chaos Castle', hours: ['18:00'] }
-  ]
 
   const secondsAfterMidnight = time => {
     const [hours, minutes] = time.split(':')
@@ -44,7 +31,7 @@ export default () => {
   useEffect(() => {
     const interval = setInterval(() => {
       const eventsList = []
-      data.forEach(event => {
+      config.events.forEach(event => {
         const time = getClosestTime(event.hours)
         eventsList.push([event.name, time.seconds, time.display])
       })
@@ -58,9 +45,11 @@ export default () => {
     <>
       <h1 className='content-title'>event timers</h1>
       <section className='content-body'>
-        {events.map((event, key) => (
-          <Event key={key} event={event} />
-        ))}
+        <div className='content'>
+          {events.map((event, key) => (
+            <Event key={key} event={event} />
+          ))}
+        </div>
       </section>
     </>
   )
@@ -80,7 +69,8 @@ const Event = ({ event }) => {
     <div className='event-container'>
       <div className='name'>{event[0]}</div>
       <div className='start'>{event[2]}</div>
-      <div className='left'>
+      <div className='starting-text'>starting in</div>
+      <div className='starting-time'>
         {moment.utc(timeLeft(event[1]) * 1000).format('HH:mm:ss')}
       </div>
     </div>

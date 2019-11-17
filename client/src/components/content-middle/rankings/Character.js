@@ -14,9 +14,9 @@ export default ({ passed: { char, index, page, perPage } }) => {
   const rank = index + 1 + (page - 1) * perPage
 
   const charStyle = {
-    boxShadow: char.status
-      ? '0 0 5px rgba(0, 204, 0, 0.3)'
-      : '0 0 5px rgba(204, 51, 0, 0.3)'
+    // boxShadow: char.status
+    //   ? '0 0 5px rgba(0, 204, 0, 0.3)'
+    //   : '0 0 5px rgba(204, 51, 0, 0.3)'
   }
 
   return (

@@ -115,7 +115,7 @@
   margin: 5px 0 0 0;
   padding: 8px;
   background: #0f0f0f;
-  border: 1px solid #070707;
+  border: 1px solid #0c0c0c;
   overflow: hidden;
 
   &:nth-child(4) {
@@ -162,7 +162,7 @@
 .search-bar {
   padding: 8px;
   background: #0f0f0f;
-  border: 1px solid #070707;
+  border: 1px solid #0c0c0c;
   overflow: hidden;
   display: grid;
   flex-direction: row;
@@ -194,10 +194,10 @@
   }
 
   & label.row {
-    height: 28px;
+    height: 32px;
     text-transform: uppercase;
-    border: 1px solid #16250c;
-    border: 1px solid #251b0c;
+    border: 1px solid #1e2205;
+    border-radius: 5px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -205,13 +205,14 @@
     & input {
       width: 15px;
       height: 15px;
-      margin: 5px;
+      margin: 10px 7px 7px 7px;
     }
   }
 
   & div.row {
-    height: 28px;
-    border: 1px solid #251b0c;
+    height: 32px;
+    border: 1px solid #1e2205;
+    border-radius: 5px;
     text-transform: uppercase;
     cursor: pointer;
     padding-right: 3px;
@@ -220,7 +221,7 @@
     justify-content: flex-end;
 
     & .buttons-group {
-      height: 20px;
+      height: 22px;
       display: flex;
       font-size: 12px;
       border-radius: 3px;
@@ -228,8 +229,7 @@
       margin-left: 5px;
 
       & .button {
-        background-color: #4b545c;
-        border-color: #40484e;
+        background: #55533c;
         color: rgb(196, 196, 196);
         display: flex;
         align-items: center;
@@ -237,16 +237,14 @@
         padding: 5px;
 
         &:active {
-          background-color: #363d44;
-          border-color: #33383d;
+          background: #535025;
           color: #ffffff;
         }
       }
 
       & .active {
         color: #ffffff;
-        background-color: #363d44;
-        border-color: #33383d;
+        background: #499418;
       }
     }
   }

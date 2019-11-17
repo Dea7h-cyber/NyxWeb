@@ -59,31 +59,33 @@ export default ({ match: { params } }) => {
   ) : (
     <>
       <h1 className='content-title'>rankings</h1>
-      <section className='content-body padding'>
-        {error ? (
-          error
-        ) : (
-          <>
-            <SearchBoard passed={{ search, setSearch }} />
-            <Pagination passed={{ search, setSearch, characters }} />
-            <div className='rankings-table'>
-              {characters.data.length > 0
-                ? characters.data.map((char, index) => (
-                    <Character
-                      key={index}
-                      passed={{
-                        char,
-                        index,
-                        page: search.page,
-                        perPage: characters.perPage
-                      }}
-                    />
-                  ))
-                : 'No characters'}
-            </div>
-            <Pagination passed={{ search, setSearch, characters }} />
-          </>
-        )}
+      <section className='content-body'>
+        <div className='content padding'>
+          {error ? (
+            error
+          ) : (
+            <>
+              <SearchBoard passed={{ search, setSearch }} />
+              <Pagination passed={{ search, setSearch, characters }} />
+              <div className='rankings-table'>
+                {characters.data.length > 0
+                  ? characters.data.map((char, index) => (
+                      <Character
+                        key={index}
+                        passed={{
+                          char,
+                          index,
+                          page: search.page,
+                          perPage: characters.perPage
+                        }}
+                      />
+                    ))
+                  : 'No characters'}
+              </div>
+              <Pagination passed={{ search, setSearch, characters }} />
+            </>
+          )}
+        </div>
       </section>
     </>
   )

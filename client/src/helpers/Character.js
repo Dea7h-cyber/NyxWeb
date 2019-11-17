@@ -54,10 +54,8 @@ const pkNameColor = ({ name, pkCount, position }) => {
       color = '#ffad73'
     } else if (pkCount === 2) {
       color = '#ff5833'
-    } else if (pkCount > 2 && pkCount < 99) {
+    } else if (pkCount > 2) {
       color = '#ff0000'
-    } else if (pkCount > 99) {
-      color = '#ff7bf5'
     }
   }
 

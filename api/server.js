@@ -1,6 +1,7 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const logger = require('./actions/Logger')
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -14,6 +15,13 @@ app.use(express.json())
 app.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*')
   res.set('Access-Control-Allow-Headers', '*')
+  // logger.info(
+  //   `Method: ${req.method} | URL: ${req.url} | IP: ${
+  //     req.ip
+  //   } | Body: ${JSON.stringify(req.body)} | Params: ${JSON.stringify(
+  //     req.params
+  //   )}`
+  // )
   console.log(`Method: ${req.method} | URL: ${req.url} | IP: ${req.ip}`)
   next()
 })

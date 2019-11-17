@@ -1,4 +1,8 @@
 {
   "proxy": "http://192.168.1.19:4000",
-  "images": ""
+  "events": [
+    { "name": "Blood Castle", "hours": ["00:30", "06:30", "18:30"] },
+    { "name": "Devil Square", "hours": ["16:00", "22:00"] },
+    { "name": "Chaos Castle", "hours": ["18:00"] }
+  ]
 }
