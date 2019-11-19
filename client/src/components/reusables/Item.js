@@ -3,32 +3,51 @@ import { Tooltip } from '@material-ui/core'
 
 // Helpers
 import { hexDecode } from '../../helpers/Items'
-import Items from '../../config/Items'
+import Items from '../../config/items/List.json'
 
 export default ({ hex, size, options }) => {
-  const item = hexDecode(hex)
-  const itemData = Items[item.group][item.id]
+  const itemData = hexDecode(hex)
+  const item = Items[itemData.group].items[itemData.id]
+
+  const style = {
+    container: {
+      display: 'inline-block'
+    }
+  }
 
   return (
-    <div>
-      id: {item.id}, group: {item.group}
-      <Tooltip title={<Options item={item} />} interactive>
-        <button>{itemData}</button>
-      </Tooltip>
-    </div>
+    <Tooltip title={<Options itemData={itemData} item={item} />}>
+      <div style={style.container}>
+        {options.image ? (
+          <img
+            src={`./images/items/${itemData.group}/${itemData.id}.gif`}
+            alt={item.name}
+          />
+        ) : (
+          item.name
+        )}
+      </div>
+    </Tooltip>
   )
 }
 
-const Options = ({ item }) => {
+const Options = ({ item, itemData }) => {
   return (
-    <div style={{ padding: 5, fontSize: 14 }}>
-      <div>
-        item options: id: {item.id} group: {item.group}
+    <div style={{ padding: 5, fontSize: 14, background: 'black' }}>
+      <div
+        style={{
+          color: itemData.excellent.find(opt => opt)
+            ? 'green'
+            : itemData.level < 7
+            ? 'lightblue'
+            : 'gold'
+        }}>
+        {item.name} {itemData.level && ' +' + itemData.level}
       </div>
       <div>
-        excellent: {item.excellent[0]} {item.excellent[1]} {item.excellent[2]}{' '}
-        {item.excellent[3]} {item.excellent[4]} {item.excellent[5]}{' '}
-        {item.excellent[6]}
+        excellent: {itemData.excellent[0]} {itemData.excellent[1]}{' '}
+        {itemData.excellent[2]} {itemData.excellent[3]} {itemData.excellent[4]}{' '}
+        {itemData.excellent[5]} {itemData.excellent[6]}
       </div>
     </div>
   )

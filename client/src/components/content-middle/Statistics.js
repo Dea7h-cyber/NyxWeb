@@ -8,8 +8,10 @@ export default () => {
       <h1 className='content-title'>statistics</h1>
       <section className='content-body'>
         <div className='content padding'>
-          Statistics
-          <Item hex='4DCE3200EBBFB7293792' />
+          <Item hex='13FFFF44EBBFC97F5186' options={{ image: false }} />
+        </div>
+        <div className='content padding'>
+          <Item hex='13FFFF44EBBFC97F5186' options={{ image: true }} />
         </div>
       </section>
     </>

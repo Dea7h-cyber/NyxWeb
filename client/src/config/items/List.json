@@ -163,7 +163,7 @@
         "options": {
           "excellent": 1,
           "additional": 1,
-          "ancient": false
+          "ancient": "Hyon"
         },
         "class": [16, 32, 48]
       },
