@@ -141,6 +141,8 @@ section.content-body {
     margin: 5px;
     background: rgb(18, 18, 18);
     border: 1px solid rgb(15, 15, 15);
+    overflow-wrap: break-word;
+    word-break: break-all;
   }
 }
 

@@ -6,6 +6,7 @@ import News from './News'
 import Rankings from './rankings/'
 import Register from './Register'
 import Profile from './Profile'
+import Statistics from './Statistics'
 
 export default () => (
   <main className='main-middle'>
@@ -17,6 +18,7 @@ export default () => (
       />
       <Route path='/register' component={Register} />
       <Route path='/profile/:name' component={Profile} />
+      <Route path='/stats' component={Statistics} />
     </Switch>
   </main>
 )
