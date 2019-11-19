@@ -1,0 +1,719 @@
+{
+  "0": {
+    "title": "Swords",
+    "items": {
+      "0": {
+        "name": "Kris",
+        "x": 1,
+        "y": 2,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [0, 16, 32, 48, 64]
+      },
+      "1": {
+        "name": "Short Sword",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [0, 16, 32, 48, 64]
+      },
+      "2": {
+        "name": "Rapier",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 32, 48, 64]
+      },
+      "3": {
+        "name": "Katana",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48, 64]
+      },
+      "4": {
+        "name": "Sword of Assassin",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [0, 16, 32, 48, 64]
+      },
+      "5": {
+        "name": "Blade",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [0, 16, 32, 48, 64]
+      },
+      "6": {
+        "name": "Gladius",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 32, 48, 64]
+      },
+      "7": {
+        "name": "Falchion",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48, 64]
+      },
+      "8": {
+        "name": "Serpent Sword",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48, 64]
+      },
+      "9": {
+        "name": "Sword of Salamander",
+        "x": 2,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48]
+      },
+      "10": {
+        "name": "Light Saber",
+        "x": 2,
+        "y": 4,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 32, 48]
+      },
+      "11": {
+        "name": "Legendary Sword",
+        "x": 2,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48]
+      },
+      "12": {
+        "name": "Heliacal Sword",
+        "x": 2,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48]
+      },
+      "13": {
+        "name": "Double Blade",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 32, 48]
+      },
+      "14": {
+        "name": "Lightning Sword",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 32, 48]
+      },
+      "15": {
+        "name": "Giant Sword",
+        "x": 2,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48]
+      },
+      "16": {
+        "name": "Sword of Destruction",
+        "x": 1,
+        "y": 4,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48]
+      },
+      "17": {
+        "name": "Dark Breaker",
+        "x": 2,
+        "y": 4,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [17]
+      },
+      "18": {
+        "name": "Thunder Blade",
+        "x": 2,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [48]
+      },
+      "19": {
+        "name": "Divine Sword of Archangel",
+        "x": 1,
+        "y": 4,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48, 64]
+      },
+      "20": {
+        "name": "Knight Blade",
+        "x": 1,
+        "y": 4,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [17]
+      },
+      "21": {
+        "name": "Death Blade",
+        "x": 2,
+        "y": 4,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [48]
+      },
+      "31": {
+        "name": "Death Broad",
+        "x": 2,
+        "y": 4,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [48]
+      }
+    }
+  },
+  "1": {
+    "title": "Axes",
+    "items": {
+      "0": {
+        "name": "Small Axe",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [0, 16, 32, 48, 64]
+      },
+      "1": {
+        "name": "Hand Axe",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [0, 16, 32, 48, 64]
+      },
+      "2": {
+        "name": "Double Axe",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48, 64]
+      },
+      "3": {
+        "name": "Tomahawk",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48, 64]
+      },
+      "4": {
+        "name": "Elven Axe",
+        "x": 1,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [0, 32, 48]
+      },
+      "5": {
+        "name": "Battle Axe",
+        "x": 2,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 32, 48]
+      },
+      "6": {
+        "name": "Axe of Nike",
+        "x": 2,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48]
+      },
+      "7": {
+        "name": "Larkan Axe",
+        "x": 2,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [16, 48]
+      },
+      "8": {
+        "name": "Cresent Axe",
+        "x": 2,
+        "y": 3,
+        "options": {
+          "excellent": 1,
+          "additional": 1,
+          "ancient": false
+        },
+        "class": [0, 16, 48]
+      }
+    }
+  },
+  "2": {
+    "0": "Mace",
+    "1": "Morning Star",
+    "2": "Flail",
+    "3": "Great Hammer",
+    "4": "Crystal Morning Star",
+    "5": "Crystal Sword",
+    "6": "Chaos Dragon Axe",
+    "7": "Elemental Mace",
+    "8": "Battle Scepter",
+    "9": "Master Scepter",
+    "10": "Great Scepter",
+    "11": "Lord Scepter",
+    "12": "Great Lord Scepter",
+    "13": "Mace of the King"
+  },
+  "3": {
+    "0": "Light Spear",
+    "1": "Spear",
+    "2": "Dragon Lance",
+    "3": "Giant Trident",
+    "4": "Serpent Spear",
+    "5": "Double Poleaxe",
+    "6": "Halberd",
+    "7": "Berdysh",
+    "8": "Great Scythe",
+    "9": "Balrog's Scythe",
+    "10": "Dragon Spear"
+  },
+  "4": {
+    "0": "Short Bow",
+    "1": "Bow",
+    "2": "Elven Bow",
+    "3": "Battle Bow",
+    "4": "Tiger Bow",
+    "5": "Silver Bow",
+    "6": "Chaos Nature Bow",
+    "7": "Arrow for Crossbow",
+    "8": "Crossbow",
+    "9": "Golden Crossbow",
+    "10": "Arquebus",
+    "11": "Light Crossbow",
+    "12": "Serpent Crossbow",
+    "13": "Bluewing Crossbow",
+    "14": "Aquagold Crossbow",
+    "15": "Arrow",
+    "16": "Saint Crossbow",
+    "17": "Holy Sight Bow",
+    "18": "Divine Crossbow of Archangel",
+    "19": "Greatrain Crossbow",
+    "20": "Arrow Viper Bow"
+  },
+  "5": {
+    "0": "Skull Staff",
+    "1": "Angelic Staff",
+    "2": "Serpent Staff",
+    "3": "Lighting Staff",
+    "4": "Gorgon Staff",
+    "5": "Legendary Staff",
+    "6": "Staff of Resurrection",
+    "7": "Chaos Lighting Staff",
+    "8": "Staff of Destruction",
+    "9": "Dragon Soul Staff",
+    "10": "Divine Staff of Archangel",
+    "11": "Staff of Kundun"
+  },
+  "6": {
+    "0": "Round Shield",
+    "1": "Horn Shield",
+    "2": "Kite Shield",
+    "3": "Elven Shield",
+    "4": "Buckler",
+    "5": "Dragon Slayer Shiled",
+    "6": "Skull Shield",
+    "7": "Spiked Shileld",
+    "8": "Tower Shield",
+    "9": "Plate Shiled",
+    "10": "Large Round Shiled",
+    "11": "Serpent Shiled",
+    "12": "Bronze Shileld",
+    "13": "Dragon Shield",
+    "14": "Legendary Shield",
+    "15": "Grand Soul Shield",
+    "16": "Elemental Shield"
+  },
+  "7": {
+    "0": "Bronze Helmet",
+    "1": "Dragon Helm",
+    "2": "Pad Helm",
+    "3": "Legendary Helmet",
+    "4": "Bone Helmet",
+    "5": "Leather Helmet",
+    "6": "Scale Helmet",
+    "7": "Sphinx Mask",
+    "8": "Brass Helmet",
+    "9": "Plate Helmet",
+    "10": "Vine Helmet",
+    "11": "Silk Helmet",
+    "12": "Wind Helmet",
+    "13": "Spirit Helmet",
+    "14": "Guardian Helmet",
+    "16": "Black Dragon Helm",
+    "17": "Dark Phoenix Helm",
+    "18": "Grand Soul Helmet",
+    "19": "Holy Sprit Helmet",
+    "21": "Great Dragon Helm",
+    "22": "Black soul Helmet",
+    "24": "Red Spirit Helmet",
+    "25": "Round Mask",
+    "26": "Dark Soul Mask",
+    "27": "Dark Breeze Mask",
+    "28": "Dark Master Mask"
+  },
+  "8": {
+    "0": "Bronze Armor",
+    "1": "Dragon Armor",
+    "2": "Pad Armor",
+    "3": "Legendary Armor",
+    "4": "Bone Armor",
+    "5": "Leathre Armor",
+    "6": "Scale Armor",
+    "7": "Sphinx Armor",
+    "8": "Brass Armor",
+    "9": "Plate Armor",
+    "10": "Vine Armor",
+    "11": "Silk Armor",
+    "12": "Wind Armor",
+    "13": "Spirit Armor",
+    "14": "Guardian Armor",
+    "15": "Atlans Armor",
+    "16": "Black Dragon Armor",
+    "17": "Dark Phoenix Armor",
+    "18": "Grand Soul Armor",
+    "19": "Holy Spirit Armor",
+    "20": "Thunder Hawk Armor",
+    "21": "Great Dragon Armor",
+    "22": "Black Soul Armor",
+    "23": "Athril Armor",
+    "24": "Red Sprit Armor",
+    "25": "Round Armor",
+    "26": "Dark Soul Armor",
+    "27": "Dark Breeze Armor",
+    "28": "Dark Master Armor"
+  },
+  "9": {
+    "0": "Bronze pants",
+    "1": "Draon pants",
+    "2": "Pad pants",
+    "3": "Legendary pants",
+    "4": "Bone pants",
+    "5": "Leather pants",
+    "6": "Scale pants",
+    "7": "Sphinx pants",
+    "8": "Brass pants",
+    "9": "Plate pants",
+    "10": "Vine pants",
+    "11": "Silk pants",
+    "12": "Wind pants",
+    "13": "Spirit pants",
+    "14": "Guardian pants",
+    "15": "Atlans pants",
+    "16": "Bkacj Dragon pants",
+    "17": "Dark Phoenix pants",
+    "18": "Grand Soul pants",
+    "19": "Holy Spirit pants",
+    "20": "Thunder Hawk pants",
+    "21": "Great Dragon pants",
+    "22": "Black Soul pants",
+    "23": "Athril pants",
+    "24": "Red Spirit pants",
+    "25": "Round pants",
+    "26": "Dark Soul pants",
+    "27": "Dark Breeze pants",
+    "28": "Dark Master pants"
+  },
+  "10": {
+    "0": "Bronze Gloves",
+    "1": "Dragon Gloves",
+    "2": "Pad Gloves",
+    "3": "Legendary Gloves",
+    "4": "Bone Gloves",
+    "5": "Leather Gloves",
+    "6": "Scale Gloves",
+    "7": "Sphinx Gloves",
+    "8": "Brass Gloves",
+    "9": "Plate Gloves",
+    "10": "Vine Gloves",
+    "11": "Silk Gloves",
+    "12": "Wind Gloves",
+    "13": "Spirit Gloves",
+    "14": "Guardian Gloves",
+    "15": "Atlans Gloves",
+    "16": "Black Dragon Gloves",
+    "17": "Dark Phoenix Gloves",
+    "18": "Grand Soul Gloves",
+    "19": "Holy Spirit Gloves",
+    "20": "Thunder Hawk Gloves",
+    "21": "Great Dragon Gloves",
+    "22": "Black Soul Gloves",
+    "23": "Athril Gloves",
+    "24": "Red Spirit Gloves",
+    "25": "Round Gloves",
+    "26": "Dark Soul Gloves",
+    "27": "Dark Breeze Gloves",
+    "28": "Dark Master Gloves"
+  },
+  "11": {
+    "0": "Bronze Boots",
+    "1": "Dragon Boots",
+    "2": "Pad Boots",
+    "3": "Legendary Boots",
+    "4": "Bone Boots",
+    "5": "Leather Boots",
+    "6": "Scale Boots",
+    "7": "Sphinx Boots",
+    "8": "Brass Boots",
+    "9": "Plate Boots",
+    "10": "Vine Boots",
+    "11": "Silk Boots",
+    "12": "Wind Boots",
+    "13": "Spirit Boots",
+    "14": "Guardian Boots",
+    "15": "Atlans Boots",
+    "16": "Black Dragon Boots",
+    "17": "Dark Phoenix Boots",
+    "18": "Grand Soul Boots",
+    "19": "Holy Spirit Boots",
+    "20": "Thunder Hawk Boots",
+    "21": "Great Dragon Boots",
+    "22": "Black Soul Boots",
+    "23": "Athril Boots",
+    "24": "Red Spirit Boots",
+    "25": "Round Boots",
+    "26": "Dark Soul Boots",
+    "27": "Dark Breeze Boots",
+    "28": "Dark Master Boots"
+  },
+  "12": {
+    "0": "Wings of Elf",
+    "1": "Wings of Heaven",
+    "2": "Wings of Devil",
+    "3": "Wings of Spirits",
+    "4": "Wings of Soul",
+    "5": "Wings of Dragon",
+    "6": "Wings of Darkness",
+    "7": "Orb of Twisting Slash",
+    "8": "Orb of Healing",
+    "9": "Orb of Defense Improvement",
+    "10": "Orb of Offense Improvement",
+    "11": "Orb of Summoning",
+    "12": "Orb of Rageful Blow",
+    "13": "Orb of Impaling",
+    "14": "Orb of Life Swell",
+    "15": "Jewel of Chaos",
+    "16": "Orb of Blood Attack",
+    "17": "Orb of Penetration",
+    "18": "Orb of Ice Arrow",
+    "19": "Orb of Blow",
+    "20": "Add Elf skill",
+    "21": "Scroll of FireBurst",
+    "22": "Scroll of Summon",
+    "23": "Scroll of Critical Damage",
+    "24": "Scroll of Electric Spark",
+    "25": "Scroll of Sacrifice",
+    "30": "Jewel of Bless",
+    "31": "Jewel of Soul"
+  },
+  "13": {
+    "0": "Guardian Angel",
+    "1": "Imp",
+    "2": "Horn of Uniria",
+    "3": "Horn of Dinorant",
+    "4": "Horn of Dark Horse",
+    "5": "Talon of Dark Spirit",
+    "7": "Contract(Summon)",
+    "8": "Ring of Ice",
+    "9": "Ring of Poison",
+    "10": "Transpormation Ring",
+    "11": "Order(Guardian/Life Stone)",
+    "12": "Pendant of Lighting",
+    "13": "Pendant of Fire",
+    "14": "Loch's Feather",
+    "15": "Fruits",
+    "16": "Scroll of Archangel",
+    "17": "Blood Bone",
+    "18": "Invisibility Cloak",
+    "19": "Absolute Weapon of Archangel",
+    "20": "Wizards Ring",
+    "21": "Ring of Fire",
+    "22": "Ring of Earth",
+    "23": "Ring of Wind",
+    "24": "Ring of Magic",
+    "25": "Pendant of Ice",
+    "26": "Pendant of Wind",
+    "27": "Pendant of Water",
+    "28": "Pendant of Ability",
+    "29": "Armor of Guardman",
+    "30": "Cape of Lord",
+    "31": "Spirit"
+  },
+  "14": {
+    "0": "Apple",
+    "1": "Small Healing Potion",
+    "2": "Healing Potion",
+    "3": "Large Healing Potion",
+    "4": "Small Mana Potion",
+    "5": "Mana Potion",
+    "6": "Large Mana Potion",
+    "7": "Siege Potion",
+    "8": "Antidote",
+    "9": "Ale",
+    "10": "Town Portal Scroll",
+    "11": "Box of Luck",
+    "12": "Heart",
+    "13": "Jewel of Bless",
+    "14": "Jewel of Soul",
+    "15": "Zen",
+    "16": "Jewel of Life",
+    "17": "Devil's Eye",
+    "18": "Devil's Key",
+    "19": "Devil's Invitation",
+    "20": "Remedy of Love",
+    "21": "Rena",
+    "22": "Jewel of Creation",
+    "23": "Scroll of the Emperor",
+    "24": "Broken Sword",
+    "25": "Tear of Elf",
+    "26": "Sould of Wizard",
+    "27": "Ancient Metal",
+    "28": "Lost Map",
+    "29": "Symbol of Kundun",
+    "30": "Symbol",
+    "31": "Jewel of Guardian"
+  },
+  "15": {
+    "0": "Scroll of Poison",
+    "1": "Scroll of Meteorite",
+    "2": "Scroll of Lighting",
+    "3": "Scroll of Fire Ball",
+    "4": "Scroll of Flame",
+    "5": "Scroll of Teleport",
+    "6": "Scroll of Ice",
+    "7": "Scroll of Twister",
+    "8": "Scroll of Evil Spirit",
+    "9": "Scroll of Hellfire",
+    "10": "Scroll of Power Wave",
+    "11": "Scroll of Aquaflash",
+    "12": "Scroll of Blast",
+    "13": "Scroll of Inferno",
+    "14": "Scroll of Telekinesis",
+    "15": "Scroll of Soul Barrier",
+    "16": "Scroll of Death Poison",
+    "17": "Scroll of Sudden Ice",
+    "18": "Scroll of HellBurst"
+  }
+}

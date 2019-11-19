@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import axios from 'axios'
-import config from './config.json'
+import config from './config/config.json'
 
 // Components
 import ReactNotifications from 'react-notifications-component'
@@ -16,8 +16,8 @@ axios.defaults.baseURL = config.proxy
 export default () => (
   <Router>
     <ReactNotifications />
-    <div className="App">
-      <main className="main-container">
+    <div className='App'>
+      <main className='main-container'>
         <Header />
         <Navigation />
         <MainContent />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 
-import config from '../../config.json'
+import config from '../../config/config.json'
 
 export default () => {
   const [events, setEvents] = useState([])
