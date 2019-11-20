@@ -3,10 +3,11 @@ import { Tooltip } from '@material-ui/core'
 
 // Helpers
 import { hexDecode, nameColor } from '../../helpers/Items'
+import { getClassName } from '../../helpers/Character'
 import Items from '../../config/items/List'
 import _Options from '../../config/items/Options'
 
-export default ({ hex, size, options }) => {
+export default ({ hex, options }) => {
   const itemData = hexDecode(hex)
   const item = Items[itemData.group].items[itemData.id]
 
@@ -20,13 +21,13 @@ export default ({ hex, size, options }) => {
   return (
     <Tooltip title={<Options itemData={itemData} item={item} />}>
       <div style={style.container}>
-        {options.image ? (
+        {options && options.image ? (
           <img
             src={`./images/items/${itemData.group}/${itemData.id}.gif`}
             alt={item.name}
           />
         ) : (
-          `${item.name} ${itemData.level && ' +' + itemData.level}`
+          `${item.name} ${itemData.level ? ' +' + itemData.level : ''}`
         )}
       </div>
     </Tooltip>
@@ -44,7 +45,8 @@ const Options = ({ item, itemData }) => {
     name: {
       ...nameColor(itemData),
       padding: 3,
-      margin: 3
+      margin: 3,
+      fontSize: 16
     },
     durability: {
       padding: 3,
@@ -61,6 +63,10 @@ const Options = ({ item, itemData }) => {
     },
     excellent: {
       color: '#80b2ff'
+    },
+    equip: {
+      backgroundColor: '#820909',
+      padding: 3
     }
   }
 
@@ -69,48 +75,96 @@ const Options = ({ item, itemData }) => {
     : false
 
   const getAdd = (add, type) => {
-    // _Options.additional[item.options.additional]
+    let result = ''
     switch (type) {
-      case 'dmg':
-      case 'deff':
-      case 'wiz':
-        return add * 4
       case 'rec':
-        return add
+        result = add
+        break
       default:
-        return add * 4
+        result = add * 4
     }
+
+    return _Options.additional[item.options.additional] + ` +${result}`
   }
 
-  return (
-    <div style={style.container}>
-      <div style={style.name}>
-        {item.name} {itemData.level && ' +' + itemData.level}
-      </div>
-      <div style={style.durability}>Durability: {itemData.durability}</div>
-      {(itemData.luck || itemData.add) && (
-        <div style={style.optionsBlock}>
-          {itemData.luck && (
-            <div style={style.luck}>
-              {_Options.luck.map((opt, key) => (
-                <div key={key}>{opt}</div>
-              ))}
-            </div>
-          )}
-          {itemData.add && (
-            <div style={style.additional}>
-              {getAdd(itemData.add, item.options.additional)}
-            </div>
-          )}
-        </div>
-      )}
-      {excellent && (
-        <div style={style.excellent}>
-          {itemData.excellent.map(
-            (opt, key) => opt[1] && <div key={key}>{excellent[opt[0]]}</div>
-          )}
-        </div>
-      )}
+  // Declare options view
+  const view = []
+
+  // Item name
+  view.push(
+    <div style={style.name} key={1199}>
+      {item.name} {itemData.level ? ' +' + itemData.level : ''}
     </div>
   )
+
+  // Item Image
+  view.push(
+    <img
+      key={1669}
+      src={`./images/items/${itemData.group}/${itemData.id}.gif`}
+      alt={item.name}
+    />
+  )
+
+  // Item Durability
+  view.push(
+    <div style={style.durability} key={1976}>
+      Durability: {itemData.durability}
+    </div>
+  )
+
+  // Can equip
+  if (item.class) {
+    view.push(
+      <div style={style.equip} key={196}>
+        {item.class.map((Class, key) => (
+          <div key={key + 777} style={{ padding: 2 }}>
+            Can be equipped by {getClassName(Class)}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  // Luck and Add
+  if (itemData.luck || itemData.add) {
+    const opts = []
+
+    if (itemData.luck) {
+      opts.push(
+        <div style={style.luck} key={1912}>
+          {_Options.luck.map((opt, key) => (
+            <div key={key + 999}>{opt}</div>
+          ))}
+        </div>
+      )
+    }
+
+    if (itemData.add) {
+      opts.push(
+        <div style={style.additional} key={191}>
+          {getAdd(itemData.add, item.options.additional)}
+        </div>
+      )
+    }
+
+    view.push(
+      <div style={style.optionsBlock} key={1989}>
+        {opts}
+      </div>
+    )
+  }
+
+  // Excellent Options
+  if (excellent && itemData.excellent.find(opt => opt)) {
+    view.push(
+      <div style={style.excellent} key={199}>
+        {itemData.excellent.map((opt, key) =>
+          opt[1] ? <div key={key + 111}>{excellent[opt[0]]}</div> : ''
+        )}
+      </div>
+    )
+  }
+
+  return <div style={style.container}>{view}</div>
 }
