@@ -56,5 +56,9 @@
     "power": "Power Slash skill (Mana: 15)",
     "force": "Force Wave skill (Mana: 10)",
     "defense": "Defense skill (Mana: 30)"
-  }
+  },
+  "luck": [
+    "Luck(success rate of Jewel of Soul +25%)",
+    "Luck(critical damage rate +5%)"
+  ]
 }
