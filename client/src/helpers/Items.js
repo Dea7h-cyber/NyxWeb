@@ -41,7 +41,7 @@ const nameColor = itemData => {
     // Ancient
     style.backgroundColor = '#0000ff'
     style.color = '#01df01'
-  } else if (itemData.excellent.find(opt => opt)) {
+  } else if (itemData.excellent.find(opt => opt[1])) {
     // Excellent
     style.color = '#12b322'
   } else if (itemData.level >= 7) {

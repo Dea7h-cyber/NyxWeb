@@ -1,5 +1,7 @@
 import React from 'react'
 import { Tooltip } from '@material-ui/core'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
+import uuid from 'uuid/v4'
 
 // Helpers
 import { hexDecode, nameColor } from '../../helpers/Items'
@@ -18,19 +20,37 @@ export default ({ hex, options }) => {
     }
   }
 
+  const theme = createMuiTheme({
+    overrides: {
+      MuiTooltip: {
+        tooltip: {
+          backgroundColor: 'black'
+        }
+      }
+    }
+  })
+
   return (
-    <Tooltip title={<Options itemData={itemData} item={item} />}>
-      <div style={style.container}>
-        {options && options.image ? (
-          <img
-            src={`./images/items/${itemData.group}/${itemData.id}.gif`}
-            alt={item.name}
-          />
-        ) : (
-          `${item.name} ${itemData.level ? ' +' + itemData.level : ''}`
-        )}
-      </div>
-    </Tooltip>
+    <MuiThemeProvider theme={theme}>
+      <Tooltip title={<Options itemData={itemData} item={item} />}>
+        <div style={style.container}>
+          {options && options.image ? (
+            <img
+              src={`./images/items/${itemData.group}/${itemData.id}.gif`}
+              alt={item.name}
+              style={
+                options.size && {
+                  width: options.size * item.x - 2,
+                  height: options.size * item.y - 2
+                }
+              }
+            />
+          ) : (
+            `${item.name} ${itemData.level ? ' +' + itemData.level : ''}`
+          )}
+        </div>
+      </Tooltip>
+    </MuiThemeProvider>
   )
 }
 
@@ -39,29 +59,31 @@ const Options = ({ item, itemData }) => {
     container: {
       padding: 5,
       fontSize: 14,
-      background: 'black',
+      // background: 'black',
       textAlign: 'center'
     },
     name: {
       ...nameColor(itemData),
       padding: 3,
       margin: 3,
+      marginBottom: 15,
       fontSize: 16
     },
     durability: {
       padding: 3,
-      margin: 3
+      margin: 3,
+      marginBottom: 10
     },
     optionsBlock: {
       padding: 3,
       margin: 3,
-      marginBottom: 6,
       color: '#80b2ff'
     },
     luck: {
       color: '#80b2ff'
     },
     excellent: {
+      marginTop: 10,
       color: '#80b2ff'
     },
     equip: {
@@ -92,7 +114,7 @@ const Options = ({ item, itemData }) => {
 
   // Item name
   view.push(
-    <div style={style.name} key={1199}>
+    <div style={style.name} key={uuid()}>
       {item.name} {itemData.level ? ' +' + itemData.level : ''}
     </div>
   )
@@ -100,7 +122,7 @@ const Options = ({ item, itemData }) => {
   // Item Image
   view.push(
     <img
-      key={1669}
+      key={uuid()}
       src={`./images/items/${itemData.group}/${itemData.id}.gif`}
       alt={item.name}
     />
@@ -108,7 +130,7 @@ const Options = ({ item, itemData }) => {
 
   // Item Durability
   view.push(
-    <div style={style.durability} key={1976}>
+    <div style={style.durability} key={uuid()}>
       Durability: {itemData.durability}
     </div>
   )
@@ -116,9 +138,9 @@ const Options = ({ item, itemData }) => {
   // Can equip
   if (item.class) {
     view.push(
-      <div style={style.equip} key={196}>
+      <div style={style.equip} key={uuid()}>
         {item.class.map((Class, key) => (
-          <div key={key + 777} style={{ padding: 2 }}>
+          <div key={key} style={{ padding: 2 }}>
             Can be equipped by {getClassName(Class)}
           </div>
         ))}
@@ -132,9 +154,9 @@ const Options = ({ item, itemData }) => {
 
     if (itemData.luck) {
       opts.push(
-        <div style={style.luck} key={1912}>
+        <div style={style.luck} key={uuid()}>
           {_Options.luck.map((opt, key) => (
-            <div key={key + 999}>{opt}</div>
+            <div key={key}>{opt}</div>
           ))}
         </div>
       )
@@ -142,25 +164,25 @@ const Options = ({ item, itemData }) => {
 
     if (itemData.add) {
       opts.push(
-        <div style={style.additional} key={191}>
+        <div style={style.additional} key={uuid()}>
           {getAdd(itemData.add, item.options.additional)}
         </div>
       )
     }
 
     view.push(
-      <div style={style.optionsBlock} key={1989}>
+      <div style={style.optionsBlock} key={uuid()}>
         {opts}
       </div>
     )
   }
 
   // Excellent Options
-  if (excellent && itemData.excellent.find(opt => opt)) {
+  if (excellent && itemData.excellent.find(opt => opt[1])) {
     view.push(
-      <div style={style.excellent} key={199}>
+      <div style={style.excellent} key={uuid()}>
         {itemData.excellent.map((opt, key) =>
-          opt[1] ? <div key={key + 111}>{excellent[opt[0]]}</div> : ''
+          opt[1] ? <div key={key}>{excellent[opt[0]]}</div> : ''
         )}
       </div>
     )

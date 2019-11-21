@@ -9,23 +9,20 @@ export default () => (
     <section className='content-body'>
       <div className='content padding'>
         <div>
-          <Item hex='00043200EBBFCF001644' />
-        </div>
-        <div>
-          <Item hex='00003200EBBFD1004765' />
-        </div>
-        <div>
-          <Item hex='00033200EBBFD8003591' />
-        </div>
-        <div>
           <Item hex='00583200EBBFF3003043' />
         </div>
         <div>
           <Item hex='00583200EBBFF9209282' />
         </div>
-        {/* <div>
-          <Item hex='046C3200EBC02DCC1595' />
-        </div> */}
+        <div>
+          <Item hex='AD033200EBC19BA82327' />
+        </div>
+        <div>
+          <Item hex='A8033200EBC1958C8138' />
+        </div>
+        <div>
+          <Item hex='A8033200EBC1948C8138' />
+        </div>
       </div>
     </section>
   </>
