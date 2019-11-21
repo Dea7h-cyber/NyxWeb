@@ -44,6 +44,7 @@
     "deff": "Additional Defense",
     "wiz": "Additional Wizardy Damage",
     "rec": "Automatic HP Recovery",
+    "mana": "Max mana increase",
     "dmgwiz": "Additional (Wizardy/Attack) Damage"
   },
   "skills": {
