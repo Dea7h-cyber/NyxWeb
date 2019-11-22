@@ -37,3 +37,11 @@
     color: #535e22;
   }
 }
+
+.market-side {
+  & a {
+    display: block;
+    padding: 5px;
+    margin: 5px;
+  }
+}

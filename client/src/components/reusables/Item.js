@@ -59,7 +59,6 @@ const Options = ({ item, itemData }) => {
     container: {
       padding: 5,
       fontSize: 14,
-      // background: 'black',
       textAlign: 'center'
     },
     name: {

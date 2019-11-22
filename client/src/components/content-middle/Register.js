@@ -39,7 +39,7 @@ export default () => {
                 name='username'
                 onChange={onChange}
                 value={form.username}
-                pattern='[a-zA-Z0-9]{4,}'
+                pattern='[a-zA-Z0-9]{4,10}'
                 maxLength='10'
                 required
                 style={{
