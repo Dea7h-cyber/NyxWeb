@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 
 // Components
 import News from './News'
-import Rankings from './rankings/'
+import Rankings from './rankings/Main'
 import Register from './Register'
 import Profile from './Profile'
 import Statistics from './Statistics'

@@ -35,8 +35,4 @@ const colorDecode = key => {
   }
 }
 
-// const generateLogo = (hex, size = 40) => {
-//   let mark = `<div style='width: ${size}px; height: ${size}px;' className=''>`
-// }
-
 export { colorDecode }

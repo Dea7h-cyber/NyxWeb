@@ -209,10 +209,12 @@
       margin-left: 5px;
 
       & .button {
+        display: flex;
         background: #55533c;
         color: rgb(196, 196, 196);
         align-items: center;
-        padding: 5px;
+        padding: 0 5px 0 5px;
+        justify-content: center;
 
         &:active {
           background: #535025;

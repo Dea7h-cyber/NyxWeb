@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Item from '../reusables/Item'
+import Item from '../reusables/Item.jsx'
 
 export default () => {
   return (

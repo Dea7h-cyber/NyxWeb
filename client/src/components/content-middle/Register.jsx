@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
-import axios from 'axios'
-import { Notice } from '../../helpers/'
+import { connect } from 'react-redux'
 
 // Icons
 import userIcon from '../../assets/images/user.png'
 import passIcon from '../../assets/images/locked.png'
 import mailIcon from '../../assets/images/at-sign.png'
 
-export default () => {
+// Components
+import Loading from '../reusables/Loading'
+import Failed from '../reusables/Failed'
+
+// Actions
+import { doRegister } from '../../redux/actions/User'
+
+const Register = ({ User: { loading, failed }, doRegister }) => {
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -15,16 +21,19 @@ export default () => {
     email: ''
   })
 
-  const onSubmit = async event => {
+  const onSubmit = event => {
     event.preventDefault()
-    const response = await axios.post('/api/users/register', form)
-    Notice(response.data)
+    doRegister(form)
   }
 
   const onChange = event =>
     setForm({ ...form, [event.target.name]: event.target.value })
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : failed ? (
+    <Failed />
+  ) : (
     <>
       <h1 className='content-title'>create your free account</h1>
       <section className='content-body'>
@@ -123,3 +132,9 @@ export default () => {
     </>
   )
 }
+
+const mapStateToProps = state => ({
+  User: state.User
+})
+
+export default connect(mapStateToProps, { doRegister })(Register)
