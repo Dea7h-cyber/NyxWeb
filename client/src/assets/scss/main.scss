@@ -84,13 +84,11 @@ aside.main-left {
 
 aside.main-right {
   grid-area: main-right;
-  // border: 1px solid rgb(7, 7, 7);
 }
 
 main.main-middle {
   grid-area: main-middle;
   background: url('../images/bull.png') no-repeat right 20px bottom / auto 250px;
-  // border: 1px solid rgb(7, 7, 7);
   min-height: 350px;
 }
 
@@ -116,10 +114,6 @@ footer {
 
 div.content-spacer {
   height: 10px;
-  // background: rgb(12, 12, 12);
-  // border-top: 1px solid rgb(7, 7, 7);
-  // width: calc(100% + 2px);
-  // margin-left: -1px;
 }
 
 h1.content-title {

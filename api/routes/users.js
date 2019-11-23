@@ -13,10 +13,10 @@ const actions = require('../actions/Users/')
 router.post('/register', validator.Register, actions.Register)
 
 /**
- * @route   POST /api/users/login
+ * @route   POST /api/users/authorize
  * @desc    User authorization/login
  */
 
-router.post('/login', validator.Login, actions.Login)
+router.post('/authorize', validator.Login, actions.Login)
 
 module.exports = router

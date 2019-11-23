@@ -13,7 +13,7 @@ import Failed from '../reusables/Failed'
 // Actions
 import { doRegister } from '../../redux/actions/User'
 
-const Register = ({ User: { loading, failed }, doRegister }) => {
+const Register = ({ Register: { loading, failed }, doRegister }) => {
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -134,7 +134,7 @@ const Register = ({ User: { loading, failed }, doRegister }) => {
 }
 
 const mapStateToProps = state => ({
-  User: state.User
+  Register: state.User.Register
 })
 
 export default connect(mapStateToProps, { doRegister })(Register)
