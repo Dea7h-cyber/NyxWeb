@@ -1,83 +1,62 @@
 import {
-  CREATE_USER,
-  CREATE_USER_FAILED,
-  CREATE_USER_LOADING,
-  AUTHORIZE_USER,
-  AUTHORIZE_USER_FAILED,
-  AUTHORIZE_USER_LOADING,
+  USER_LOGIN,
+  USER_LOGIN_FAILED,
+  USER_VERIFICATION,
+  USER_VERIFICATION_FAILED,
+  USER_FETCH_RESOURCES,
+  USER_FETCH_RESOURCES_FAILED,
   USER_LOGOUT
 } from '../actions/types'
+import Resources from '../../config/Resources'
 
 const initialState = {
-  Register: {
-    loading: false,
-    failed: false
-  },
   Login: {
-    authorized: false,
-    loading: false,
-    username: null
+    authorized: localStorage.token !== undefined,
+    username: localStorage.username || null
+  },
+  Resources: {
+    data: Resources,
+    failed: false
   }
 }
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case CREATE_USER_LOADING:
-      return {
-        ...state,
-        Register: {
-          ...state.Register,
-          loading: true
-        }
-      }
-    case CREATE_USER:
-      return {
-        ...state,
-        Register: {
-          loading: false,
-          failed: false
-        }
-      }
-    case CREATE_USER_FAILED:
-      return {
-        ...state,
-        Register: {
-          loading: false,
-          failed: true
-        }
-      }
-    case AUTHORIZE_USER_LOADING:
-      return {
-        ...state,
-        Login: {
-          loading: true
-        }
-      }
-    case AUTHORIZE_USER:
+    case USER_LOGIN:
       return {
         ...state,
         Login: {
           authorized: true,
-          loading: false,
-          username: payload
+          username: payload.username
         }
       }
-    case AUTHORIZE_USER_FAILED:
-      return {
-        ...state,
-        Login: {
-          loading: false
-        }
-      }
+    case USER_VERIFICATION_FAILED:
     case USER_LOGOUT:
       return {
         ...state,
         Login: {
           authorized: false,
-          loading: false,
           username: null
         }
       }
+    case USER_FETCH_RESOURCES:
+      return {
+        ...state,
+        Resources: {
+          ...state.Resources,
+          data: payload
+        }
+      }
+    case USER_FETCH_RESOURCES_FAILED:
+      return {
+        ...state,
+        Resources: {
+          ...state.Resources,
+          failed: true
+        }
+      }
+    case USER_VERIFICATION:
+    case USER_LOGIN_FAILED:
     default:
       return state
   }

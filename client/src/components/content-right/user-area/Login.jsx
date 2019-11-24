@@ -1,26 +1,28 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import Cookies from 'universal-cookie'
 
 // Actions
 import { Authorize } from '../../../redux/actions/User'
 
-const Login = ({ Login: { authorized, loading }, Authorize }) => {
+const Login = ({ Authorize, loading, setLoading }) => {
   const [form, setForm] = useState({
     username: '',
     password: ''
   })
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault()
-    Authorize(form)
+
+    setLoading(true)
+    await Authorize(form)
+    setLoading(false)
   }
 
   const onChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
   return (
-    <>
+    <div>
       <h1 className='content-title'>login area</h1>
       <section className='content-body'>
         <div className='content padding'>
@@ -47,8 +49,8 @@ const Login = ({ Login: { authorized, loading }, Authorize }) => {
               maxLength='10'
               required
             />
-            <button className='login-btn'>
-              {loading ? 'Loading...' : 'Login'}
+            <button className='login-btn' disabled={loading}>
+              {loading ? '...' : 'Login'}
             </button>
           </form>
           <div className='user-register'>
@@ -56,12 +58,8 @@ const Login = ({ Login: { authorized, loading }, Authorize }) => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 
-const mapStateToProps = state => ({
-  Login: state.User.Login
-})
-
-export default connect(mapStateToProps, { Authorize })(Login)
+export default connect(null, { Authorize })(Login)

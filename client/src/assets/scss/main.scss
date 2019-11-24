@@ -80,16 +80,25 @@ main.main-content {
 
 aside.main-left {
   grid-area: main-left;
+  display: grid;
+  align-content: flex-start;
+  gap: 10px;
 }
 
 aside.main-right {
   grid-area: main-right;
+  display: grid;
+  align-content: flex-start;
+  gap: 10px;
 }
 
 main.main-middle {
   grid-area: main-middle;
   background: url('../images/bull.png') no-repeat right 20px bottom / auto 250px;
   min-height: 350px;
+  display: grid;
+  align-content: flex-start;
+  gap: 10px;
 }
 
 footer {

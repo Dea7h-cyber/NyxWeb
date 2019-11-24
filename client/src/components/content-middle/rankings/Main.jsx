@@ -12,26 +12,41 @@ import SearchBoard from './SearchBoard.jsx'
 // Actions
 import { getMany } from '../../../redux/actions/Character'
 
-const Rankings = ({ Rankings: { characters, loading, failed }, getMany }) => {
+const Rankings = ({
+  getMany,
+  match: {
+    params: { page }
+  }
+}) => {
+  const [loading, setLoading] = useState(true)
+  const [characters, setCharacters] = useState()
+
   const [search, setSearch] = useState({
-    page: 1,
+    page: page || 1,
     class: [1, 17, 33, 48, 64],
     order: ['Resets', 'desc'],
     name: false
   })
 
   useEffect(() => {
-    getMany(search)
+    const fetchData = async () => {
+      setLoading(true)
+      const response = await getMany(search)
+      setCharacters(response)
+      setLoading(false)
+    }
+
+    fetchData()
   }, [getMany, search])
 
   return loading ? (
     <Loading />
-  ) : failed ? (
+  ) : !characters ? (
     <Failed />
   ) : characters.error ? (
     <Custom title='Not found' message={characters.error} />
   ) : (
-    <>
+    <div>
       <h1 className='content-title'>rankings</h1>
       <section className='content-body'>
         <div className='content padding'>
@@ -55,12 +70,8 @@ const Rankings = ({ Rankings: { characters, loading, failed }, getMany }) => {
           <Pagination passed={{ search, setSearch, characters }} />
         </div>
       </section>
-    </>
+    </div>
   )
 }
 
-const mapStateToProps = state => ({
-  Rankings: state.Rankings
-})
-
-export default connect(mapStateToProps, { getMany })(Rankings)
+export default connect(null, { getMany })(Rankings)

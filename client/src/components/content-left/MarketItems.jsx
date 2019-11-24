@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Item from '../reusables/Item.jsx'
 
 export default () => (
-  <>
+  <div>
     <h1 className='content-title'>latest items</h1>
     <section className='content-body'>
       <div className='content market-side'>
@@ -26,5 +26,5 @@ export default () => (
         </Link>
       </div>
     </section>
-  </>
+  </div>
 )

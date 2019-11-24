@@ -2,8 +2,9 @@
  * Authentication/Login
  */
 const { validationResult } = require('express-validator')
+const jsonToken = require('jsonwebtoken')
+const jsonTokenSecret = require('../../config/jwtKey').key
 
-// const bcrypt = require('bcrypt')
 const logger = require('../Logger')
 
 // Models
@@ -32,21 +33,19 @@ module.exports = async (req, res) => {
       return res.json({ error: 'Wrong credentials.' })
     }
 
-    // const password_hash = bcrypt.hashSync(password, 10)
+    jsonToken.sign(
+      { username },
+      jsonTokenSecret,
+      { expiresIn: 360000 },
+      (err, token) => {
+        if (err) throw err
 
-    // res.cookie('nyx_username', username, {
-    //   maxAge: 60000 * 60 * 24 * 30 * 12,
-    //   httpOnly: true
-    // })
-
-    // res.cookie('nyx_token', password_hash, {
-    //   maxAge: 60000 * 60 * 24 * 30 * 12,
-    //   httpOnly: true
-    // })
-
-    res.json({
-      message: `You logged in successfully ${username}!`
-    })
+        res.json({
+          message: `You logged in successfully ${username}!`,
+          token
+        })
+      }
+    )
   } catch (error) {
     logger.error(`${error.name}: ${error.message}`)
     res.json({

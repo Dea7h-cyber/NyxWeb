@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import axios from 'axios'
 import config from './config/config.json'
@@ -14,21 +14,31 @@ import Navigation from './components/Navigation.jsx'
 import MainContent from './components/MainContent.jsx'
 import Footer from './components/Footer.jsx'
 
+// Actions
+import { Verification } from './redux/actions/User'
+
 // Config
 axios.defaults.baseURL = config.proxy
+axios.defaults.headers.common.nyxAuthToken = localStorage.token
 
-export default () => (
-  <Provider store={store}>
-    <Router>
-      <ReactNotifications />
-      <div className='App'>
-        <main className='main-container'>
-          <Header />
-          <Navigation />
-          <MainContent />
-          <Footer />
-        </main>
-      </div>
-    </Router>
-  </Provider>
-)
+export default () => {
+  useEffect(() => {
+    store.dispatch(Verification())
+  }, [])
+
+  return (
+    <Provider store={store}>
+      <Router>
+        <ReactNotifications />
+        <div className='App'>
+          <main className='main-container'>
+            <Header />
+            <Navigation />
+            <MainContent />
+            <Footer />
+          </main>
+        </div>
+      </Router>
+    </Provider>
+  )
+}

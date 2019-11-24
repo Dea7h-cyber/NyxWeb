@@ -1,0 +1,22 @@
+{
+  "chaos": {
+    "name": "Jewel of Chaos",
+    "color": "yellow",
+    "id_type": [13, 12]
+  },
+  "bless": {
+    "name": "Jewel of Bless",
+    "color": "blue",
+    "id_type": [13, 12]
+  },
+  "soul": {
+    "name": "Jewel of Soul",
+    "color": "pink",
+    "id_type": [13, 12]
+  },
+  "life": {
+    "name": "Jewel of Life",
+    "color": "brown",
+    "id_type": [13, 12]
+  }
+}

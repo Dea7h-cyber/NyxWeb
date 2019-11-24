@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) =>
     'MEMB_INFO',
     {
       memb___id: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        primaryKey: true
       },
       memb__pwd: {
         type: DataTypes.STRING

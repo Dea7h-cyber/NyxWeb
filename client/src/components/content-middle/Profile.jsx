@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 // Components
@@ -9,23 +9,29 @@ import Custom from '../reusables/Custom'
 // Actions
 import { getOne } from '../../redux/actions/Character'
 
-const Profile = ({
-  match,
-  Profile: { character, loading, failed },
-  getOne
-}) => {
+const Profile = ({ match, getOne }) => {
+  const [loading, setLoading] = useState(true)
+  const [character, setCharacter] = useState()
+
   useEffect(() => {
-    getOne(match.params.name)
+    const fetchData = async () => {
+      setLoading(true)
+      const response = await getOne(match.params.name)
+      setCharacter(response)
+      setLoading(false)
+    }
+
+    fetchData()
   }, [getOne, match.params.name])
 
   return loading ? (
     <Loading />
-  ) : failed ? (
+  ) : !character ? (
     <Failed />
   ) : character.error ? (
     <Custom title='Not found' message={character.error} />
   ) : (
-    <>
+    <div>
       <h1 className='content-title'>{character.Name}'s profile</h1>
       <section className='content-body'>
         <div className='content padding'>
@@ -34,12 +40,8 @@ const Profile = ({
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 
-const mapStateToProps = state => ({
-  Profile: state.Profile
-})
-
-export default connect(mapStateToProps, { getOne })(Profile)
+export default connect(null, { getOne })(Profile)

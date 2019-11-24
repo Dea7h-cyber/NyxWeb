@@ -4,7 +4,7 @@ import Item from '../reusables/Item.jsx'
 
 export default () => {
   return (
-    <>
+    <div>
       <h1 className='content-title'>statistics</h1>
       <section className='content-body'>
         <div className='content padding'>
@@ -20,6 +20,6 @@ export default () => {
           />
         </div>
       </section>
-    </>
+    </div>
   )
 }

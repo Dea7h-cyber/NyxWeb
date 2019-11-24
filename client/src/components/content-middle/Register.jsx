@@ -34,7 +34,7 @@ const Register = ({ Register: { loading, failed }, doRegister }) => {
   ) : failed ? (
     <Failed />
   ) : (
-    <>
+    <div>
       <h1 className='content-title'>create your free account</h1>
       <section className='content-body'>
         <div className='content padding'>
@@ -129,7 +129,7 @@ const Register = ({ Register: { loading, failed }, doRegister }) => {
           </form>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 

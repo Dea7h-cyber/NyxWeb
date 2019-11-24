@@ -1,31 +1,24 @@
-const bcrypt = require('bcrypt')
+const jsonToken = require('jsonwebtoken')
+const jsonTokenSecret = require('../config/jwtKey').key
+
 const logger = require('./Logger')
 
-// Models
-const models = require('../models/')
-
 module.exports = async (req, res, next) => {
-  const { nyx_username, nyx_token } = req.cookies
+  const token = req.header('nyxAuthToken')
+
+  if (!token) {
+    return res.json({ error: 'Not authorized.' })
+  }
 
   try {
-    const user = await models.MEMB_INFO.findOne({
-      where: {
-        memb___id: nyx_username ? nyx_username : ''
-      },
-      attributes: ['memb__pwd']
-    })
+    const decoded = jsonToken.verify(token, jsonTokenSecret)
 
-    const passCheck = bcrypt.compareSync(user.memb__pwd, nyx_token)
-
-    if (!user || !passCheck) {
-      return res.json({ error: 'Not authorized' })
-    }
-
+    req.username = decoded.username
     next()
   } catch (error) {
     logger.error(`${error.name}: ${error.message}`)
     res.json({
-      error: 'Something went wrong. Please try again later.'
+      error: 'Token has expired. Please re-login.'
     })
   }
 }

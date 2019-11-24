@@ -1,7 +1,7 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-const logger = require('./actions/Logger')
+// const logger = require('./actions/Logger')
 
 const app = express()
 const port = process.env.PORT || 4000

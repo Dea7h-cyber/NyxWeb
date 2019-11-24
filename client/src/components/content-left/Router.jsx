@@ -7,7 +7,6 @@ import MarketItems from './MarketItems.jsx'
 export default () => (
   <aside className='main-left'>
     <Events />
-    <div className='content-spacer' />
     <MarketItems />
   </aside>
 )

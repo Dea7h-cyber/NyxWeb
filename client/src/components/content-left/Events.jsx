@@ -42,7 +42,7 @@ export default () => {
   })
 
   return (
-    <>
+    <div>
       <h1 className='content-title'>event timers</h1>
       <section className='content-body'>
         <div className='content'>
@@ -51,7 +51,7 @@ export default () => {
           ))}
         </div>
       </section>
-    </>
+    </div>
   )
 }
 
