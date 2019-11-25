@@ -6,7 +6,7 @@ import {
   USER_FETCH_RESOURCES,
   USER_FETCH_RESOURCES_FAILED,
   USER_LOGOUT
-} from '../actions/types'
+} from '../types'
 import Resources from '../../config/Resources'
 
 const initialState = {

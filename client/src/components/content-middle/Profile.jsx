@@ -9,24 +9,28 @@ import Custom from '../reusables/Custom'
 // Actions
 import { getOne } from '../../redux/actions/Character'
 
-const Profile = ({ match, getOne }) => {
+const Profile = ({
+  match: {
+    params: { name }
+  },
+  getOne,
+  Profile: { character, failed }
+}) => {
   const [loading, setLoading] = useState(true)
-  const [character, setCharacter] = useState()
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
-      const response = await getOne(match.params.name)
-      setCharacter(response)
+      await getOne(name)
       setLoading(false)
     }
 
     fetchData()
-  }, [getOne, match.params.name])
+  }, [getOne, name])
 
   return loading ? (
     <Loading />
-  ) : !character ? (
+  ) : failed ? (
     <Failed />
   ) : character.error ? (
     <Custom title='Not found' message={character.error} />
@@ -44,4 +48,8 @@ const Profile = ({ match, getOne }) => {
   )
 }
 
-export default connect(null, { getOne })(Profile)
+const mapStateToProps = state => ({
+  Profile: state.Character.Profile
+})
+
+export default connect(mapStateToProps, { getOne })(Profile)

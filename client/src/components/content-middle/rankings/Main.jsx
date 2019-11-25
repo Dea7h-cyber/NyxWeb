@@ -5,9 +5,9 @@ import { connect } from 'react-redux'
 import Loading from '../../reusables/Loading'
 import Failed from '../../reusables/Failed'
 import Custom from '../../reusables/Custom'
-import Character from './Character.jsx'
-import Pagination from './Pagination.jsx'
-import SearchBoard from './SearchBoard.jsx'
+import Character from './Character'
+import Pagination from './Pagination'
+import SearchBoard from './SearchBoard'
 
 // Actions
 import { getMany } from '../../../redux/actions/Character'
@@ -16,11 +16,10 @@ const Rankings = ({
   getMany,
   match: {
     params: { page }
-  }
+  },
+  Rankings: { characters, failed }
 }) => {
   const [loading, setLoading] = useState(true)
-  const [characters, setCharacters] = useState()
-
   const [search, setSearch] = useState({
     page: page || 1,
     class: [1, 17, 33, 48, 64],
@@ -31,8 +30,7 @@ const Rankings = ({
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
-      const response = await getMany(search)
-      setCharacters(response)
+      await getMany(search)
       setLoading(false)
     }
 
@@ -41,10 +39,12 @@ const Rankings = ({
 
   return loading ? (
     <Loading />
-  ) : !characters ? (
+  ) : failed ? (
     <Failed />
   ) : characters.error ? (
     <Custom title='Not found' message={characters.error} />
+  ) : characters.data.length <= 0 ? (
+    <Custom title='No characters' message='No characters found' />
   ) : (
     <div>
       <h1 className='content-title'>rankings</h1>
@@ -53,19 +53,17 @@ const Rankings = ({
           <SearchBoard passed={{ search, setSearch }} />
           <Pagination passed={{ search, setSearch, characters }} />
           <div className='rankings-table'>
-            {characters.data.length > 0
-              ? characters.data.map((char, index) => (
-                  <Character
-                    key={index}
-                    passed={{
-                      char,
-                      index,
-                      page: search.page,
-                      perPage: characters.perPage
-                    }}
-                  />
-                ))
-              : 'No characters'}
+            {characters.data.map((char, index) => (
+              <Character
+                key={index}
+                passed={{
+                  char,
+                  index,
+                  page: search.page,
+                  perPage: characters.perPage
+                }}
+              />
+            ))}
           </div>
           <Pagination passed={{ search, setSearch, characters }} />
         </div>
@@ -74,4 +72,8 @@ const Rankings = ({
   )
 }
 
-export default connect(null, { getMany })(Rankings)
+const mapStateToProps = state => ({
+  Rankings: state.Character.Rankings
+})
+
+export default connect(mapStateToProps, { getMany })(Rankings)
