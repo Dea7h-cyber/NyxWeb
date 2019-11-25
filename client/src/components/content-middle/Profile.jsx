@@ -39,9 +39,7 @@ const Profile = ({
       <h1 className='content-title'>{character.Name}'s profile</h1>
       <section className='content-body'>
         <div className='content padding'>
-          <div className='rankings-table'>
-            {character ? character.Name : 'No characters'}
-          </div>
+          <div className='rankings-table'>{character.Name}</div>
         </div>
       </section>
     </div>

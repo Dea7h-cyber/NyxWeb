@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Login from './Login'
 import UserArea from './UserArea'
 
-const Main = ({ Login: { authorized } }) => {
+const Main = ({ authorized }) => {
   const [loading, setLoading] = useState(false)
 
   return authorized ? (
@@ -16,7 +16,7 @@ const Main = ({ Login: { authorized } }) => {
 }
 
 const mapStateToProps = state => ({
-  Login: state.User.Login
+  authorized: state.User.Login.authorized
 })
 
 export default connect(mapStateToProps)(Main)

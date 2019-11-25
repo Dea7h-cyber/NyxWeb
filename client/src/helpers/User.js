@@ -12,5 +12,8 @@ export const transformResources = response => {
     }
   }
 
-  return Resources
+  return {
+    data: { ...Resources },
+    others: { zen: response.zen, credits: response.credits }
+  }
 }

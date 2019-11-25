@@ -1,22 +1,92 @@
 {
   "chaos": {
     "name": "Jewel of Chaos",
-    "color": "yellow",
-    "id_type": [13, 12]
+    "group_id": [12, 15]
   },
   "bless": {
     "name": "Jewel of Bless",
-    "color": "blue",
-    "id_type": [13, 12]
+    "group_id": [14, 13]
   },
   "soul": {
     "name": "Jewel of Soul",
-    "color": "pink",
-    "id_type": [13, 12]
+    "group_id": [14, 14]
   },
   "life": {
     "name": "Jewel of Life",
-    "color": "brown",
-    "id_type": [13, 12]
+    "group_id": [14, 16]
+  },
+  "creation": {
+    "name": "Jewel of Creation",
+    "group_id": [14, 22]
+  },
+  "guardian": {
+    "name": "Jewel of Guardian",
+    "group_id": [14, 31]
+  },
+  "boh": {
+    "name": "Box of Heaven",
+    "group_id": [14, 11],
+    "level": 7
+  },
+  "bok1": {
+    "name": "Box of Kundun +1",
+    "group_id": [14, 11],
+    "level": 8
+  },
+  "bok2": {
+    "name": "Box of Kundun +2",
+    "group_id": [14, 11],
+    "level": 9
+  },
+  "bok3": {
+    "name": "Box of Kundun +3",
+    "group_id": [14, 11],
+    "level": 10
+  },
+  "bok4": {
+    "name": "Box of Kundun +4",
+    "group_id": [14, 11],
+    "level": 11
+  },
+  "bok5": {
+    "name": "Box of Kundun +5",
+    "group_id": [14, 11],
+    "level": 12
+  },
+  "bol": {
+    "name": "Box of Luck",
+    "group_id": [14, 11],
+    "level": 0
+  },
+  "rena": {
+    "name": "Rena",
+    "group_id": [14, 21],
+    "level": 0
+  },
+  "stone": {
+    "name": "Stone",
+    "group_id": [14, 21],
+    "level": 1
+  },
+  "signoflord": {
+    "name": "Sign of Lord",
+    "group_id": [14, 21],
+    "level": 2
+  },
+  "unilia": {
+    "name": "Horn of Unilia",
+    "group_id": [13, 2]
+  },
+  "dinorat": {
+    "name": "Dinorat",
+    "group_id": [13, 3]
+  },
+  "angel": {
+    "name": "Guardian Angel",
+    "group_id": [13, 0]
+  },
+  "satan": {
+    "name": "Satan",
+    "group_id": [13, 1]
   }
 }

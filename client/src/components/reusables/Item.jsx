@@ -13,13 +13,6 @@ export default ({ hex, options }) => {
   const itemData = hexDecode(hex)
   const item = Items[itemData.group].items[itemData.id]
 
-  const style = {
-    container: {
-      ...nameColor(itemData),
-      display: 'inline-block'
-    }
-  }
-
   const theme = createMuiTheme({
     overrides: {
       MuiTooltip: {
@@ -33,7 +26,12 @@ export default ({ hex, options }) => {
   return (
     <MuiThemeProvider theme={theme}>
       <Tooltip title={<Options itemData={itemData} item={item} />}>
-        <div style={style.container}>
+        <div
+          style={
+            options && options.image
+              ? { display: 'inline-block' }
+              : { ...nameColor(itemData), display: 'inline-block' }
+          }>
           {options && options.image ? (
             <img
               src={`./images/items/${itemData.group}/${itemData.id}.gif`}

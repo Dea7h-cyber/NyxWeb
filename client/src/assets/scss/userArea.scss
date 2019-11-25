@@ -47,3 +47,58 @@
     text-decoration: underline;
   }
 }
+
+.user-resources {
+  overflow: hidden;
+  padding: 2.5px;
+
+  & .wrapper {
+    float: left;
+    padding: 2.5px;
+    width: 35.5px;
+    height: 35.5px;
+
+    & .resource {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-align: center;
+
+      & .amount {
+        position: absolute;
+        top: -3px;
+        right: 1px;
+        border-radius: 5px;
+        font-size: 11px;
+      }
+
+      &:hover {
+        box-shadow: 0 0 1px rgb(96, 155, 93);
+      }
+    }
+  }
+}
+
+.user-menu {
+  & a {
+    display: block;
+    margin: 5px;
+    padding: 7px 5px;
+    background: rgb(14, 14, 14);
+    border-radius: 2px;
+    color: #585f1d;
+
+    &:hover {
+      color: #808a25;
+    }
+
+    & svg {
+      float: left;
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+  }
+}

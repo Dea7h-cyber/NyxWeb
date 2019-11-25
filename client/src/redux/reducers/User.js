@@ -7,7 +7,6 @@ import {
   USER_FETCH_RESOURCES_FAILED,
   USER_LOGOUT
 } from '../types'
-import Resources from '../../config/Resources'
 
 const initialState = {
   Login: {
@@ -15,7 +14,8 @@ const initialState = {
     username: localStorage.username || null
   },
   Resources: {
-    data: Resources,
+    data: null,
+    others: null,
     failed: false
   }
 }
@@ -44,7 +44,8 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         Resources: {
           ...state.Resources,
-          data: payload
+          data: payload.data,
+          others: payload.others
         }
       }
     case USER_FETCH_RESOURCES_FAILED:

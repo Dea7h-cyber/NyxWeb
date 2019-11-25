@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 // Actions
 import { Authorize } from '../../../redux/actions/User'
 
+// Components
+import Loading from '../../reusables/Loading'
+
 const Login = ({ Authorize, loading, setLoading }) => {
   const [form, setForm] = useState({
     username: '',
@@ -26,36 +29,40 @@ const Login = ({ Authorize, loading, setLoading }) => {
       <h1 className='content-title'>login area</h1>
       <section className='content-body'>
         <div className='content padding'>
-          <form className='user-login' onSubmit={onSubmit}>
-            <input
-              onChange={onChange}
-              value={form.username}
-              className='username'
-              type='text'
-              placeholder='Username'
-              name='username'
-              pattern='[a-zA-Z0-9]{4,10}'
-              maxLength='10'
-              required
-            />
-            <input
-              onChange={onChange}
-              value={form.password}
-              className='password'
-              type='password'
-              placeholder='Password'
-              name='password'
-              pattern='[a-zA-Z0-9]{4,10}'
-              maxLength='10'
-              required
-            />
-            <button className='login-btn' disabled={loading}>
-              {loading ? '...' : 'Login'}
-            </button>
-          </form>
-          <div className='user-register'>
-            <Link to='/register'>Don't have an account yet?</Link>
-          </div>
+          {loading ? (
+            <Loading size={25} onlyIcon={true} />
+          ) : (
+            <>
+              <form className='user-login' onSubmit={onSubmit}>
+                <input
+                  onChange={onChange}
+                  value={form.username}
+                  className='username'
+                  type='text'
+                  placeholder='Username'
+                  name='username'
+                  pattern='[a-zA-Z0-9]{4,10}'
+                  maxLength='10'
+                  required
+                />
+                <input
+                  onChange={onChange}
+                  value={form.password}
+                  className='password'
+                  type='password'
+                  placeholder='Password'
+                  name='password'
+                  pattern='[a-zA-Z0-9]{4,10}'
+                  maxLength='10'
+                  required
+                />
+                <button className='login-btn'>Login</button>
+              </form>
+              <div className='user-register'>
+                <Link to='/register'>Don't have an account yet?</Link>
+              </div>
+            </>
+          )}
         </div>
       </section>
     </div>

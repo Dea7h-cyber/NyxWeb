@@ -1,62 +1,44 @@
-import React, { useEffect, useState } from 'react'
-// import { Link } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Settings, AccessibilityNew, Flare } from '@material-ui/icons'
 
 // Components
-import Loading from '../../reusables/Loading'
+import Resources from './Resources'
 
 // Actions
-import { Logout, fetchResources } from '../../../redux/actions/User'
+import { Logout } from '../../../redux/actions/User'
 
-const UserArea = ({
-  Login: { username },
-  Resources,
-  Logout,
-  fetchResources
-}) => {
-  const [loading, setLoading] = useState(true)
-  const [resources, setResources] = useState([])
-
-  useEffect(() => {
-    const getResources = async () => {
-      await fetchResources()
-      setLoading(false)
-    }
-
-    getResources()
-  }, [fetchResources])
-
-  useEffect(() => {
-    let list = []
-    for (let key in Resources.data) {
-      list.push(
-        <div key={key}>
-          {Resources.data[key].name}: {Resources.data[key].amount}
-        </div>
-      )
-    }
-
-    setResources(list)
-  }, [Resources.data])
-
+const UserArea = ({ Login: { username }, Logout }) => {
   return (
-    <div>
-      <h1 className='content-title'>
-        {username}
-        <button onClick={Logout} style={logoutButton}>
-          LOGOUT
-        </button>
-      </h1>
-      <section className='content-body padding'>
-        {loading ? (
-          <Loading size={25} />
-        ) : Resources.failed ? (
-          'Resources failed to load'
-        ) : (
-          resources
-        )}
+    <>
+      <div>
+        <h1 className='content-title'>
+          {username}
+          <button onClick={Logout} style={logoutButton}>
+            LOGOUT
+          </button>
+        </h1>
+        <section className='content-body'>
+          <Resources />
+        </section>
+      </div>
+
+      <section className='content-body user-menu'>
+        <Link to='/user/account'>
+          <Settings />
+          Account Settings
+        </Link>
+        <Link to='/user/characters'>
+          <AccessibilityNew />
+          Characters
+        </Link>
+        <Link to='/user/special'>
+          <Flare />
+          Special Features
+        </Link>
       </section>
-    </div>
+    </>
   )
 }
 
@@ -74,4 +56,4 @@ const mapStateToProps = state => ({
   Resources: state.User.Resources
 })
 
-export default connect(mapStateToProps, { Logout, fetchResources })(UserArea)
+export default connect(mapStateToProps, { Logout })(UserArea)
