@@ -1,0 +1,20 @@
+$size: 200;
+
+.characters-list {
+  & .title {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  & .list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    & .character {
+      width: 110px;
+      height: 300px;
+      background: chocolate;
+    }
+  }
+}
