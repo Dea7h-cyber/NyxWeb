@@ -47,7 +47,7 @@ const Profile = ({
 }
 
 const mapStateToProps = state => ({
-  Profile: state.Character.Profile
+  Profile: state.Rankings.Profile
 })
 
 export default connect(mapStateToProps, { getOne })(Profile)

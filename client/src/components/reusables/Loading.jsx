@@ -15,11 +15,11 @@ export default ({ size, onlyIcon }) => {
   return onlyIcon ? (
     icon
   ) : (
-    <>
+    <div>
       <h1 className='content-title'>Loading...</h1>
       <section className='content-body'>
         <div className='content padding'>{icon}</div>
       </section>
-    </>
+    </div>
   )
 }

@@ -3,5 +3,6 @@ module.exports = {
   Register: require('./Register'),
   status: require('./status'),
   Verification: require('./Verification'),
-  getResources: require('./getResources')
+  getResources: require('./getResources'),
+  getUserCharacters: require('./getUserCharacters')
 }

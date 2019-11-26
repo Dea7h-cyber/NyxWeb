@@ -6,7 +6,7 @@ import {
 } from '../types'
 
 const initialState = {
-  Rankings: {
+  Characters: {
     characters: null,
     failed: false
   },
@@ -21,7 +21,7 @@ export default (state = initialState, { type, payload }) => {
     case RANKINGS_CHARACTERS:
       return {
         ...state,
-        Rankings: {
+        Characters: {
           characters: payload,
           failed: false
         }
@@ -29,7 +29,7 @@ export default (state = initialState, { type, payload }) => {
     case RANKINGS_CHARACTERS_FAILED:
       return {
         ...state,
-        Rankings: {
+        Characters: {
           characters: false,
           failed: true
         }

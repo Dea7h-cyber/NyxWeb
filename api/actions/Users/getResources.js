@@ -11,12 +11,22 @@ module.exports = async (req, res) => {
 
   // Check if username and password match
   try {
-    const resources = await models.NYX_RESOURCES.findOne({
+    let resources
+
+    resources = await models.NYX_RESOURCES.findOne({
       where: { username }
     })
 
     if (!resources) {
-      return res.json({ error: "User doesn't exist" })
+      const newRecord = await models.NYX_RESOURCES.build({
+        username: req.username
+      })
+
+      await newRecord.save()
+
+      resources = await models.NYX_RESOURCES.findOne({
+        where: { username }
+      })
     }
 
     return res.json(resources)

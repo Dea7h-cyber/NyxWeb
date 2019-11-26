@@ -27,10 +27,10 @@ const classToImage = cClass => {
   switch (cClass) {
     case 0:
     case 1:
-      return 'dw'
+      return 'sm'
     case 16:
     case 17:
-      return 'dk'
+      return 'bk'
     case 32:
     case 33:
       return 'elf'
@@ -39,7 +39,7 @@ const classToImage = cClass => {
     case 64:
       return 'dl'
     default:
-      return 'dk'
+      return 'bk'
   }
 }
 
@@ -86,5 +86,6 @@ export {
   getClassImage,
   pkNameColor,
   amountTransform,
-  calculateExp
+  calculateExp,
+  classToImage
 }

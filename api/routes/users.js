@@ -28,9 +28,16 @@ router.post('/register', validator.Register, actions.Register)
 
 /**
  * @route   GET /api/users/resources
- * @desc    User Registration
+ * @desc    User Resources
  */
 
 router.get('/resources', authorization, actions.getResources)
+
+/**
+ * @route   GET /api/users/characters
+ * @desc    User Characters
+ */
+
+router.get('/characters', authorization, actions.getUserCharacters)
 
 module.exports = router

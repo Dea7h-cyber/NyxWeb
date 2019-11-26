@@ -17,7 +17,7 @@ const Rankings = ({
   match: {
     params: { page }
   },
-  Rankings: { characters, failed }
+  Characters: { characters, failed }
 }) => {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState({
@@ -73,7 +73,7 @@ const Rankings = ({
 }
 
 const mapStateToProps = state => ({
-  Rankings: state.Character.Rankings
+  Characters: state.Rankings.Characters
 })
 
 export default connect(mapStateToProps, { getMany })(Rankings)

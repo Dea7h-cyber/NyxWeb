@@ -58,24 +58,6 @@
       color: #b9bb49;
     }
 
-    & .status-circle {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      position: absolute;
-      right: 5px;
-      top: 5px;
-      box-shadow: 0 0 5px 1px #000000;
-
-      &.offline {
-        background: #ff3e3e;
-      }
-
-      &.online {
-        background: #4cb667;
-      }
-    }
-
     & .guild-logo {
       position: absolute;
       bottom: 18px;
@@ -87,6 +69,24 @@
         float: left;
       }
     }
+  }
+}
+
+.status-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  box-shadow: 0 0 5px 1px #000000;
+
+  &.offline {
+    background: #ff3e3e;
+  }
+
+  &.online {
+    background: #4cb667;
   }
 }
 

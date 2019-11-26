@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux'
+
+import Rankings from './Rankings'
 import User from './User'
-import Character from './Character'
+import UserCharacters from './UserCharacters'
 
 export default combineReducers({
+  Rankings,
   User,
-  Character
+  UserCharacters
 })
