@@ -30,6 +30,7 @@ div.progress {
 a {
   all: unset;
   cursor: pointer;
+  display: inline-block;
 
   &:hover {
     text-decoration: underline;

@@ -7,13 +7,12 @@ import passIcon from '../../assets/images/locked.png'
 import mailIcon from '../../assets/images/at-sign.png'
 
 // Components
-import Loading from '../reusables/Loading'
 import Failed from '../reusables/Failed'
 
 // Actions
 import { doRegister } from '../../redux/actions/User'
 
-const Register = ({ Register: { loading, failed }, doRegister }) => {
+const Register = ({ doRegister }) => {
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -29,11 +28,7 @@ const Register = ({ Register: { loading, failed }, doRegister }) => {
   const onChange = event =>
     setForm({ ...form, [event.target.name]: event.target.value })
 
-  return loading ? (
-    <Loading />
-  ) : failed ? (
-    <Failed />
-  ) : (
+  return (
     <div>
       <h1 className='content-title'>create your free account</h1>
       <section className='content-body'>
@@ -133,8 +128,4 @@ const Register = ({ Register: { loading, failed }, doRegister }) => {
   )
 }
 
-const mapStateToProps = state => ({
-  Register: state.User.Register
-})
-
-export default connect(mapStateToProps, { doRegister })(Register)
+export default connect(null, { doRegister })(Register)
