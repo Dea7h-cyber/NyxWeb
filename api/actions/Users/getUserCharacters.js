@@ -2,7 +2,7 @@
  * Get a list of characters
  */
 
-const sequelize = require('sequelize')
+// const sequelize = require('sequelize')
 const logger = require('../Logger')
 
 // Models
@@ -66,7 +66,7 @@ module.exports = async (req, res) => {
       if (char5 && AccountCharacter.GameIDC === char5.Name) char5.status = true
     }
 
-    res.json({ data: { char1, char2, char3, char4, char5 } })
+    res.json({ data: [char1, char2, char3, char4, char5] })
   } catch (error) {
     logger.error(`${error.name}: ${error.message}`)
     res.json({

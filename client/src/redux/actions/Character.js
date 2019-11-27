@@ -2,9 +2,7 @@ import {
   RANKINGS_CHARACTERS,
   RANKINGS_CHARACTERS_FAILED,
   PROFILE_CHARACTER,
-  PROFILE_CHARACTER_FAILED,
-  USER_CHARACTERS,
-  USER_CHARACTERS_FAILED
+  PROFILE_CHARACTER_FAILED
 } from '../types'
 import axios from 'axios'
 
@@ -41,20 +39,5 @@ export const getMany = search => async dispatch => {
     }
   } catch (error) {
     dispatch({ type: RANKINGS_CHARACTERS_FAILED })
-  }
-}
-
-//* Fetch User Characters
-export const getUserCharacters = () => async dispatch => {
-  try {
-    const response = await axios(`/api/users/characters`)
-
-    if (response.data.error) {
-      dispatch({ type: USER_CHARACTERS_FAILED })
-    } else {
-      dispatch({ type: USER_CHARACTERS, payload: response.data })
-    }
-  } catch (error) {
-    dispatch({ type: USER_CHARACTERS_FAILED })
   }
 }

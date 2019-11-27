@@ -1,7 +1,12 @@
-import { USER_CHARACTERS, USER_CHARACTERS_FAILED } from '../types'
+import {
+  USER_CHARACTERS,
+  USER_CHARACTERS_FAILED,
+  USER_CHARACTERS_SELECTED
+} from '../types'
 
 const initialState = {
   characters: null,
+  selected: null,
   failed: false
 }
 
@@ -18,6 +23,11 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         characters: null,
         failed: true
+      }
+    case USER_CHARACTERS_SELECTED:
+      return {
+        ...state,
+        selected: payload
       }
     default:
       return state

@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 // Components
 import Loading from '../../../reusables/Loading'
 import Failed from '../../../reusables/Failed'
+import CharacterCard from '../../../reusables/CharacterCard'
 
 // Actions
-import { getUserCharacters } from '../../../../redux/actions/Character'
-
-// Helpers
-import { classToImage } from '../../../../helpers/Character'
+import { getUserCharacters } from '../../../../redux/actions/UserCharacter'
 
 const Characters = ({
   username,
@@ -37,38 +34,13 @@ const Characters = ({
         <div className='characters-list'>
           <div className='title'>Choose your character</div>
           <div className='list'>
-            <Character char={characters.char1} />
-            <Character char={characters.char2} />
-            <Character char={characters.char3} />
-            <Character char={characters.char4} />
-            <Character char={characters.char5} />
+            {characters.map((char, key) => (
+              <CharacterCard key={key} char={char} />
+            ))}
           </div>
         </div>
       </section>
     </div>
-  )
-}
-
-const Character = ({ char }) => {
-  return (
-    <Link to={char ? `/user/characters/${char.Name}` : '/user/characters'}>
-      <div
-        className={`character ${!char && 'empty'}`}
-        style={{
-          backgroundImage: `url('/images/classes/profile/${
-            char ? classToImage(char.Class) : 'bk'
-          }.png')`
-        }}>
-        <span className='shiner' />
-        <span className='name'>{char ? char.Name : 'empty'}</span>
-        {!char && <span className='cover' />}
-        {char && (
-          <span
-            className={`status-circle ${char.status ? 'online' : 'offline'}`}
-          />
-        )}
-      </div>
-    </Link>
   )
 }
 
