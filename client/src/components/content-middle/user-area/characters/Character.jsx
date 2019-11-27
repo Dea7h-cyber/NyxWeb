@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Autorenew } from '@material-ui/icons'
+import { Link, Route, Switch } from 'react-router-dom'
 
 // Components
+import Custom from '../../../reusables/Custom'
 import Loading from '../../../reusables/Loading'
 import Failed from '../../../reusables/Failed'
 import CharacterCard from '../../../reusables/CharacterCard'
@@ -22,7 +24,8 @@ const Character = ({
   setSelectedCharacter,
   match: {
     params: { name }
-  }
+  },
+  authorized
 }) => {
   const [loading, setLoading] = useState(false)
 
@@ -36,34 +39,64 @@ const Character = ({
     const runSetter = async () => {
       setLoading(true)
       if (!characters) {
-        await reFetch()
+        await getUserCharacters()
       } else {
-        const findOne = characters.find(char => char.Name === name)
+        const findOne = characters.find(char => char && char.Name === name)
 
-        await setSelectedCharacter(findOne)
-        setLoading(false)
+        await setSelectedCharacter(findOne ? findOne : false)
       }
+      setLoading(false)
     }
 
-    runSetter()
-  }, [characters])
+    if (authorized) {
+      runSetter()
+    }
+  }, [characters, authorized, name, setSelectedCharacter, getUserCharacters])
 
-  return loading || !selected ? (
+  return !authorized ? (
+    <Custom
+      title='not authorized'
+      message='You are not authorized. Please login and try again.'
+    />
+  ) : loading ? (
     <Loading />
-  ) : failed ? (
+  ) : failed || !selected ? (
     <Failed />
   ) : (
     <div>
       <h1 className='content-title'>
-        {selected.Name}'s options
+        {selected.Name}'s area
         <Autorenew className='refresh-icon' onClick={reFetch} />
       </h1>
-      <section className='content-body padding'>
-        <div className='characters-list'>
-          <div className='title'>menu? :</div>
-          <div className='list'>char? you chose {selected.Name}</div>
-          <div className=''>
+      <section className='content-body'>
+        <div className='content user-characters'>
+          <div className='left-content'>
             <CharacterCard char={selected} />
+            <div></div>
+          </div>
+          <div className='nav-menu'>
+            <Link to={`/user/characters/${selected.Name}/reset`}>reset</Link>
+            <Link to={`/user/characters/${selected.Name}/pkclear`}>
+              clear pk
+            </Link>
+            <Link to={`/user/characters/${selected.Name}/addstats`}>
+              stats adder
+            </Link>
+          </div>
+          <div className='main-content'>
+            <div className='inner'>
+              <Switch>
+                <Route
+                  path='/user/characters/:name/pkclear'
+                  component={PkClear}
+                />
+                <Route
+                  path='/user/characters/:name/addstats'
+                  component={AddStats}
+                />
+                <Route path='/user/characters/:name' component={Reset} />
+              </Switch>
+            </div>
           </div>
         </div>
       </section>
@@ -71,8 +104,64 @@ const Character = ({
   )
 }
 
+const Reset = () => (
+  <>
+    <div className='requirements'>
+      req:
+      <br />
+      350 level
+      <br />
+      200,000,000 zen
+    </div>
+    <div className='action'>
+      <button>Reset</button>
+    </div>
+    <div className='reward'>
+      Reward:
+      <br />
+      550 points
+    </div>
+  </>
+)
+
+const PkClear = () => (
+  <>
+    <div className='requirements'>
+      req:
+      <br />
+      15.000.000 zen x PK
+    </div>
+    <div className='action'>
+      <button>Clear PK</button>
+    </div>
+    <div className='reward'>
+      Reward:
+      <br />
+      Common Status
+    </div>
+  </>
+)
+
+const AddStats = () => (
+  <>
+    <div className='requirements'>
+      req:
+      <br />
+      Free
+    </div>
+    <div className='action'>
+      <button>Add Stats</button>
+    </div>
+    <div className='reward'>
+      Reward:
+      <br />
+      Nothing? :D
+    </div>
+  </>
+)
+
 const mapStateToProps = state => ({
-  username: state.User.Login.username,
+  authorized: state.User.Login.authorized,
   Characters: state.UserCharacters
 })
 

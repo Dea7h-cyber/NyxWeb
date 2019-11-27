@@ -102,3 +102,78 @@
     }
   }
 }
+
+// user/characters/:name
+
+.user-characters {
+  display: grid;
+  grid-template-areas:
+    'left-content   nav-menu'
+    'left-content   main-content';
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+
+  & .left-content {
+    grid-area: left-content;
+    padding: 10px 10px 6px 10px;
+  }
+
+  & .nav-menu {
+    grid-area: nav-menu;
+    padding: 10px 10px 10px 0;
+    display: flex;
+    justify-content: space-evenly;
+
+    & a {
+      padding: 5px 18px;
+      border-radius: 3px;
+      background: linear-gradient(to bottom, rgb(31, 29, 29), rgb(24, 23, 23));
+      border: 1px solid rgb(11, 12, 11);
+      color: #656d23;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+
+      &:hover {
+        // background: rgb(15, 15, 15);
+        background: linear-gradient(
+          to bottom,
+          rgb(22, 21, 21),
+          rgb(17, 17, 17)
+        );
+        border: 1px solid rgb(8, 8, 8);
+        color: #808a25;
+      }
+
+      & svg {
+        float: left;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  & .main-content {
+    grid-area: main-content;
+    padding: 0 10px 10px 0;
+
+    & .inner {
+      background: #191a17;
+      border: 1px solid rgb(11, 12, 11);
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+
+      & .requirements {
+      }
+
+      & .action {
+      }
+
+      & .reward {
+      }
+    }
+  }
+}

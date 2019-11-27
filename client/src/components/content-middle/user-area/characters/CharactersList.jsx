@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 // Components
+import Custom from '../../../reusables/Custom'
 import Loading from '../../../reusables/Loading'
 import Failed from '../../../reusables/Failed'
 import CharacterCard from '../../../reusables/CharacterCard'
@@ -17,13 +18,22 @@ const Characters = ({
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    ;(async () => {
+    const reFetch = async () => {
       await getUserCharacters()
       setLoading(false)
-    })()
-  }, [getUserCharacters])
+    }
 
-  return loading ? (
+    if (username) {
+      reFetch()
+    }
+  }, [username, getUserCharacters])
+
+  return !username ? (
+    <Custom
+      title='not authorized'
+      message='You are not authorized. Please login and try again.'
+    />
+  ) : loading ? (
     <Loading />
   ) : failed ? (
     <Failed />
