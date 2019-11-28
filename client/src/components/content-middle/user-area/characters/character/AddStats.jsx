@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
+import { Check } from '@material-ui/icons'
+
 const AddStats = ({ selected }) => {
-  const [stats, setStats] = useState({
+  const [statsFields, setStatsFields] = useState({
     Strength: 0,
     Dexterity: 0,
     Vitality: 0,
@@ -10,70 +12,138 @@ const AddStats = ({ selected }) => {
     Leadership: 0
   })
 
-  const onChange = e =>
-    setStats({ ...stats, [e.target.name]: [e.target.value] })
+  const [statsCurrent, setStatsCurrent] = useState({
+    Strength: selected.Strength,
+    Dexterity: selected.Dexterity,
+    Vitality: selected.Vitality,
+    Energy: selected.Energy,
+    Leadership: selected.Leadership
+  })
+
+  const [totalPoints, setTotalPoints] = useState(selected.LevelUpPoint)
+
+  const onChange = e => {
+    const value = Number([e.target.value])
+    const totalSpentPoints =
+      statsFields.Strength +
+      statsFields.Dexterity +
+      statsFields.Vitality +
+      statsFields.Energy +
+      statsFields.Leadership -
+      statsFields[e.target.name] +
+      value
+
+    if (
+      typeof value === 'number' &&
+      selected.LevelUpPoint >= totalSpentPoints &&
+      selected[e.target.name] + value <= 32767
+    ) {
+      setStatsFields({
+        ...statsFields,
+        [e.target.name]: value
+      })
+
+      setStatsCurrent({
+        ...statsCurrent,
+        [e.target.name]: selected[e.target.name] + value
+      })
+
+      setTotalPoints(selected.LevelUpPoint - totalSpentPoints)
+    }
+  }
 
   return (
-    <>
-      <div className='requirements'>
-        req:
-        <br />
-        Free
+    <div className='add-stats'>
+      <div className='points-left'>
+        Points left{' '}
+        <span className='highlight'>{totalPoints.toLocaleString()}</span>
       </div>
-      <div className='action'></div>
-      <div className='reward'>
-        <div className='add-stats'>
-          <div className='row'>
-            <div className='left'>Strength</div>
-            <div className='middle'>
-              <input
-                type='text'
-                value={stats.Strength}
-                onChange={onChange}
-                name='Strength'
-              />
-            </div>
-            <div className='right'>[{selected.Strength}]</div>
-          </div>
-          <div className='row'>
-            <div className='left'>Agility</div>
-            <div className='middle'>
-              <input
-                type='text'
-                value={stats.Dexterity}
-                onChange={onChange}
-                name='Dexterity'
-              />
-            </div>
-            <div className='right'>[{selected.Dexterity}]</div>
-          </div>
-          <div className='row'>
-            <div className='left'>Vitality</div>
-            <div className='middle'>
-              <input
-                type='text'
-                value={stats.Vitality}
-                onChange={onChange}
-                name='Vitality'
-              />
-            </div>
-            <div className='right'>[{selected.Vitality}]</div>
-          </div>
-          <div className='row'>
-            <div className='left'>Energy</div>
-            <div className='middle'>
-              <input
-                type='text'
-                value={stats.Energy}
-                onChange={onChange}
-                name='Energy'
-              />
-            </div>
-            <div className='right'>[{selected.Energy}]</div>
-          </div>
+      <div className='row'>
+        <div className='left'>Strength</div>
+        <div className='middle'>
+          <input
+            type='text'
+            value={statsFields.Strength}
+            onChange={onChange}
+            name='Strength'
+          />
+        </div>
+        <div className='right'>
+          <span className='highlight'>
+            {statsCurrent.Strength.toLocaleString()}
+          </span>
         </div>
       </div>
-    </>
+      <div className='row'>
+        <div className='left'>Agility</div>
+        <div className='middle'>
+          <input
+            type='text'
+            value={statsFields.Dexterity}
+            onChange={onChange}
+            name='Dexterity'
+          />
+        </div>
+        <div className='right'>
+          <span className='highlight'>
+            {statsCurrent.Dexterity.toLocaleString()}
+          </span>
+        </div>
+      </div>
+      <div className='row'>
+        <div className='left'>Vitality</div>
+        <div className='middle'>
+          <input
+            type='text'
+            value={statsFields.Vitality}
+            onChange={onChange}
+            name='Vitality'
+          />
+        </div>
+        <div className='right'>
+          <span className='highlight'>
+            {statsCurrent.Vitality.toLocaleString()}
+          </span>
+        </div>
+      </div>
+      <div className='row'>
+        <div className='left'>Energy</div>
+        <div className='middle'>
+          <input
+            type='text'
+            value={statsFields.Energy}
+            onChange={onChange}
+            name='Energy'
+          />
+        </div>
+        <div className='right'>
+          <span className='highlight'>
+            {statsCurrent.Energy.toLocaleString()}
+          </span>
+        </div>
+      </div>
+      {selected.Class === 64 && (
+        <div className='row'>
+          <div className='left'>Command</div>
+          <div className='middle'>
+            <input
+              type='text'
+              value={statsFields.Leadership}
+              onChange={onChange}
+              name='Leadership'
+            />
+          </div>
+          <div className='right'>
+            <span className='highlight'>
+              {statsCurrent.Leadership.toLocaleString()}
+            </span>
+          </div>
+        </div>
+      )}
+      <div className='save'>
+        <Check /> Apply changes
+      </div>
+    </div>
   )
 }
 

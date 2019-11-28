@@ -16,7 +16,7 @@ app.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*')
   res.set('Access-Control-Allow-Headers', '*')
   // logger.info(
-  //   `Method: ${req.method} | URL: ${req.url} | IP: ${
+  //   `Method: ${req.method} | URL: ${req.url} | Time: ${new Date()} | IP: ${
   //     req.ip
   //   } | Body: ${JSON.stringify(req.body)} | Params: ${JSON.stringify(
   //     req.params

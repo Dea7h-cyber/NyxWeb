@@ -7,7 +7,7 @@ import passIcon from '../../assets/images/locked.png'
 import mailIcon from '../../assets/images/at-sign.png'
 
 // Components
-import Failed from '../reusables/Failed'
+// import Failed from '../reusables/Failed'
 
 // Actions
 import { doRegister } from '../../redux/actions/User'
