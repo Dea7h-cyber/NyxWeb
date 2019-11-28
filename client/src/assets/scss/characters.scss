@@ -93,6 +93,30 @@
   }
 }
 
+.add-stats {
+  width: 200px;
+
+  & .row {
+    display: flex;
+    justify-content: space-evenly;
+
+    & .left {
+      width: 80px;
+    }
+
+    & .middle {
+      width: 40px;
+      & input {
+        width: 40px;
+      }
+
+      & .right {
+        width: 80px;
+      }
+    }
+  }
+}
+
 @media (max-width: 1090px) {
   .characters-list {
     & .list {

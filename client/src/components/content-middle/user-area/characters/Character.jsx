@@ -8,6 +8,8 @@ import Custom from '../../../reusables/Custom'
 import Loading from '../../../reusables/Loading'
 import Failed from '../../../reusables/Failed'
 import CharacterCard from '../../../reusables/CharacterCard'
+// Character
+import AddStats from './character/AddStats'
 
 // Actions
 import {
@@ -138,24 +140,6 @@ const PkClear = () => (
       Reward:
       <br />
       Common Status
-    </div>
-  </>
-)
-
-const AddStats = () => (
-  <>
-    <div className='requirements'>
-      req:
-      <br />
-      Free
-    </div>
-    <div className='action'>
-      <button>Add Stats</button>
-    </div>
-    <div className='reward'>
-      Reward:
-      <br />
-      Nothing? :D
     </div>
   </>
 )
