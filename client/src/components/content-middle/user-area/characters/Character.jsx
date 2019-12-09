@@ -74,7 +74,11 @@ const Character = ({
         <div className='content user-characters'>
           <div className='left-content'>
             <CharacterCard char={selected} />
-            <div></div>
+            <div className='char-info'>
+              <div className='row'>Resets: {selected.Resets}</div>
+              <div className='row'>Level: {selected.cLevel}</div>
+              <div className='row'>Zen: {selected.Money.toLocaleString()}</div>
+            </div>
           </div>
           <div className='nav-menu'>
             <Link to={`/user/characters/${selected.Name}/reset`}>reset</Link>

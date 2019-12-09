@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
-import { Check } from '@material-ui/icons'
+import { updateCharacterStats } from '../../../../../redux/actions/UserCharacter'
 
-const AddStats = ({ selected }) => {
+const AddStats = ({ selected, updateCharacterStats }) => {
   const [statsFields, setStatsFields] = useState({
     Strength: 0,
     Dexterity: 0,
@@ -49,6 +49,17 @@ const AddStats = ({ selected }) => {
       })
 
       setTotalPoints(selected.LevelUpPoint - totalSpentPoints)
+    }
+  }
+
+  const saveStats = () => {
+    const total = Object.values(statsFields).reduce(
+      (prev, curr) => prev + curr,
+      0
+    )
+
+    if (total > 0) {
+      updateCharacterStats(selected.Name, statsFields)
     }
   }
 
@@ -141,7 +152,7 @@ const AddStats = ({ selected }) => {
         </div>
       )}
       <div className='save'>
-        <Check /> Apply changes
+        <button onClick={saveStats}>SAVE STATS</button>
       </div>
     </div>
   )
@@ -151,4 +162,4 @@ const mapStateToProps = state => ({
   selected: state.UserCharacters.selected
 })
 
-export default connect(mapStateToProps)(AddStats)
+export default connect(mapStateToProps, { updateCharacterStats })(AddStats)

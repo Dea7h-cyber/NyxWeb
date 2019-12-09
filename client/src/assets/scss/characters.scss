@@ -98,32 +98,40 @@
   font-weight: 500;
 }
 
+.char-info {
+  display: grid;
+  gap: 5px;
+
+  & .row {
+    border: 1px solid #222922;
+    padding: 3px;
+
+    &:last-child {
+      font-size: 12px;
+    }
+  }
+}
+
 .add-stats {
   width: 190px;
   margin: auto;
+  text-align: center;
 
   & .points-left {
+    display: inline-block;
     text-align: center;
     background: #121212;
     border: 1px solid #0f0f0f;
-    padding: 3px;
+    padding: 3px 6px;
+    border-radius: 3px;
   }
 
   & .save {
     text-align: center;
-    background: #121212;
-    border: 1px solid #0f0f0f;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #1ec935;
-    cursor: pointer;
+    padding: 10px 5px 5px 5px;
 
-    & svg {
-      width: 16px;
-      height: 16px;
-      margin-right: 3px;
+    & button {
+      padding: 3px 10px;
     }
   }
 

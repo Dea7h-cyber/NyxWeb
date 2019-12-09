@@ -1,11 +1,15 @@
 import {
   USER_CHARACTERS,
   USER_CHARACTERS_FAILED,
-  USER_CHARACTERS_SELECTED
+  USER_CHARACTERS_SELECTED,
+  USER_CHARACTERS_STATS,
+  USER_CHARACTERS_STATS_FAILED
 } from '../types'
 import axios from 'axios'
 
-//* Fetch User Characters
+import Notice from '../../helpers/Notice'
+
+//* ------------------------------------------------------------------------
 export const getUserCharacters = () => async dispatch => {
   try {
     const response = await axios(`/api/users/characters`)
@@ -20,7 +24,33 @@ export const getUserCharacters = () => async dispatch => {
   }
 }
 
-//* Set Selected Character
+//* ------------------------------------------------------------------------
 export const setSelectedCharacter = name => async dispatch => {
   dispatch({ type: USER_CHARACTERS_SELECTED, payload: name })
+}
+
+//* ------------------------------------------------------------------------
+export const updateCharacterStats = (name, stats) => async dispatch => {
+  const { Strength, Dexterity, Vitality, Energy, Leadership } = stats
+  try {
+    const response = await axios.patch(`/api/characters/${name}/addstats`, {
+      Strength,
+      Dexterity,
+      Vitality,
+      Energy,
+      Leadership
+    })
+
+    if (response.data.error) {
+      dispatch({ type: USER_CHARACTERS_STATS_FAILED })
+      Notice({ error: 'There was a problem. Please try again!' })
+    } else {
+      dispatch({ type: USER_CHARACTERS_STATS, payload: response.data })
+      dispatch(getUserCharacters())
+      Notice({ message: response.data.message })
+    }
+  } catch (error) {
+    dispatch({ type: USER_CHARACTERS_STATS_FAILED })
+    Notice({ error: 'There was a problem. Please try again!' })
+  }
 }

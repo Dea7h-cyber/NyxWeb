@@ -2,6 +2,7 @@
  * Stats adder function
  */
 
+const { validationResult } = require('express-validator')
 const logger = require('../Logger')
 
 // Models
@@ -21,7 +22,7 @@ module.exports = async (req, res) => {
     })
   }
 
-  const AccountID = req.cookies.nyx_user
+  const AccountID = req.username
   const Name = req.params.name
 
   const Strength = Number(req.body.Strength)
@@ -47,9 +48,10 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const character = await models.Character.findOne({
+    const character = await models.Character().findOne({
       where: { AccountID, Name },
       attributes: [
+        'AccountID',
         'Class',
         'Money',
         'LevelUpPoint',
