@@ -17,8 +17,9 @@ const characterStatus = require('./status')
 module.exports = async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
+    console.log(errors)
     return res.json({
-      error: errors.array()[0].msg
+      error: errors
     })
   }
 
