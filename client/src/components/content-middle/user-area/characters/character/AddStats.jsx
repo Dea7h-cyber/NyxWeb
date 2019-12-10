@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
-import { updateCharacterStats } from '../../../../../redux/actions/UserCharacter'
+import { updateCharacterStats } from 'redux/actions/UserCharacter'
 
 const AddStats = ({ selected, updateCharacterStats }) => {
   const [statsFields, setStatsFields] = useState({

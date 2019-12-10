@@ -4,10 +4,10 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
 
 // Components
-import Loading from '../../reusables/Loading'
+import Loading from 'components/reusables/Loading'
 
 // Actions
-import { Logout, fetchResources } from '../../../redux/actions/User'
+import { Logout, fetchResources } from 'redux/actions/User'
 
 const UserArea = ({ Resources, fetchResources }) => {
   const [loading, setLoading] = useState(true)

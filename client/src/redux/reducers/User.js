@@ -6,7 +6,7 @@ import {
   USER_FETCH_RESOURCES,
   USER_FETCH_RESOURCES_FAILED,
   USER_LOGOUT
-} from '../types'
+} from 'redux/types'
 
 const initialState = {
   Login: {

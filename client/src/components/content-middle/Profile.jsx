@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 // Components
-import Loading from '../reusables/Loading'
-import Failed from '../reusables/Failed'
-import Custom from '../reusables/Custom'
+import Loading from 'components/reusables/Loading'
+import Failed from 'components/reusables/Failed'
+import Custom from 'components/reusables/Custom'
 
 // Actions
-import { getOne } from '../../redux/actions/Character'
+import { getOne } from 'redux/actions/Character'
 
 const Profile = ({
   match: {

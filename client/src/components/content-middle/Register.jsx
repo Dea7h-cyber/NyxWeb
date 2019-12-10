@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
 // Icons
-import userIcon from '../../assets/images/user.png'
-import passIcon from '../../assets/images/locked.png'
-import mailIcon from '../../assets/images/at-sign.png'
+import userIcon from 'assets/images/user.png'
+import passIcon from 'assets/images/locked.png'
+import mailIcon from 'assets/images/at-sign.png'
 
 // Components
 // import Failed from '../reusables/Failed'
 
 // Actions
-import { doRegister } from '../../redux/actions/User'
+import { doRegister } from 'redux/actions/User'
 
 const Register = ({ doRegister }) => {
   const [form, setForm] = useState({

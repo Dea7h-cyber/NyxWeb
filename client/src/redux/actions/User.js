@@ -6,12 +6,12 @@ import {
   USER_FETCH_RESOURCES,
   USER_FETCH_RESOURCES_FAILED,
   USER_LOGOUT
-} from '../types'
+} from 'redux/types'
 
 import axios from 'axios'
 
-import Notice from '../../helpers/Notice'
-import { transformResources } from '../../helpers/User'
+import Notice from 'helpers/Notice'
+import { transformResources } from 'helpers/User'
 
 export const doRegister = form => async () => {
   try {

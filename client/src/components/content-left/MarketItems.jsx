@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // Components
-import Item from '../reusables/Item.jsx'
+import Item from 'components/reusables/Item.jsx'
 
 export default () => (
   <div>

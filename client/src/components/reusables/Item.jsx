@@ -4,10 +4,10 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import uuid from 'uuid/v4'
 
 // Helpers
-import { hexDecode, nameColor } from '../../helpers/Items'
-import { getClassName } from '../../helpers/Character'
-import Items from '../../config/items/List'
-import _Options from '../../config/items/Options'
+import { hexDecode, nameColor } from 'helpers/Items'
+import { getClassName } from 'helpers/Character'
+import Items from 'config/items/List'
+import _Options from 'config/items/Options'
 
 export default ({ hex, options }) => {
   const itemData = hexDecode(hex)
@@ -34,7 +34,7 @@ export default ({ hex, options }) => {
           }>
           {options && options.image ? (
             <img
-              src={`./images/items/${itemData.group}/${itemData.id}.gif`}
+              src={`/images/items/${itemData.group}/${itemData.id}.gif`}
               alt={item.name}
               style={
                 options.size && {
@@ -120,7 +120,7 @@ const Options = ({ item, itemData }) => {
   view.push(
     <img
       key={uuid()}
-      src={`./images/items/${itemData.group}/${itemData.id}.gif`}
+      src={`/images/items/${itemData.group}/${itemData.id}.gif`}
       alt={item.name}
     />
   )

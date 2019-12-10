@@ -4,10 +4,10 @@ import { Autorenew } from '@material-ui/icons'
 import { Link, Route, Switch } from 'react-router-dom'
 
 // Components
-import Custom from '../../../reusables/Custom'
-import Loading from '../../../reusables/Loading'
-import Failed from '../../../reusables/Failed'
-import CharacterCard from '../../../reusables/CharacterCard'
+import Custom from 'components/reusables/Custom'
+import Loading from 'components/reusables/Loading'
+import Failed from 'components/reusables/Failed'
+import CharacterCard from 'components/reusables/CharacterCard'
 // Character
 import AddStats from './character/AddStats'
 
@@ -15,7 +15,7 @@ import AddStats from './character/AddStats'
 import {
   getUserCharacters,
   setSelectedCharacter
-} from '../../../../redux/actions/UserCharacter'
+} from 'redux/actions/UserCharacter'
 
 // Helpers
 // import { classToImage } from '../../../../helpers/Character'

@@ -7,7 +7,7 @@ import {
   getClassImage,
   amountTransform,
   calculateExp
-} from '../../../helpers/Character'
+} from 'helpers/Character'
 import GuildMark from './GuildMark'
 
 export default ({ passed: { char, index, page, perPage } }) => {

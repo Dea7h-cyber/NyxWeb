@@ -7,7 +7,7 @@ import { Settings, AccessibilityNew, Flare } from '@material-ui/icons'
 import Resources from './Resources'
 
 // Actions
-import { Logout } from '../../../redux/actions/User'
+import { Logout } from 'redux/actions/User'
 
 const UserArea = ({ Login: { username }, Logout }) => {
   return (

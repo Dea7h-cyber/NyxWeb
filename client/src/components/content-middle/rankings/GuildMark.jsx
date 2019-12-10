@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Helpers
-import { colorDecode } from '../../../helpers/Guild'
+import { colorDecode } from 'helpers/Guild'
 
 const generateLogo = (mark, size) =>
   mark.split('').map((symbol, key) => (

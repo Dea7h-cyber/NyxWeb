@@ -4,10 +4,10 @@ import {
   USER_CHARACTERS_SELECTED,
   USER_CHARACTERS_STATS,
   USER_CHARACTERS_STATS_FAILED
-} from '../types'
+} from 'redux/types'
 import axios from 'axios'
 
-import Notice from '../../helpers/Notice'
+import Notice from 'helpers/Notice'
 
 //* ------------------------------------------------------------------------
 export const getUserCharacters = () => async dispatch => {
@@ -41,16 +41,16 @@ export const updateCharacterStats = (name, stats) => async dispatch => {
       Leadership
     })
 
+    Notice(response.data)
+
     if (response.data.error) {
       dispatch({ type: USER_CHARACTERS_STATS_FAILED })
-      Notice({ error: 'There was a problem. Please try again!' })
     } else {
       dispatch({ type: USER_CHARACTERS_STATS, payload: response.data })
       dispatch(getUserCharacters())
-      Notice({ message: response.data.message })
     }
   } catch (error) {
     dispatch({ type: USER_CHARACTERS_STATS_FAILED })
-    Notice({ error: 'There was a problem. Please try again!' })
+    Notice({ error: 'There was a problem. Please try again later!' })
   }
 }

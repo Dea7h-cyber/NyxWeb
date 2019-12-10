@@ -2,7 +2,7 @@ import {
   USER_CHARACTERS,
   USER_CHARACTERS_FAILED,
   USER_CHARACTERS_SELECTED
-} from '../types'
+} from 'redux/types'
 
 const initialState = {
   characters: null,

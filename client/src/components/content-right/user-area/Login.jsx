@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 // Actions
-import { Authorize } from '../../../redux/actions/User'
+import { Authorize } from 'redux/actions/User'
 
 // Components
-import Loading from '../../reusables/Loading'
+import Loading from 'components/reusables/Loading'
 
 const Login = ({ Authorize, loading, setLoading }) => {
   const [form, setForm] = useState({

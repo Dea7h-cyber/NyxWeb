@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 // Components
-import Custom from '../../../reusables/Custom'
-import Loading from '../../../reusables/Loading'
-import Failed from '../../../reusables/Failed'
-import CharacterCard from '../../../reusables/CharacterCard'
+import Custom from 'components/reusables/Custom'
+import Loading from 'components/reusables/Loading'
+import Failed from 'components/reusables/Failed'
+import CharacterCard from 'components/reusables/CharacterCard'
 
 // Actions
-import { getUserCharacters } from '../../../../redux/actions/UserCharacter'
+import { getUserCharacters } from 'redux/actions/UserCharacter'
 
 const Characters = ({
   username,

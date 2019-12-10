@@ -3,7 +3,7 @@ import {
   RANKINGS_CHARACTERS_FAILED,
   PROFILE_CHARACTER,
   PROFILE_CHARACTER_FAILED
-} from '../types'
+} from 'redux/types'
 
 const initialState = {
   Characters: {

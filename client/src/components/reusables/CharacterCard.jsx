@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // Helpers
-import { classToImage } from '../../helpers/Character'
+import { classToImage } from 'helpers/Character'
 
 export default ({ char }) => (
   <Link to={char ? `/user/characters/${char.Name}` : '/user/characters'}>

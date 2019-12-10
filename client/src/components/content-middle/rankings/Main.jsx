@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 // Components
-import Loading from '../../reusables/Loading'
-import Failed from '../../reusables/Failed'
-import Custom from '../../reusables/Custom'
+import Loading from 'components/reusables/Loading'
+import Failed from 'components/reusables/Failed'
+import Custom from 'components/reusables/Custom'
 import Character from './Character'
 import Pagination from './Pagination'
 import SearchBoard from './SearchBoard'
 
 // Actions
-import { getMany } from '../../../redux/actions/Character'
+import { getMany } from 'redux/actions/Character'
 
 const Rankings = ({
   getMany,
