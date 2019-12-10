@@ -1,50 +1,42 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default ({
-  passed: {
-    search,
-    setSearch,
-    characters: { prev, next, totalPages, totalCharacters }
-  }
-}) => {
-  const onClick = e => {
-    const type = e.target.textContent
-    if (
-      (type === 'prev' && prev === search.page) ||
-      (type === 'next' && next === search.page)
-    ) {
-      return e.preventDefault()
+export default ({ filter, setFilter, characters }) => {
+  const totalPages = Math.ceil(characters.length / 32)
+
+  const onClick = (event, type) => {
+    if ((type && filter.page >= totalPages) || (!type && filter.page <= 1)) {
+      return event.preventDefault()
     }
 
-    setSearch({
-      ...search,
-      page: type === 'next' ? search.page + 1 : search.page - 1
+    setFilter({
+      ...filter,
+      page: type ? filter.page + 1 : filter.page - 1
     })
   }
 
   return (
     <div className='pagination'>
       <Link
-        to={`/rankings/${prev}`}
-        onClick={onClick}
-        className={`view btn ${prev === search.page && 'disabled'}`}>
+        to={`/rankings/${filter.page + 1}`}
+        onClick={e => onClick(e, false)}
+        className={`view btn ${filter.page <= 1 && 'disabled'}`}>
         prev
       </Link>
       <span className='view'>
         {'page '}
-        <strong>{search.page}</strong>
+        <strong>{filter.page}</strong>
         {' of '}
         <strong>{totalPages}</strong>
       </span>
       <Link
-        to={`/rankings/${next}`}
-        onClick={onClick}
-        className={`view btn ${next === search.page && 'disabled'}`}>
+        to={`/rankings/${filter.page + 1}`}
+        onClick={e => onClick(e, true)}
+        className={`view btn ${filter.page >= totalPages && 'disabled'}`}>
         next
       </Link>
       <span className='view total' style={{ float: 'right', margin: 0 }}>
-        Total Characters <strong>{totalCharacters}</strong>
+        Total Characters <strong>{characters.length}</strong>
       </span>
     </div>
   )

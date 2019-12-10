@@ -2,7 +2,6 @@
  * Get a list of characters
  */
 
-const sequelize = require('sequelize')
 const { validationResult } = require('express-validator')
 const logger = require('../Logger')
 
@@ -10,12 +9,9 @@ const logger = require('../Logger')
 const models = require('../../models/')
 
 // Configs
-const rankingsConfig = require('../../config/characters/rankings')
+const { limit } = require('../../config/characters/rankings')
 
 module.exports = async (req, res) => {
-  const Character = models.Character()
-  const GuildMember = models.GuildMember()
-
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.json({
@@ -23,62 +19,14 @@ module.exports = async (req, res) => {
     })
   }
 
-  // Fetch data WHERE
-  const allowedClasses = [0, 1, 16, 17, 32, 33, 48, 64]
-  let where
+  const Character = models.Character()
+  const GuildMember = models.GuildMember()
 
-  if (req.query.class) {
-    const classSearch = req.query.class.split(',').map(cls => Number(cls))
-    if (
-      !classSearch.includes(1) ||
-      !classSearch.includes(17) ||
-      !classSearch.includes(33) ||
-      !classSearch.includes(48) ||
-      !classSearch.includes(64)
-    ) {
-      where = { [sequelize.Op.or]: [] }
-      for (let cls of classSearch) {
-        if (allowedClasses.includes(cls)) {
-          where[sequelize.Op.or].push({ Class: cls })
-        }
-      }
-    }
-  }
-
-  if (req.query.search) {
-    where = { ...where, Name: { [sequelize.Op.like]: `%${req.query.search}%` } }
-  }
-
-  // Fetch data ORDER BY
-  const orderAllowed = [
-    'Name',
-    'Resets',
-    'cLevel',
-    'Money',
-    'PkCount',
-    'QuestNumber',
-    'SkyEventWins'
-  ]
-
-  let order = [
-    ['Resets', 'desc'],
-    ['cLevel', 'desc'],
-    ['Name', 'asc']
-  ]
-
-  if (req.query.order) {
-    const ord = req.query.order.split(',')
-    if (orderAllowed.includes(ord[0])) {
-      order = order.filter(p => p[0] !== ord[0])
-      order.unshift([ord[0], ord[1] === 'asc' ? 'asc' : 'desc'])
-    }
-  }
+  // if (req.query.search) {
+  //   where = { ...where, Name: { [sequelize.Op.like]: `%${req.query.search}%` } }
+  // }
 
   try {
-    // Pagination
-    const page = Number(req.query.page ? req.query.page : 1)
-    const offset = (page - 1) * rankingsConfig.perPage
-
     // Joining tables
     Character.hasOne(models.MEMB_STAT, {
       as: 'a',
@@ -104,11 +52,14 @@ module.exports = async (req, res) => {
       foreignKey: 'G_Name'
     })
 
-    const characters = await Character.findAndCountAll({
-      offset,
-      limit: rankingsConfig.perPage,
-      where,
-      order,
+    const characters = await Character.findAll({
+      offset: 0,
+      limit,
+      order: [
+        ['Resets', 'desc'],
+        ['cLevel', 'desc'],
+        ['Name', 'asc']
+      ],
       attributes: [
         'Name',
         'Class',
@@ -146,17 +97,7 @@ module.exports = async (req, res) => {
       ]
     })
 
-    // Passing in next and previous page numbers
-    const totalPages = Math.ceil(characters.count / rankingsConfig.perPage)
-    const prev =
-      page > 1 && page <= totalPages
-        ? page - 1
-        : page === 1
-        ? 1
-        : totalPages - 1
-    const next = page + 1 > totalPages ? totalPages : page + 1
-
-    characters.rows.map(char => {
+    characters.map(char => {
       char.status =
         char['a.ConnectStat'] === 1 && char['b.GameIDC'] === char.Name
           ? true
@@ -185,14 +126,7 @@ module.exports = async (req, res) => {
       return char
     })
 
-    res.json({
-      prev,
-      next,
-      totalPages,
-      totalCharacters: characters.count,
-      perPage: rankingsConfig.perPage,
-      data: characters.rows
-    })
+    res.json(characters)
   } catch (error) {
     logger.error(`${error.name}: ${error.message}`)
     res.json({

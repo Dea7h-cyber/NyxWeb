@@ -30,7 +30,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         Characters: {
-          characters: false,
+          characters: null,
           failed: true
         }
       }

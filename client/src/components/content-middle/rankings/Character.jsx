@@ -10,8 +10,8 @@ import {
 } from 'helpers/Character'
 import GuildMark from './GuildMark'
 
-export default ({ passed: { char, index, page, perPage } }) => {
-  const rank = index + 1 + (page - 1) * perPage
+export default ({ page, char, index }) => {
+  const rank = index + 1 + (page - 1) * 32
 
   const charStyle = {
     // boxShadow: char.status
