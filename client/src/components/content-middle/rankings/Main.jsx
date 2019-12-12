@@ -103,6 +103,7 @@ const Rankings = ({
                 <Character
                   key={index}
                   page={filter.page}
+                  perPage={filter.perPage}
                   char={char}
                   index={index}
                 />

@@ -7,12 +7,21 @@ export const TextField = ({
   onChange,
   rules,
   type,
-  pattern
+  pattern,
+  underline,
+  match,
+  required,
+  autoComplete,
+  autoCorrect,
+  spellCheck
 }) => {
   const [valid, setValid] = useState('')
 
   useEffect(() => {
-    if (pattern.test(value) && value.length > 3) {
+    if (
+      (!pattern.test(value) || (match && match !== value)) &&
+      value.length > 3
+    ) {
       setValid('invalid')
     } else {
       setValid('')
@@ -26,15 +35,29 @@ export const TextField = ({
         value={value}
         onChange={onChange}
         name={name}
-        required
-        autoComplete='off'
-        autoCorrect='off'
-        spellCheck='false'
+        required={required === false || required === 'false' ? 'false' : 'true'}
+        autoComplete={
+          autoComplete === true || autoComplete === 'true' ? 'on' : 'off'
+        }
+        autoCorrect={
+          autoCorrect === true || autoCorrect === 'true' ? 'on' : 'off'
+        }
+        spellCheck={
+          spellCheck === true || spellCheck === 'true' ? 'true' : 'false'
+        }
         className={valid}
       />
-      <label>{label}</label>
-      <span className={`underline ${valid}`}></span>
-      {rules && <span className={`rules ${valid}`}>{rules}</span>}
+      {label && <label>{label}</label>}
+      {(underline === undefined || underline === true) && (
+        <span className={`underline ${valid}`}></span>
+      )}
+      {valid === 'invalid' ? (
+        <span className={`rules invalid`}>
+          Woops, make sure this field has {rules || 'the right format'}
+        </span>
+      ) : (
+        rules && <span className={`rules ${valid}`}>{rules}</span>
+      )}
     </div>
   )
 }

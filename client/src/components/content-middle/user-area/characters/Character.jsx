@@ -8,7 +8,10 @@ import Custom from 'components/reusables/Custom'
 import Loading from 'components/reusables/Loading'
 import Failed from 'components/reusables/Failed'
 import CharacterCard from 'components/reusables/CharacterCard'
-// Character
+
+// Character Options
+import Reset from './character/Reset'
+import PkClear from './character/PkClear'
 import AddStats from './character/AddStats'
 
 // Actions
@@ -109,44 +112,6 @@ const Character = ({
     </div>
   )
 }
-
-const Reset = () => (
-  <>
-    <div className='requirements'>
-      req:
-      <br />
-      350 level
-      <br />
-      200,000,000 zen
-    </div>
-    <div className='action'>
-      <button>Reset</button>
-    </div>
-    <div className='reward'>
-      Reward:
-      <br />
-      550 points
-    </div>
-  </>
-)
-
-const PkClear = () => (
-  <>
-    <div className='requirements'>
-      req:
-      <br />
-      15.000.000 zen x PK
-    </div>
-    <div className='action'>
-      <button>Clear PK</button>
-    </div>
-    <div className='reward'>
-      Reward:
-      <br />
-      Common Status
-    </div>
-  </>
-)
 
 const mapStateToProps = state => ({
   authorized: state.User.Login.authorized,
