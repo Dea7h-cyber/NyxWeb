@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default ({ filter, setFilter, totalChars }) => {
-  const totalPages = Math.ceil(totalChars / 32)
+  const totalPages = Math.ceil(totalChars / filter.perPage)
 
   const onClick = (event, type) => {
     if ((type && filter.page >= totalPages) || (!type && filter.page <= 1)) {

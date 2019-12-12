@@ -160,16 +160,15 @@
   }
 
   &.byName {
-    & form {
-      display: flex;
-      & input {
-        flex: 3;
-        margin-right: 10px;
-      }
+    display: flex;
+    & input {
+      flex: 7;
+      margin-right: 10px;
+    }
 
-      & button {
-        flex: 1;
-      }
+    & select {
+      flex: 1;
+      border-radius: 3px;
     }
   }
 

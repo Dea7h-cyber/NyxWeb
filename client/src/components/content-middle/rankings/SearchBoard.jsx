@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
+
+// Config
 import { classes, order } from 'config/Rankings'
 
 // Helpers
@@ -6,31 +8,34 @@ import { getClassName } from 'helpers/Character'
 
 export default ({ filter, setFilter }) => {
   const updateClasses = event => {
-    const target = [Number(event.target.id)]
-    let classes = [...filter.class]
+    const target = Number(event.target.id)
+    const classes = [...filter.class]
+    let extraClass = null
 
-    if (target[0] === 1 || target[0] === 17 || target[0] === 33) {
-      target.push(target[0] === 17 ? 16 : target[0] === 33 ? 32 : 0)
+    if (target === 1 || target === 17 || target === 33) {
+      extraClass = target === 17 ? 16 : target === 33 ? 32 : 0
     }
 
-    const indexes = []
+    if (classes.includes(target)) {
+      classes.splice(
+        classes.findIndex(c => c === target),
+        1
+      )
 
-    if (target[1]) {
-      indexes.push(classes.findIndex(c => c === target[1]))
-    }
-    indexes.push(classes.findIndex(c => c === target[0]))
-
-    if (indexes[0] !== -1) {
-      classes.splice(indexes[0], target.length > 1 ? 2 : 1)
+      if (extraClass !== null) {
+        classes.splice(
+          classes.findIndex(c => c === extraClass),
+          1
+        )
+      }
     } else {
-      classes.push(target[0])
+      classes.push(target)
+      if (extraClass !== null) {
+        classes.push(extraClass)
+      }
     }
 
-    if (target.length > 1 && indexes[0] === -1) {
-      classes.push(target[0] === 17 ? 16 : target[0] === 33 ? 32 : 0)
-    }
-
-    setFilter({ ...filter, class: classes })
+    setFilter({ ...filter, page: 1, class: classes })
   }
 
   return (
@@ -56,13 +61,21 @@ export default ({ filter, setFilter }) => {
             {o.name}
             <div className='buttons-group'>
               <div
-                className={`button ${o.type && 'active'}`}
-                onClick={() => console.log(o.type)}>
+                className={`button ${o.column === filter.order[0] &&
+                  filter.order[1] &&
+                  'active'}`}
+                onClick={() =>
+                  setFilter({ ...filter, page: 1, order: [o.column, true] })
+                }>
                 desc
               </div>
               <div
-                className={`button ${!o.type && 'active'}`}
-                onClick={() => console.log(o.type)}>
+                className={`button ${o.column === filter.order[0] &&
+                  !filter.order[1] &&
+                  'active'}`}
+                onClick={() =>
+                  setFilter({ ...filter, page: 1, order: [o.column, false] })
+                }>
                 asc
               </div>
             </div>
@@ -73,9 +86,21 @@ export default ({ filter, setFilter }) => {
         <input
           type='text'
           value={filter.name || ''}
-          onChange={e => setFilter({ ...filter, name: e.target.value })}
+          onChange={e =>
+            setFilter({ ...filter, page: 1, name: e.target.value })
+          }
           placeholder='search character'
         />
+        <select
+          onChange={e =>
+            setFilter({ ...filter, page: 1, perPage: e.target.value })
+          }>
+          <option value={32}>per page</option>
+          <option value={8}>8</option>
+          <option value={16}>16</option>
+          <option value={32}>32</option>
+          <option value={64}>64</option>
+        </select>
       </div>
     </>
   )

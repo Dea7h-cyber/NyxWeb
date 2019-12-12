@@ -9,6 +9,9 @@ import Character from './Character'
 import Pagination from './Pagination'
 import SearchBoard from './SearchBoard'
 
+// Config
+import { perPage } from 'config/Rankings'
+
 // Actions
 import { fetchMany } from 'redux/actions/Rankings'
 
@@ -25,13 +28,9 @@ const Rankings = ({
   const [filter, setFilter] = useState({
     page: page ? Number(page) : 1,
     class: [0, 1, 16, 17, 32, 33, 48, 64],
-    order: [
-      { name: 'Resets', column: 'Resets', type: true },
-      { name: 'Level', column: 'cLevel', type: true },
-      { name: 'Name', column: 'Name', type: false }
-    ],
+    order: ['Resets', true],
     name: false,
-    perPage: 32
+    perPage
   })
 
   useEffect(() => {
@@ -48,18 +47,28 @@ const Rankings = ({
 
   useEffect(() => {
     const filterCharacters = () => {
-      let filtered = [...characters]
-
       // Classes
-      filtered = filtered.filter(c => filter.class.includes(c.Class))
+      let filtered = [...characters].filter(c => filter.class.includes(c.Class))
+
+      // Search by name
+      if (filter.name !== false) {
+        filtered = filtered.filter(c =>
+          c.Name.match(new RegExp(filter.name, 'i'))
+        )
+      }
+
+      // Order
+      filtered = filtered.sort((a, b) =>
+        filter.order[1]
+          ? b[filter.order[0]] - a[filter.order[0]]
+          : a[filter.order[0]] - b[filter.order[0]]
+      )
 
       setTotalChars(filtered.length)
 
       // Page
       filtered.splice(0, (filter.page - 1) * filter.perPage)
       filtered.splice(filter.perPage)
-
-      console.log(filtered)
 
       setDisplayChars(filtered)
     }
@@ -89,14 +98,18 @@ const Rankings = ({
             totalChars={totalChars}
           />
           <div className='rankings-table'>
-            {displayChars.map((char, index) => (
-              <Character
-                key={index}
-                page={filter.page}
-                char={char}
-                index={index}
-              />
-            ))}
+            {displayChars.length > 0 ? (
+              displayChars.map((char, index) => (
+                <Character
+                  key={index}
+                  page={filter.page}
+                  char={char}
+                  index={index}
+                />
+              ))
+            ) : (
+              <div>No characters found</div>
+            )}
           </div>
           <Pagination
             filter={filter}

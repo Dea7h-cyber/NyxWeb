@@ -2,10 +2,10 @@
   "perPage": 32,
   "classes": [1, 17, 33, 48, 64],
   "order": [
-    { "name": "Resets", "column": "Resets", "type": true },
-    { "name": "Levels", "column": "cLevel", "type": true },
-    { "name": "Zen", "column": "Money", "type": true },
-    { "name": "PkCount", "column": "PkCount", "type": true },
-    { "name": "Status", "column": "status", "type": false }
+    { "name": "Resets", "column": "Resets" },
+    { "name": "Levels", "column": "cLevel" },
+    { "name": "Zen", "column": "Money" },
+    { "name": "PkCount", "column": "PkCount" },
+    { "name": "Online", "column": "status" }
   ]
 }
