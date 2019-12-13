@@ -1,8 +1,7 @@
-.rankings-table {
+.rankings-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  padding: 5px;
 
   & .character {
     background: #0f0e0e;
@@ -68,6 +67,47 @@
       & .cell {
         float: left;
       }
+    }
+  }
+}
+
+.rankings-table {
+  display: grid;
+  gap: 5px;
+
+  & .character {
+    display: flex;
+    background: #0f0e0e;
+    padding: 5px;
+    border-radius: 5px;
+    align-items: center;
+
+    & .name {
+      flex: 1;
+    }
+
+    & .level {
+      flex: 1;
+    }
+
+    & .class {
+      flex: 2;
+    }
+
+    & .zen {
+      flex: 2;
+    }
+
+    & .guild {
+      & .guild-logo {
+        & .cell {
+          float: left;
+        }
+      }
+    }
+
+    &:nth-child(odd) {
+      background: #1b1a1a;
     }
   }
 }
@@ -170,6 +210,10 @@
       flex: 1;
       border-radius: 3px;
     }
+
+    & svg {
+      cursor: pointer;
+    }
   }
 
   & label.row {
@@ -230,13 +274,13 @@
 }
 
 @media (max-width: 1150px) {
-  .rankings-table {
+  .rankings-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 550px) {
-  .rankings-table {
+  .rankings-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 

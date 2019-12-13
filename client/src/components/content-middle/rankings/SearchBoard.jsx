@@ -1,4 +1,5 @@
 import React from 'react'
+import { ViewList, ViewComfy } from '@material-ui/icons'
 
 // Config
 import { classes, order } from 'config/Rankings'
@@ -6,15 +7,12 @@ import { classes, order } from 'config/Rankings'
 // Helpers
 import { getClassName } from 'helpers/Character'
 
-export default ({ filter, setFilter }) => {
+export default ({ filter, setFilter, view, setView }) => {
   const updateClasses = event => {
     const target = Number(event.target.id)
     const classes = [...filter.class]
-    let extraClass = null
-
-    if (target === 1 || target === 17 || target === 33) {
-      extraClass = target === 17 ? 16 : target === 33 ? 32 : 0
-    }
+    const extraClass =
+      target === 1 ? 0 : target === 17 ? 16 : target === 33 ? 32 : null
 
     if (classes.includes(target)) {
       classes.splice(
@@ -101,6 +99,14 @@ export default ({ filter, setFilter }) => {
           <option value={32}>32</option>
           <option value={64}>64</option>
         </select>
+        <ViewList
+          style={{ width: 31, height: 31, color: view ? 'green' : 'white' }}
+          onClick={() => setView(true)}
+        />
+        <ViewComfy
+          style={{ width: 31, height: 31, color: !view ? 'green' : 'white' }}
+          onClick={() => setView(false)}
+        />
       </div>
     </>
   )

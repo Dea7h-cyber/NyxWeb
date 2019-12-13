@@ -4,10 +4,6 @@ import { connect } from 'react-redux'
 import { resetCharacter } from 'redux/actions/UserCharacter'
 
 const AddStats = ({ selected, resetCharacter }) => {
-  const reset = () => {
-    resetCharacter(selected.Name)
-  }
-
   return (
     <div style={{ padding: 10, width: '100%' }}>
       <div style={{ marginBottom: 10, fontSize: 16, color: 'orange' }}>
@@ -31,7 +27,7 @@ const AddStats = ({ selected, resetCharacter }) => {
           zen
         </div>
       </div>
-      <button onClick={reset}>RESET</button>
+      <button onClick={() => resetCharacter(selected.Name)}>RESET</button>
       <div
         style={{
           marginTop: 30,

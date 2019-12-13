@@ -25,12 +25,14 @@ const Rankings = ({
   const [loading, setLoading] = useState(characters ? false : true)
   const [displayChars, setDisplayChars] = useState([])
   const [totalChars, setTotalChars] = useState(0)
+  const [view, setView] = useState(true)
   const [filter, setFilter] = useState({
     page: page ? Number(page) : 1,
     class: [0, 1, 16, 17, 32, 33, 48, 64],
     order: ['Resets', true],
     name: false,
-    perPage
+    perPage,
+    totalChars: 0
   })
 
   useEffect(() => {
@@ -91,27 +93,33 @@ const Rankings = ({
       <h1 className='content-title'>rankings</h1>
       <section className='content-body'>
         <div className='content padding'>
-          <SearchBoard filter={filter} setFilter={setFilter} />
+          <SearchBoard
+            filter={filter}
+            setFilter={setFilter}
+            view={view}
+            setView={setView}
+          />
           <Pagination
             filter={filter}
             setFilter={setFilter}
             totalChars={totalChars}
           />
-          <div className='rankings-table'>
-            {displayChars.length > 0 ? (
-              displayChars.map((char, index) => (
+          {displayChars.length > 0 ? (
+            <div className={view ? 'rankings-table' : 'rankings-grid'}>
+              {displayChars.map((char, index) => (
                 <Character
                   key={index}
                   page={filter.page}
                   perPage={filter.perPage}
                   char={char}
                   index={index}
+                  view={view}
                 />
-              ))
-            ) : (
-              <div>No characters found</div>
-            )}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div style={{ padding: 10 }}>No characters found</div>
+          )}
           <Pagination
             filter={filter}
             setFilter={setFilter}
