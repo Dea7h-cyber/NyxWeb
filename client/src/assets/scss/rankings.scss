@@ -91,14 +91,19 @@
     }
 
     & .class {
-      flex: 2;
+      flex: 1;
     }
 
     & .zen {
-      flex: 2;
+      flex: 1;
     }
 
     & .guild {
+      width: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       & .guild-logo {
         & .cell {
           float: left;
@@ -282,6 +287,18 @@
 @media (max-width: 550px) {
   .rankings-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rankings-table {
+    & .character {
+      & .level {
+        display: none;
+      }
+
+      & .zen {
+        display: none;
+      }
+    }
   }
 
   .search-bar {

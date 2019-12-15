@@ -9,6 +9,5 @@ export default () => (
   <Switch>
     <Route exact path='/user/characters' component={CharactersList} />
     <Route path='/user/characters/:name' component={Character} />
-    <Route path='/user/characters/reset' component={Character} />
   </Switch>
 )

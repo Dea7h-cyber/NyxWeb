@@ -45,7 +45,8 @@ export default (state = initialState, { type, payload }) => {
         Resources: {
           ...state.Resources,
           data: payload.data,
-          others: payload.others
+          others: payload.others,
+          failed: false
         }
       }
     case USER_FETCH_RESOURCES_FAILED:

@@ -101,11 +101,17 @@ export default ({ filter, setFilter, view, setView }) => {
         </select>
         <ViewList
           style={{ width: 31, height: 31, color: view ? 'green' : 'white' }}
-          onClick={() => setView(true)}
+          onClick={() => {
+            setView(true)
+            localStorage.nyxView = true
+          }}
         />
         <ViewComfy
           style={{ width: 31, height: 31, color: !view ? 'green' : 'white' }}
-          onClick={() => setView(false)}
+          onClick={() => {
+            setView(false)
+            localStorage.nyxView = false
+          }}
         />
       </div>
     </>

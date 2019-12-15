@@ -26,7 +26,7 @@ export const TextField = ({
     } else {
       setValid('')
     }
-  }, [value, pattern])
+  }, [value, pattern, match])
 
   return (
     <div className='nyxForms wrapper'>
@@ -35,7 +35,7 @@ export const TextField = ({
         value={value}
         onChange={onChange}
         name={name}
-        required={required === false || required === 'false' ? 'false' : 'true'}
+        required={required === false || required === 'false' ? false : true}
         autoComplete={
           autoComplete === true || autoComplete === 'true' ? 'on' : 'off'
         }

@@ -25,7 +25,9 @@ const Rankings = ({
   const [loading, setLoading] = useState(characters ? false : true)
   const [displayChars, setDisplayChars] = useState([])
   const [totalChars, setTotalChars] = useState(0)
-  const [view, setView] = useState(true)
+  const [view, setView] = useState(
+    localStorage.nyxView ? JSON.parse(localStorage.nyxView) : false
+  )
   const [filter, setFilter] = useState({
     page: page ? Number(page) : 1,
     class: [0, 1, 16, 17, 32, 33, 48, 64],
