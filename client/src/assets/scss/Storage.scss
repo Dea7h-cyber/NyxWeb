@@ -1,0 +1,12 @@
+.storage {
+  width: 500px;
+  height: 900px;
+  background: url('/images/items/storage/frame-border-bottom.png') no-repeat
+      left bottom/100% 16px,
+    url('/images/items/storage/frame-border-left.png') no-repeat left
+      bottom/16px 100%,
+    url('/images/items/storage/frame-border-top.png') no-repeat left top/16px
+      100%,
+    url('/images/items/storage/frame-border-right.png') no-repeat top right/16px
+      100%;
+}

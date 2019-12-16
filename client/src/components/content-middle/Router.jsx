@@ -7,7 +7,7 @@ import Rankings from './rankings/Main'
 import Register from './Register'
 import Profile from './Profile'
 import Statistics from './Statistics'
-import UserArea from './user-area/Main'
+import UserArea from './user-area/Router'
 
 export default () => (
   <main className='main-middle'>

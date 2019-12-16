@@ -14,8 +14,9 @@ const resetConfig = require('../../config/characters/reset')
 const status = require('./status')
 
 module.exports = async (req, res) => {
-  const AccountID = req.cookies.nyx_user
+  const AccountID = req.username
   const Name = req.params.name
+  const Character = models.Character()
 
   // Check for character status
   if (await status(AccountID, Name)) {
@@ -25,7 +26,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const character = await models.Character.findOne({
+    const character = await Character.findOne({
       where: { AccountID, Name },
       attributes: [
         'Inventory',
@@ -50,7 +51,7 @@ module.exports = async (req, res) => {
     // Check for equippment
     if (resetConfig.checkForEquipment) {
       const inventory = character.Inventory.toString('hex')
-      if ('f'.repeat(240) !== inventory.slice(0, 240).toLowerCase()) {
+      if (!/[f]{240}/i.test(inventory.slice(0, 240))) {
         return res.json({
           error: `Make sure you don't wear any items and try again.`
         })

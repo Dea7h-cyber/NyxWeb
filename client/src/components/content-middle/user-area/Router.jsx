@@ -2,9 +2,9 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 // Components
-import Account from './account/Main'
-import Characters from './characters/Main'
-import Special from './special/Main'
+import Account from './account/Router'
+import Characters from './characters/Router'
+import Special from './special/Router'
 
 export default () => (
   <Switch>

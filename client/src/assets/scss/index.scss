@@ -1,7 +1,10 @@
 @import 'main.scss';
 @import 'rankings.scss';
 @import 'characters.scss';
-@import 'userArea.scss';
 @import 'elements.scss';
 @import 'leftContent.scss';
+
+@import 'userArea/Main.scss';
+@import 'Storage.scss';
+
 @import 'Forms.scss';

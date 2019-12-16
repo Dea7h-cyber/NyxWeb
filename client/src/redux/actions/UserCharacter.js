@@ -81,7 +81,7 @@ export const resetCharacter = name => async dispatch => {
 //* ------------------------------------------------------------------------
 export const clearCharacter = name => async dispatch => {
   try {
-    const response = await axios.patch(`/api/characters/${name}/clear`)
+    const response = await axios.patch(`/api/characters/${name}/pkclear`)
 
     Notice(response.data)
 

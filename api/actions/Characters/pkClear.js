@@ -14,8 +14,9 @@ const pkConfig = require('../../config/characters/pkClear')
 const status = require('./status')
 
 module.exports = async (req, res) => {
-  const AccountID = req.cookies.nyx_user
+  const AccountID = req.username
   const Name = req.params.name
+  const Character = models.Character()
 
   // Check for character status
   if (await status(AccountID, Name)) {
@@ -25,7 +26,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const character = await models.Character.findOne({
+    const character = await Character.findOne({
       where: { AccountID, Name },
       attributes: ['Name', 'PkCount', 'PkLevel', 'PkTime', 'Money']
     })
@@ -37,7 +38,7 @@ module.exports = async (req, res) => {
     // Check if character is PK
     if (!(character.PkCount > 0)) {
       return res.json({
-        error: `You are not murderer, ${character.Name}.`
+        error: `You are not a murderer, ${character.Name}.`
       })
     }
 
@@ -46,7 +47,9 @@ module.exports = async (req, res) => {
       pkConfig.mode === 1 ? pkConfig.cost : pkConfig.cost * character.PkCount
     if (character.Money < pkCost) {
       return res.json({
-        error: `You need ${pkCost} zen to clear your ${character.PkCount} kills, ${character.Name}.`
+        error: `You need ${pkCost.toLocaleString()} zen to clear your ${
+          character.PkCount
+        } kills, ${character.Name}.`
       })
     }
 

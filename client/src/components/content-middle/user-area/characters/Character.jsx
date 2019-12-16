@@ -10,18 +10,15 @@ import Failed from 'components/reusables/Failed'
 import CharacterCard from 'components/reusables/CharacterCard'
 
 // Character Options
-import Reset from './character/Reset'
-import PkClear from './character/PkClear'
-import AddStats from './character/AddStats'
+import Reset from './Reset'
+import PkClear from './PkClear'
+import AddStats from './AddStats'
 
 // Actions
 import {
   getUserCharacters,
   setSelectedCharacter
 } from 'redux/actions/UserCharacter'
-
-// Helpers
-// import { classToImage } from '../../../../helpers/Character'
 
 const Character = ({
   Characters: { characters, selected, failed },
