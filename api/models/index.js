@@ -8,5 +8,6 @@ module.exports = {
   MEMB_STAT: require('./MEMB_STAT')(sequelize, DataTypes),
   Guild: require('./Guild')(sequelize, DataTypes),
   GuildMember: require('./GuildMember'),
-  NYX_RESOURCES: require('./NYX_RESOURCES')(sequelize, DataTypes)
+  NYX_RESOURCES: require('./NYX_RESOURCES')(sequelize, DataTypes),
+  warehouse: require('./warehouse')(sequelize, DataTypes)
 }

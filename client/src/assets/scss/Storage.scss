@@ -1,12 +1,25 @@
 .storage {
-  width: 500px;
-  height: 900px;
-  background: url('/images/items/storage/frame-border-bottom.png') no-repeat
-      left bottom/100% 16px,
-    url('/images/items/storage/frame-border-left.png') no-repeat left
-      bottom/16px 100%,
-    url('/images/items/storage/frame-border-top.png') no-repeat left top/16px
+  display: inline-block;
+  padding: 16px;
+  background: url('../images/storage/frame-corner-top-right.png') no-repeat top
+      right,
+    url('../images/storage/frame-corner-top-left.png') no-repeat top left,
+    url('../images/storage/frame-corner-bottom-right.png') no-repeat bottom
+      right,
+    url('../images/storage/frame-corner-bottom-left.png') no-repeat bottom left,
+    url('../images/storage/frame-border-bottom.png') no-repeat left bottom/100%
+      16px,
+    url('../images/storage/frame-border-left.png') no-repeat left top/16px 100%,
+    url('../images/storage/frame-border-right.png') no-repeat right top/16px
       100%,
-    url('/images/items/storage/frame-border-right.png') no-repeat top right/16px
-      100%;
+    url('../images/storage/frame-border-top.png') no-repeat left top/100% 16px;
+
+  & .inner {
+    position: relative;
+    width: 209px;
+    height: 391px;
+    background: url('../images/storage/slot.png');
+    border-top: 1px solid #2e2d28;
+    border-left: 1px solid #2e2d28;
+  }
 }

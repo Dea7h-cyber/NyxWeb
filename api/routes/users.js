@@ -27,6 +27,13 @@ router.get('/verification', actions.Verification)
 router.post('/register', validator.Register, actions.Register)
 
 /**
+ * @route   GET /api/users/characters
+ * @desc    User Characters
+ */
+
+router.get('/characters', authorization, actions.getUserCharacters)
+
+/**
  * @route   GET /api/users/resources
  * @desc    User Resources
  */
@@ -34,10 +41,10 @@ router.post('/register', validator.Register, actions.Register)
 router.get('/resources', authorization, actions.getResources)
 
 /**
- * @route   GET /api/users/characters
- * @desc    User Characters
+ * @route   GET /api/users/warehouse
+ * @desc    User Warehouse
  */
 
-router.get('/characters', authorization, actions.getUserCharacters)
+router.get('/warehouse', authorization, actions.getWarehouse)
 
 module.exports = router

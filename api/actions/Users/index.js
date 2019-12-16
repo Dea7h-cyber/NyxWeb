@@ -4,5 +4,6 @@ module.exports = {
   status: require('./status'),
   Verification: require('./Verification'),
   getResources: require('./getResources'),
-  getUserCharacters: require('./getUserCharacters')
+  getUserCharacters: require('./getUserCharacters'),
+  getWarehouse: require('./getWarehouse')
 }

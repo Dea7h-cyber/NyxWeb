@@ -9,25 +9,18 @@ const models = require('../../models/')
 module.exports = async (req, res) => {
   try {
     const username = req.username
-    let resources
 
-    resources = await models.NYX_RESOURCES.findOne({
-      where: { username }
+    const warehouse = await models.warehouse.findOne({
+      where: { AccountID: username }
     })
 
-    if (!resources) {
-      const newRecord = await models.NYX_RESOURCES.build({
-        username: req.username
-      })
-
-      await newRecord.save()
-
-      resources = await models.NYX_RESOURCES.findOne({
-        where: { username }
-      })
+    if (!warehouse) {
+      return res.json({ error: 'No warehouse found for this user' })
     }
 
-    return res.json(resources)
+    warehouse.Items = warehouse.Items.toString('hex')
+
+    return res.json(warehouse)
   } catch (error) {
     logger.error(`${error.name}: ${error.message}`)
     res.json({

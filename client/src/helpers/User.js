@@ -17,3 +17,16 @@ export const transformResources = response => {
     others: { zen: response.zen, credits: response.credits }
   }
 }
+
+export const itemsWarehouse = hex => {
+  const items = []
+
+  for (let i = 0; i < hex.length / 20; i++) {
+    const item = hex.substr(i * 20, 20)
+    if (item !== 'ffffffffffffffffffff') {
+      items.push(item)
+    }
+  }
+
+  return items
+}
