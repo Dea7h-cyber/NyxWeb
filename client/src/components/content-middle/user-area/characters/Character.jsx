@@ -4,7 +4,6 @@ import { Autorenew } from '@material-ui/icons'
 import { Link, Route, Switch } from 'react-router-dom'
 
 // Components
-import Custom from 'components/reusables/Custom'
 import Loading from 'components/reusables/Loading'
 import Failed from 'components/reusables/Failed'
 import CharacterCard from 'components/reusables/CharacterCard'
@@ -55,12 +54,7 @@ const Character = ({
     }
   }, [characters, authorized, name, setSelectedCharacter, getUserCharacters])
 
-  return !authorized ? (
-    <Custom
-      title='not authorized'
-      message='You are not authorized. Please login and try again.'
-    />
-  ) : loading ? (
+  return loading ? (
     <Loading />
   ) : failed || !selected ? (
     <Failed />

@@ -7,20 +7,20 @@ import Loading from 'components/reusables/Loading'
 import Failed from 'components/reusables/Failed'
 import Item from 'components/reusables/Item'
 
-import { fetchWarehouse } from 'redux/actions/User'
+import { fetchStorage } from 'redux/actions/User'
 import { itemsWarehouse } from 'helpers/User'
 
 const Storage = ({
   username,
   Storage: { warehouse, failed },
-  fetchWarehouse
+  fetchStorage
 }) => {
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
 
   const reFetcher = async () => {
     setLoading(true)
-    await fetchWarehouse()
+    await fetchStorage()
     setLoading(false)
   }
 
@@ -48,10 +48,38 @@ const Storage = ({
         <div className='content'>
           <Menu />
           <div className='storage'>
-            <div className='inner'>
+            <div
+              className='inner'
+              onDragStart={e => console.log(e)}
+              onDragEnd={e => console.log(e)}>
               {items.map((item, key) => (
-                <Item key={key} hex={item} />
+                <Item
+                  key={key}
+                  hex={item.hex}
+                  style={{
+                    top: item.top,
+                    left: item.left,
+                    position: 'absolute',
+                    backgroundColor: 'rgba(0,0,0,0.3)'
+                  }}
+                  options={{ image: true, size: 26 }}
+                />
               ))}
+            </div>
+          </div>
+
+          <div className='storage'>
+            <div className='inner'>
+              <Item
+                hex={'174FFF00EBC1D9805735'}
+                style={{
+                  top: 1,
+                  left: 1,
+                  position: 'absolute',
+                  backgroundColor: 'rgba(0,0,0,0.3)'
+                }}
+                options={{ image: true, size: 26, fixed: true }}
+              />
             </div>
           </div>
         </div>
@@ -65,4 +93,4 @@ const mapStateToProps = state => ({
   Storage: state.User.Storage
 })
 
-export default connect(mapStateToProps, { fetchWarehouse })(Storage)
+export default connect(mapStateToProps, { fetchStorage })(Storage)

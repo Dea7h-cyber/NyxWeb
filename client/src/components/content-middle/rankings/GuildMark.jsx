@@ -16,7 +16,7 @@ const generateLogo = (mark, size) =>
     />
   ))
 
-export default ({ passed: { mark, size } }) =>
+export default ({ mark, size }) =>
   mark && (
     <div className='guild-logo' style={{ width: size, height: size }}>
       {generateLogo(mark, size)}

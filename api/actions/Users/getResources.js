@@ -9,9 +9,7 @@ const models = require('../../models/')
 module.exports = async (req, res) => {
   try {
     const username = req.username
-    let resources
-
-    resources = await models.NYX_RESOURCES.findOne({
+    let resources = await models.NYX_RESOURCES.findOne({
       where: { username }
     })
 
@@ -22,6 +20,7 @@ module.exports = async (req, res) => {
 
       await newRecord.save()
 
+      // TODO get this out of this if cuz it might not work? :]
       resources = await models.NYX_RESOURCES.findOne({
         where: { username }
       })

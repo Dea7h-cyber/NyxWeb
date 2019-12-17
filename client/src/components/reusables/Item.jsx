@@ -9,7 +9,7 @@ import { getClassName } from 'helpers/Character'
 import Items from 'config/items/List'
 import _Options from 'config/items/Options'
 
-export default ({ hex, options }) => {
+export default ({ hex, options, style }) => {
   const itemData = hexDecode(hex)
   const item = Items[itemData.group].items[itemData.id]
 
@@ -25,21 +25,27 @@ export default ({ hex, options }) => {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <Tooltip title={<Options itemData={itemData} item={item} />}>
+      <Tooltip
+        title={<Options itemData={itemData} item={item} options={options} />}>
         <div
-          style={
-            options && options.image
+          style={{
+            ...(options && options.image
               ? { display: 'inline-block' }
-              : { ...nameColor(itemData), display: 'inline-block' }
-          }>
+              : { ...nameColor(itemData), display: 'inline-block' }),
+            ...style
+          }}
+          draggable={true}>
           {options && options.image ? (
             <img
+              onError={e => (e.target.src = '/images/items/no.png')}
               src={`/images/items/${itemData.group}/${itemData.id}.gif`}
               alt={item.name}
               style={
                 options.size && {
-                  width: options.size * item.x - 2,
-                  height: options.size * item.y - 2
+                  width:
+                    (options.fixed ? options.size : options.size * item.x) - 2,
+                  height:
+                    (options.fixed ? options.size : options.size * item.y) - 2
                 }
               }
             />
@@ -52,7 +58,7 @@ export default ({ hex, options }) => {
   )
 }
 
-const Options = ({ item, itemData }) => {
+const Options = ({ item, itemData, options }) => {
   const style = {
     container: {
       padding: 5,
@@ -120,8 +126,16 @@ const Options = ({ item, itemData }) => {
   view.push(
     <img
       key={uuid()}
+      onError={e => (e.target.src = '/images/items/no.png')}
       src={`/images/items/${itemData.group}/${itemData.id}.gif`}
       alt={item.name}
+      style={
+        options &&
+        options.size && {
+          width: options.size * item.x - 2,
+          height: options.size * item.y - 2
+        }
+      }
     />
   )
 

@@ -5,8 +5,8 @@ import {
   USER_VERIFICATION_FAILED,
   USER_FETCH_RESOURCES,
   USER_FETCH_RESOURCES_FAILED,
-  USER_FETCH_WAREHOUSE,
-  USER_FETCH_WAREHOUSE_FAILED,
+  USER_FETCH_STORAGE,
+  USER_FETCH_STORAGE_FAILED,
   USER_LOGOUT
 } from 'redux/types'
 
@@ -84,22 +84,22 @@ export const fetchResources = () => async dispatch => {
   }
 }
 
-export const fetchWarehouse = () => async dispatch => {
+export const fetchStorage = () => async dispatch => {
   try {
-    const response = await axios.get('/api/users/warehouse')
+    const response = await axios.get('/api/users/storage')
 
     if (response.data.error) {
-      dispatch({ type: USER_FETCH_WAREHOUSE_FAILED })
+      dispatch({ type: USER_FETCH_STORAGE_FAILED })
     } else {
-      const { data } = response
+      console.log(response.data)
       dispatch({
-        type: USER_FETCH_WAREHOUSE,
-        payload: data
+        type: USER_FETCH_STORAGE,
+        payload: response.data
       })
     }
   } catch (err) {
     dispatch({
-      type: USER_FETCH_WAREHOUSE_FAILED
+      type: USER_FETCH_STORAGE_FAILED
     })
   }
 }

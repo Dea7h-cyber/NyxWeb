@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 // Components
-import Custom from 'components/reusables/Custom'
 import Loading from 'components/reusables/Loading'
 import Failed from 'components/reusables/Failed'
 import CharacterCard from 'components/reusables/CharacterCard'
@@ -28,12 +27,7 @@ const Characters = ({
     }
   }, [username, getUserCharacters])
 
-  return !username ? (
-    <Custom
-      title='not authorized'
-      message='You are not authorized. Please login and try again.'
-    />
-  ) : loading ? (
+  return loading ? (
     <Loading />
   ) : failed ? (
     <Failed />

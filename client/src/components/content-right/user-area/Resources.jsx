@@ -44,7 +44,7 @@ const UserArea = ({ Resources, fetchResources }) => {
               <div
                 className='resource'
                 style={{
-                  background: `url('/images/items/resources/${key}.gif') no-repeat center center/25px 25px, url('/images/items/storage/slot.png') no-repeat center center/contain`
+                  background: `url('/images/items/resources/${key}.gif') no-repeat center center/25px 25px, url('/images/items/slot.png') no-repeat center center/contain`
                 }}>
                 <span className='amount'>{res.amount}</span>
               </div>

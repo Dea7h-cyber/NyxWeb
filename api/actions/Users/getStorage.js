@@ -1,10 +1,5 @@
-/**
- * Authentication/Login
- */
 const logger = require('../Logger')
-
-// Models
-const models = require('../../models/')
+const models = require('../../models')
 
 module.exports = async (req, res) => {
   try {
@@ -15,12 +10,21 @@ module.exports = async (req, res) => {
     })
 
     if (!warehouse) {
+      // TODO create user warehouse if it doesnt exist
       return res.json({ error: 'No warehouse found for this user' })
+    }
+
+    const storage = await models.NYX_RESOURCES.findOne({
+      where: { username }
+    })
+
+    if (!storage) {
+      return res.json({ error: 'No storage found for this user' })
     }
 
     warehouse.Items = warehouse.Items.toString('hex')
 
-    return res.json(warehouse)
+    return res.json({ warehouse, storage: storage.Items })
   } catch (error) {
     logger.error(`${error.name}: ${error.message}`)
     res.json({

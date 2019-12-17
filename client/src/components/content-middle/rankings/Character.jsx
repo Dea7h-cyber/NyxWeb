@@ -44,7 +44,7 @@ export default ({ page, perPage, char, index, view }) => {
               '-'
             )}
           </span>
-          <GuildMark passed={{ mark: char.GuildMark, size: 30 }} />
+          <GuildMark mark={char.GuildMark} size={30} />
         </div>
       </div>
     )
@@ -62,7 +62,7 @@ export default ({ page, perPage, char, index, view }) => {
           </Link>
         </div>
 
-        <GuildMark passed={{ mark: char.GuildMark, size: 30 }} />
+        <GuildMark mark={char.GuildMark} size={30} />
 
         <div className='image'>
           <img src={getClassImage(char.Class)} alt={char.Class} />

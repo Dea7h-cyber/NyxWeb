@@ -45,6 +45,6 @@ router.get('/resources', authorization, actions.getResources)
  * @desc    User Warehouse
  */
 
-router.get('/warehouse', authorization, actions.getWarehouse)
+router.get('/storage', authorization, actions.getStorage)
 
 module.exports = router

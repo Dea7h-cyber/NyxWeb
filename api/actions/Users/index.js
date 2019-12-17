@@ -5,5 +5,5 @@ module.exports = {
   Verification: require('./Verification'),
   getResources: require('./getResources'),
   getUserCharacters: require('./getUserCharacters'),
-  getWarehouse: require('./getWarehouse')
+  getStorage: require('./getStorage')
 }

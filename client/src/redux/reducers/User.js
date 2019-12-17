@@ -5,8 +5,8 @@ import {
   USER_VERIFICATION_FAILED,
   USER_FETCH_RESOURCES,
   USER_FETCH_RESOURCES_FAILED,
-  USER_FETCH_WAREHOUSE,
-  USER_FETCH_WAREHOUSE_FAILED,
+  USER_FETCH_STORAGE,
+  USER_FETCH_STORAGE_FAILED,
   USER_LOGOUT
 } from 'redux/types'
 
@@ -22,6 +22,7 @@ const initialState = {
   },
   Storage: {
     warehouse: null,
+    storage: null,
     failed: false
   }
 }
@@ -63,16 +64,17 @@ export default (state = initialState, { type, payload }) => {
           failed: true
         }
       }
-    case USER_FETCH_WAREHOUSE:
+    case USER_FETCH_STORAGE:
       return {
         ...state,
         Storage: {
           ...state.Storage,
-          warehouse: payload,
+          warehouse: payload.warehouse,
+          storage: payload.storage,
           failed: false
         }
       }
-    case USER_FETCH_WAREHOUSE_FAILED:
+    case USER_FETCH_STORAGE_FAILED:
       return {
         ...state,
         Storage: {
