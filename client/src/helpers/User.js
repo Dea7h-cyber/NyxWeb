@@ -18,32 +18,19 @@ export const transformResources = response => {
   }
 }
 
-export const itemsWarehouse = warehouse =>
+export const parseStorageItems = warehouse =>
   warehouse
     .match(/[a-z0-9]{20}/gi)
     .map(
       (hex, i) =>
         !/f{20}/i.test(hex) && {
           hex,
-          top: Math.floor(i / 8) * 26,
-          left: (i - Math.floor(i / 8) * 8) * 26
+          style: {
+            top: Math.floor(i / 8) * 26,
+            left: (i - Math.floor(i / 8) * 8) * 26,
+            position: 'absolute',
+            backgroundColor: 'rgba(0,0,0,0.3)'
+          }
         }
     )
     .filter(item => item)
-
-// export const itemsWarehouse = hex => {
-//   const items = []
-
-//   for (let i = 0; i < hex.length / 20; i++) {
-//     const itemHex = hex.substr(i * 20, 20)
-//     if (!/f{20}/i.test(itemHex)) {
-//       items.push({
-//         hex: itemHex,
-//         top: Math.floor(i / 8) * 26,
-//         left: (i - Math.floor(i / 8) * 8) * 26
-//       })
-//     }
-//   }
-
-//   return items
-// }

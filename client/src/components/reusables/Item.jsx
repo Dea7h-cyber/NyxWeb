@@ -43,9 +43,11 @@ export default ({ hex, options, style }) => {
               style={
                 options.size && {
                   width:
-                    (options.fixed ? options.size : options.size * item.x) - 2,
+                    (options.fixedSize ? options.size : options.size * item.x) -
+                    2,
                   height:
-                    (options.fixed ? options.size : options.size * item.y) - 2
+                    (options.fixedSize ? options.size : options.size * item.y) -
+                    2
                 }
               }
             />
@@ -124,19 +126,20 @@ const Options = ({ item, itemData, options }) => {
 
   // Item Image
   view.push(
-    <img
-      key={uuid()}
-      onError={e => (e.target.src = '/images/items/no.png')}
-      src={`/images/items/${itemData.group}/${itemData.id}.gif`}
-      alt={item.name}
-      style={
-        options &&
-        options.size && {
-          width: options.size * item.x - 2,
-          height: options.size * item.y - 2
+    <div key={uuid()} style={{ display: 'flex', justifyContent: 'center' }}>
+      <img
+        onError={e => (e.target.src = '/images/items/no.png')}
+        src={`/images/items/${itemData.group}/${itemData.id}.gif`}
+        alt={item.name}
+        style={
+          options &&
+          options.size && {
+            width: options.size * item.x - 2,
+            height: options.size * item.y - 2
+          }
         }
-      }
-    />
+      />
+    </div>
   )
 
   // Item Durability

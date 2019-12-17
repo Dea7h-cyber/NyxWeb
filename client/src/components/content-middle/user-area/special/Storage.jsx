@@ -8,15 +8,16 @@ import Failed from 'components/reusables/Failed'
 import Item from 'components/reusables/Item'
 
 import { fetchStorage } from 'redux/actions/User'
-import { itemsWarehouse } from 'helpers/User'
+import { parseStorageItems } from 'helpers/User'
 
 const Storage = ({
   username,
-  Storage: { warehouse, failed },
+  Storage: { warehouse, storage, failed },
   fetchStorage
 }) => {
   const [loading, setLoading] = useState(true)
-  const [items, setItems] = useState([])
+  const [itemsWarehouse, setItemsWarehouse] = useState()
+  const [itemsStorage, setItemsStorage] = useState()
 
   const reFetcher = async () => {
     setLoading(true)
@@ -30,9 +31,15 @@ const Storage = ({
 
   useEffect(() => {
     if (warehouse) {
-      setItems(itemsWarehouse(warehouse.Items))
+      setItemsWarehouse(parseStorageItems(warehouse.Items))
     }
   }, [warehouse])
+
+  useEffect(() => {
+    if (storage) {
+      setItemsStorage(parseStorageItems(storage))
+    }
+  }, [storage])
 
   return loading ? (
     <Loading />
@@ -52,16 +59,11 @@ const Storage = ({
               className='inner'
               onDragStart={e => console.log(e)}
               onDragEnd={e => console.log(e)}>
-              {items.map((item, key) => (
+              {itemsWarehouse.map((item, key) => (
                 <Item
                   key={key}
                   hex={item.hex}
-                  style={{
-                    top: item.top,
-                    left: item.left,
-                    position: 'absolute',
-                    backgroundColor: 'rgba(0,0,0,0.3)'
-                  }}
+                  style={item.style}
                   options={{ image: true, size: 26 }}
                 />
               ))}
@@ -70,16 +72,14 @@ const Storage = ({
 
           <div className='storage'>
             <div className='inner'>
-              <Item
-                hex={'174FFF00EBC1D9805735'}
-                style={{
-                  top: 1,
-                  left: 1,
-                  position: 'absolute',
-                  backgroundColor: 'rgba(0,0,0,0.3)'
-                }}
-                options={{ image: true, size: 26, fixed: true }}
-              />
+              {itemsStorage.map((item, key) => (
+                <Item
+                  key={key}
+                  hex={item.hex}
+                  style={item.style}
+                  options={{ image: true, size: 26, fixedSize: true }}
+                />
+              ))}
             </div>
           </div>
         </div>
